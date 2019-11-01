@@ -13,3 +13,5 @@ name = "John";
 admin = name;
 
 alert(admin);
+
+alert("My name is {admin}");
