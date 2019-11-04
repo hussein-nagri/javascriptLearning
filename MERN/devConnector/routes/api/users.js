@@ -58,7 +58,7 @@ router.post("/", [
       user.password = await bcrypt.hash(password, salt);
       await user.save()
 
-      //return jsonwebtoken
+      //return jsonwebtoken --> purpose is if we wanna change like profile settings right away, then u can do that w the token returned
 
       const payload = {
         user: {
