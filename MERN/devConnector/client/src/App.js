@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
 
 
@@ -11,27 +11,38 @@ import Alert from './components/layouts/Alert'
 //Redux
 import { Provider } from 'react-redux' //combines react and redux
 import store from './store'
+import { loadUser } from './actions/auth';
+import setAuthToken from './utils/setAuthToken'
+if (localStorage.token) {
+  setAuthToken(localStorage.token);
+}
 
-const App = () => (
-  //must wrap it all
-  <Provider store={store}>
-    <Router>
-      <Fragment>
-        <Navbar></Navbar>
+const App = () => {
 
-        <Route exact path="/" component={Landing}> </Route>
-        <section className="container">
-          <Alert></Alert>
-          <Switch>
-            <Route exact path="/register" component={Register}></Route>
-            <Route exact path="/login" component={Login}></Route>
+  useEffect(() => {
+    store.dispatch(loadUser());
+  }, []);
+  return (
+    //must wrap it all
+    <Provider store={store}>
+      <Router>
+        <Fragment>
+          <Navbar></Navbar>
+
+          <Route exact path="/" component={Landing}> </Route>
+          <section className="container">
+            <Alert></Alert>
+            <Switch>
+              <Route exact path="/register" component={Register}></Route>
+              <Route exact path="/login" component={Login}></Route>
 
 
-          </Switch>
-        </section>
-      </Fragment>
-    </Router>
-  </Provider>
-);
+            </Switch>
+          </section>
+        </Fragment>
+      </Router>
+    </Provider>
+  );
+};
 
 export default App;
