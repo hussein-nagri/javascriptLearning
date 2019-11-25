@@ -1,27 +1,28 @@
-const jwt = require("jsonwebtoken");
-const config = require("config");
+const jwt = require('jsonwebtoken');
+const config = require('config');
 
-//since it is a middleware function, it takes in these 3 params
-module.exports = function (req, res, next) {
-  //get token from header
+module.exports = async function(req, res, next) {
+  // Get token from header
   const token = req.header('x-auth-token');
 
-  //check if there isnt any token
+  // Check if not token
   if (!token) {
-    return res.status(401).json({ msg: "No token, authorization denied!" })
+    return res.status(401).json({ msg: 'No token, authorization denied' });
   }
 
-  //verify token 
-
+  // Verify token
   try {
-    const decoded = jwt.verify(token, config.get('jwtSecret'));
-    req.user = decoded.user;
-    next();
-  } catch (error) {
-    res.status(401).json({ msg: "token is not valid" });
+    await jwt.verify(token, config.get('jwtSecret'), (error, decoded)=>{
+      if(error){
+        res.status(401).json({ msg: 'Token is not valid' });
+      }
+      else{
+        req.user = decoded.user;
+        next();
+      }
+    });
+  } catch (err) {
+    console.error('something wrong with auth middleware')
+    res.status(500).json({ msg: 'Server Error' });
   }
-
-}
-
-
-//this middleware is used to validate the user and their token
+};

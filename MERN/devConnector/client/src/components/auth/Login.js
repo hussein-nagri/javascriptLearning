@@ -1,103 +1,75 @@
-import React, { Fragment, useState } from 'react'
-import axios from 'axios'
-import { Link } from 'react-router-dom'
-import { connect } from 'react-redux'
-import PropTypes from 'prop-types'
-import { login } from '../../actions/auth'
+import React, { Fragment, useState } from 'react';
+import { Link, Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
+import PropTypes from 'prop-types';
+import { login } from '../../actions/auth';
 
-function Login({ login }) {
-
+const Login = ({ login, isAuthenticated }) => {
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: ''
   });
 
-  const { email, password, } = formData
+  const { email, password } = formData;
 
-  const onChange = (e) => {
-    setFormData({
-      //the ... means keep everything the same except whats coming after
-      ...formData,
-      [e.target.name]: e.target.value
-    })
-  };
+  const onChange = e =>
+    setFormData({ ...formData, [e.target.name]: e.target.value });
 
-
-  const onSubmit = async (e) => {
+  const onSubmit = async e => {
     e.preventDefault();
     login(email, password);
+  };
 
-
-
-    //use instead of redux:
-    // const newUser = {
-    //   name,
-    //   email,
-    //   password
-    // }
-
-    // try {
-
-    //   //since we're sending data we gotta do this
-    //   const config = {
-    //     headers: {
-    //       "Content-Type": "application/json"
-    //     }
-    //   }
-
-    //   //creating body of what we wanna send
-    //   const body = JSON.stringify(newUser);
-    //   //axios returns a promise (we use await)
-    //   const res = await axios.post("/api/users", body, config);
-    //   console.log(res.data)
-
-
-    // } catch (error) {
-    //   console.error(error)
-    // }
-
-
-
-
+  if (isAuthenticated) {
+    return <Redirect to='/dashboard' />;
   }
-
-
 
   return (
     <Fragment>
-      <h1 className="large text-primary">Sign In</h1>
-      <p className="lead"><i className="fas fa-user"></i> Sign Into Your Account</p>
-      <form className="form" onSubmit={e => onSubmit(e)}>
-
-        <div className="form-group">
-          <input type="email" placeholder="Email Address" name="email" value={email} onChange={e => onChange(e)}
-            required />
-
-
-        </div>
-        <div className="form-group">
+      <h1 className='large text-primary'>Sign In</h1>
+      <p className='lead'>
+        <i className='fas fa-user' /> Sign Into Your Account
+      </p>
+      <form className='form' onSubmit={e => onSubmit(e)}>
+        <div className='form-group'>
           <input
-            type="password"
-            placeholder="Password"
-            name="password"
-            minLength="6"
-            value={password}
+            type='email'
+            placeholder='Email Address'
+            name='email'
+            value={email}
             onChange={e => onChange(e)}
             required
           />
         </div>
-
-        <input type="submit" className="btn btn-primary" value="Login" />
+        <div className='form-group'>
+          <input
+            type='password'
+            placeholder='Password'
+            name='password'
+            value={password}
+            onChange={e => onChange(e)}
+            minLength='6'
+          />
+        </div>
+        <input type='submit' className='btn btn-primary' value='Login' />
       </form>
-      <p className="my-1">
-        Don't have an account? <Link to="/login">Sign Up</Link>
+      <p className='my-1'>
+        Don't have an account? <Link to='/register'>Sign Up</Link>
       </p>
     </Fragment>
-  )
-}
+  );
+};
 
 Login.propTypes = {
   login: PropTypes.func.isRequired,
-}
+  isAuthenticated: PropTypes.bool
+};
 
-export default connect(null, { login })(Login);
+const mapStateToProps = state => ({
+  isAuthenticated: state.auth.isAuthenticated
+});
+
+export default connect(
+  mapStateToProps,
+  { login }
+)(Login);

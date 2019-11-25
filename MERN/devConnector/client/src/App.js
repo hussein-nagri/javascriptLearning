@@ -1,44 +1,35 @@
 import React, { Fragment, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import Navbar from './components/layout/Navbar';
+import Landing from './components/layout/Landing';
+import Routes from './components/routing/Routes';
 
+// Redux
+import { Provider } from 'react-redux';
+import store from './store';
+import { loadUser } from './actions/auth';
+import setAuthToken from './utils/setAuthToken';
 
 import './App.css';
-import Navbar from './components/layouts/Navbar'
-import Landing from './components/layouts/Landing'
-import Login from './components/auth/Login'
-import Register from './components/auth/Register'
-import Alert from './components/layouts/Alert'
-//Redux
-import { Provider } from 'react-redux' //combines react and redux
-import store from './store'
-import { loadUser } from './actions/auth';
-import setAuthToken from './utils/setAuthToken'
+
 if (localStorage.token) {
   setAuthToken(localStorage.token);
 }
 
 const App = () => {
-
   useEffect(() => {
     store.dispatch(loadUser());
   }, []);
+
   return (
-    //must wrap it all
     <Provider store={store}>
       <Router>
         <Fragment>
-          <Navbar></Navbar>
-
-          <Route exact path="/" component={Landing}> </Route>
-          <section className="container">
-            <Alert></Alert>
-            <Switch>
-              <Route exact path="/register" component={Register}></Route>
-              <Route exact path="/login" component={Login}></Route>
-
-
-            </Switch>
-          </section>
+          <Navbar />
+          <Switch>
+            <Route exact path='/' component={Landing} />
+            <Route component={Routes} />
+          </Switch>
         </Fragment>
       </Router>
     </Provider>
