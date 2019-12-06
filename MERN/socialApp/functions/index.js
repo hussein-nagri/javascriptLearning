@@ -27,9 +27,12 @@ admin.initializeApp({
 
 firebase.initializeApp(firebaseConfig);
 
+const db = admin.firestore();
+
+
+
 app.get('/screams', (req, res) => {
-  admin
-    .firestore()
+  db
     .collection('screams')
     .orderBy('createdAt', "desc")
     .get()
@@ -68,7 +71,9 @@ app.post('/scream', (req, res) => {
     // commentCount: req.body.commentCount
   }
 
-  admin.firestore().collection('screams').add(newScream)
+  db
+    .collection('screams')
+    .add(newScream)
     .then(doc => {
       return res.json({ message: `document ${doc.id} created successfully` });
     })
@@ -76,6 +81,8 @@ app.post('/scream', (req, res) => {
       console.log(err)
       return res.status(500).json({ error: 'something went wrong' }) //server error
     });
+
+  return ""
 });
 
 //signup route
@@ -88,17 +95,46 @@ app.post("/signup", (req, res) => {
     handle: req.body.handle
   };
 
+  let token, userId;
   //todo: validate data
-
-  firebase.auth().createUserWithEmailAndPassword(newUser.email, newUser.password)
+  db.doc(`/users/${newUser.handle}`).get()
+    .then(doc => {
+      if (doc.exists) {
+        return res.status(400).json({ handle: "this handle is already taken" });
+      } else {
+        return firebase.auth().createUserWithEmailAndPassword(newUser.email, newUser.password);
+      }
+    })
+    //if we get here, user is created, return authentication token
     .then(data => {
-      return res.status(201).json({ message: `user${data.user.uid} signed up successfully` })
+      userId = data.user.uid;
+      return data.user.getIdToken();  //returns a promise --> return and another .then()
+    })
+    .then(idToken => {
+      token = idToken;
+      const userCredentials = {
+        handle: newUser.handle,
+        email: newUser.email,
+        createdAt: new Date().toISOString(),
+        userId
+      };
+      return db.doc(`/users/${newUser.handle}`).set(userCredentials);
+    })
+    .then(data => {
+      return res.status(201).json({
+        token
+      })
     })
     .catch(err => {
-      console.error(err)
-      return res.status(500).json({ error: err.code })
-    });
+      console.error(err);
+      if (err.code === 'auth/email-already-in-use') {
+        return res.status(400).json({ email: 'email is already in use' });
+      } else {
 
+
+        return res.status(500).json({ error: err.code })
+      }
+    })
 
 });
 
@@ -110,3 +146,17 @@ app.post("/signup", (req, res) => {
 
 //tell firebase that app will be the new endpoint receiver -> u wanna hit /api https://baseurl.com /api/
 exports.api = functions.https.onRequest(app);
+
+
+
+
+//create user and return message that they signed up successfully
+
+  // firebase.auth().createUserWithEmailAndPassword(newUser.email, newUser.password)
+  //   .then(data => {
+  //     return res.status(201).json({ message: `user ${data.user.uid} signed up successfully` })
+  //   })
+  //   .catch(err => {
+  //     console.error(err)
+  //     return res.status(500).json({ error: err.code })
+  //   });
