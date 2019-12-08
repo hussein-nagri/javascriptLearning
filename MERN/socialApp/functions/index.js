@@ -1,8 +1,9 @@
 const functions = require('firebase-functions');
-const admin = require("firebase-admin");
 const firebase = require('firebase');
 const express = require('express');
 const app = express();
+
+const { getAllScreams } = require("./handlers/screams");
 
 var firebaseConfig = {
   apiKey: "AIzaSyBffOg0wP8X2oJsSsvs8JnCANtPYOmtBv0",
@@ -15,46 +16,13 @@ var firebaseConfig = {
   measurementId: "G-THG7EZMP3T"
 };
 
-//for locally
-
-admin.initializeApp({
-  credential: admin.credential.cert(require('../key/admin.json'))
-});
-
-// admin.initializeApp();
-
-
 
 firebase.initializeApp(firebaseConfig);
 
-const db = admin.firestore();
 
 
 
-app.get('/screams', (req, res) => {
-  db
-    .collection('screams')
-    .orderBy('createdAt', "desc")
-    .get()
-    .then(data => {
-      let screams = [];
-      data.forEach(doc => {
-        screams.push({
-          id: doc.id,
-          body: doc.data().body,
-          userHandle: doc.data().userHandle,
-          createdAt: doc.data().createdAt,
-          commentCount: doc.data().commentCount,
-          likeCount: doc.data().likeCount
-        });
-      });
-      return res.json(screams);
-    })
-    .catch(err => {
-      console.log(err)
-      res.status(500).json({ error: err.code });
-    });
-});
+app.get('/screams');
 
 const FBAuth = (req, res, next) => {
   let idToken
