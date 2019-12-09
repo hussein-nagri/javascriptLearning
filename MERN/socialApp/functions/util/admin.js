@@ -3,10 +3,10 @@ const admin = require("firebase-admin");
 
 //for locally
 admin.initializeApp({
-  credential: admin.credential.cert(require('../key/admin.json'))
+  credential: admin.credential.cert(require('../../key/admin.json'))
 });
 
-// admin.initializeApp();
+// admin.initializeApp(config);
 
 
 
