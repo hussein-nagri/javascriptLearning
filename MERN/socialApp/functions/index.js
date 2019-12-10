@@ -3,9 +3,9 @@ const firebase = require('firebase');
 const express = require('express');
 const app = express();
 
-const { getAllScreams, postOneScream } = require("./handlers/screams");
+const { getAllScreams, postOneScream, getScream, commentOnScream, likeScream, unlikeScream } = require("./handlers/screams");
 
-const { signup, login, uploadImage } = require("./handlers/users")
+const { signup, login, uploadImage, addUserDetails, getAuthenticatedUser } = require("./handlers/users")
 
 const FBAuth = require("./util/fbAuth")
 
@@ -18,6 +18,21 @@ app.get('/screams', getAllScreams);
 //post a scream
 app.post('/scream', FBAuth, postOneScream);
 
+//
+app.get("/scream/:screamId", getScream);
+
+//TODO: delete scream
+// Like a scream
+app.get("/scream/:screamId/like", FBAuth, likeScream);
+
+//unlike a scream
+app.get("/scream/:screamId/unlike", FBAuth, unlikeScream);
+
+//comment on scream
+app.post("/scream/:screamId/comment", FBAuth, commentOnScream);
+
+
+
 //Users routes
 
 //signup route
@@ -26,8 +41,15 @@ app.post("/signup", signup);
 //login route
 app.post(`/login`, login);
 
+
 //image route
-app.post("/user/image", uploadImage)
+app.post("/user/image", FBAuth, uploadImage);
+
+//add details about user like bio location etc
+app.post("/user", FBAuth, addUserDetails);
+
+//Obtain details about the logged in user (profile)
+app.get("/user", FBAuth, getAuthenticatedUser);
 
 
 
