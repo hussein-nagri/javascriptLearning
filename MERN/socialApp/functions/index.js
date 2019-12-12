@@ -3,9 +3,18 @@ const firebase = require('firebase');
 const express = require('express');
 const app = express();
 
-const { getAllScreams, postOneScream, getScream, commentOnScream, likeScream, unlikeScream } = require("./handlers/screams");
+const { db } = require("./util/admin");
 
-const { signup, login, uploadImage, addUserDetails, getAuthenticatedUser } = require("./handlers/users")
+const { getAllScreams, postOneScream, getScream, commentOnScream, likeScream, unlikeScream, deleteScream } = require("./handlers/screams");
+
+const { signup,
+  login,
+  uploadImage,
+  addUserDetails,
+  getAuthenticatedUser,
+  getUserDetails,
+  markNotificationsAsRead }
+  = require("./handlers/users")
 
 const FBAuth = require("./util/fbAuth")
 
@@ -18,10 +27,12 @@ app.get('/screams', getAllScreams);
 //post a scream
 app.post('/scream', FBAuth, postOneScream);
 
-//
+//get a specific scream
 app.get("/scream/:screamId", getScream);
 
-//TODO: delete scream
+// delete scream
+app.delete("/scream/:screamId", FBAuth, deleteScream);
+
 // Like a scream
 app.get("/scream/:screamId/like", FBAuth, likeScream);
 
@@ -51,12 +62,87 @@ app.post("/user", FBAuth, addUserDetails);
 //Obtain details about the logged in user (profile)
 app.get("/user", FBAuth, getAuthenticatedUser);
 
+app.get(`/user/:handle`, getUserDetails);
 
+app.post("/notifications", FBAuth, markNotificationsAsRead)
 
 
 //tell firebase that app will be the new endpoint receiver -> u wanna hit /api https://baseurl.com /api/
 exports.api = functions.https.onRequest(app);
 
+exports.createNotifcationOnLike = functions.firestore
+  .document("/comments/{id}")
+  .onCreate(snapshot => {
+    return db.doc(`/screams/${snapshot.data().screamId}`).get()
+      .then(doc => {
+        if (doc.exists && doc.data().userHandle !== snapshot.data().userHandle) {
+          return db.doc(`/notifications/${snapshot.id}`).set({
+            createdAt: new Date().toISOString(),
+            recipient: doc.data().userHandle,
+            sender: snapshot.data().userHandle,
+            type: 'comment',
+            read: false,
+            screamId: doc.id
+          })
+        }
+      })
+
+      .catch(err => {
+        console.error(err);
+        //no need to return anything bc this is a db trigger
+      })
+
+  })
+
+exports.deleteNotificationOnUnlike = functions.firestore.
+  document("/likes/{id}").onDelete(snapshot => {
+    return db.doc(`/notifications/${snapshot.id}`)
+      .delete()
+      .catch(err => {
+        console.error(err);
+        return;
+      })
+  })
+
+
+exports.createNotifcationOnComment = functions.firestore
+  .document("/likes/{id}")
+  .onCreate(snapshot => {
+    return db.doc(`/screams/${snapshot.data().screamId}`).get()
+      .then(doc => {
+        if (doc.exists && doc.data().userHandle !== snapshot.data().userHandle) {
+          return db.doc(`/notifications/${snapshot.id}`).set({
+            createdAt: new Date().toISOString(),
+            recipient: doc.data().userHandle,
+            sender: snapshot.data().userHandle,
+            type: 'like',
+            read: false,
+            screamId: doc.id
+          })
+        }
+      })
+
+      .catch(err => {
+        console.error(err);
+        return; //no need to return anything bc this is a db trigger
+      })
+
+  })
+
+
+exports.onUserImageChange = functions.firestore.document(`/users/{userId}`)
+  .onUpdate(change => {
+    console.log(change.before.data());
+    console.log(change.after.data())
+    let batch = db.batch();
+
+    return db.collection("screams").where("userHandle", "==", change.before.data().handle).get()
+      .then(data => {
+        data.forEach(doc => {
+          const scream = db.doc(`/screams/${doc.id}`)
+        })
+      })
+  })
 
 
 
