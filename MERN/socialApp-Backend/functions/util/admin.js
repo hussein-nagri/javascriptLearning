@@ -4,11 +4,11 @@ const config = require("../util/config")
 
 
 // for locally
-admin.initializeApp({
-  credential: admin.credential.cert(require('../../key/admin.json'))
-});
+// admin.initializeApp({
+//   credential: admin.credential.cert(require('../../key/admin.json'))
+// });
 
-// admin.initializeApp(config);
+admin.initializeApp(config);
 
 
 
