@@ -16,7 +16,7 @@ import CircularProgress from '@material-ui/core/CircularProgress'
 
 
 const styles = (theme) => ({
-  ...theme
+  ...theme.spreadThis
 })
 
 
@@ -26,8 +26,8 @@ class signup extends Component {
     this.state = {
       email: "",
       password: "",
-      confirmPassword : "",
-      handle : "",
+      confirmPassword: "",
+      handle: "",
       loading: false,
       errors: {}
     }
@@ -40,14 +40,15 @@ class signup extends Component {
 
     const newUserData = {
       email: this.state.email,
-      password: this.state.password, 
-      confirmPassword: this.state.confirmPassword, 
+      password: this.state.password,
+      confirmPassword: this.state.confirmPassword,
       handle: this.state.handle
     }
 
-    axios.post("/login", userData)
+    axios.post("/signup", newUserData)
       .then(res => {
         console.log(res.data);
+        localStorage.setItem('FBIdToken', `Bearer ${res.data.token}`);
         this.setState({
           loading: false
         });
@@ -76,7 +77,7 @@ class signup extends Component {
         <Grid item sm>
           <img src={AppIcon} className={classes.image} alt="monkey" />
           <Typography variant="h2" className={classes.pageTitle}>
-            Login
+            Sign Up
           </Typography>
           <form noValidate onSubmit={this.handleSubmit}>
             <TextField id='email'
@@ -106,19 +107,39 @@ class signup extends Component {
                 </Typography>
               )
             }
+            <TextField id='confirmPassword'
+              name='confirmPassword'
+              type='password'
+              label='Confirm Password'
+              className={classes.textField}
+              value={this.state.confirmPassword}
+              onChange={this.handleChange}
+              helperText={errors.confirmPassword}
+              error={errors.confirmPassword ? true : false}
+              fullWidth />
+            <TextField id='handle'
+              name='handle'
+              type='text'
+              label='Handle'
+              className={classes.textField}
+              helperText={errors.handle}
+              error={errors.handle ? true : false}
+              value={this.state.handle}
+              onChange={this.handleChange}
+              fullWidth />
             <Button
               type="submit"
               variant="contained"
               className={classes.button}
               color="primary"
               disabled={loading}>
-              Login
+              Sign Up
               {loading && (
                 <CircularProgress size={30} className={classes.progress} ></CircularProgress>
               )}
             </Button>
             <br />
-            <small>Don't have an account? Sign up <Link to="/signup">here</Link></small>
+            <small>Already have an account? Login <Link to="/login">here</Link></small>
           </form>
         </Grid>
         <Grid item sm>
@@ -130,8 +151,8 @@ class signup extends Component {
   }
 }
 
-login.propTypes = {
+signup.propTypes = {
   classes: PropTypes.object.isRequired
 }
 
-export default withStyles(styles)(login);
+export default withStyles(styles)(signup);
