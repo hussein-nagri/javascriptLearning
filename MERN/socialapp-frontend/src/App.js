@@ -9,7 +9,7 @@ import jwtDecode from 'jwt-decode'
 
 //Redux
 import { Provider } from 'react-redux';
-import { store } from './redux/store'
+import store from './redux/store'
 
 //Components
 import Navbar from './components/Navbar';
