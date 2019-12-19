@@ -1,5 +1,7 @@
 const { db } = require("../util/admin");
 
+
+
 exports.getAllScreams = (req, res) => {
   db
     .collection('screams')
@@ -9,7 +11,7 @@ exports.getAllScreams = (req, res) => {
       let screams = [];
       data.forEach(doc => {
         screams.push({
-          id: doc.id,
+          screamId: doc.id,
           body: doc.data().body,
           userHandle: doc.data().userHandle,
           createdAt: doc.data().createdAt,

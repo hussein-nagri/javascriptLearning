@@ -17,7 +17,9 @@ const { signup,
   = require("./handlers/users")
 
 const FBAuth = require("./util/fbAuth")
+const cors = require('cors');
 
+app.use(cors())
 
 //scream routes
 
