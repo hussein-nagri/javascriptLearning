@@ -36,6 +36,8 @@ async function fetchGithub() {
   console.log('filtered down to', jrJobs.length);
 
 
+
+
   console.log(`got `, allJobs.length, ` Jobs`)
 
 
