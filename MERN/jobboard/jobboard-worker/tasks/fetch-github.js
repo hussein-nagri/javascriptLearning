@@ -1,4 +1,18 @@
 var fetch = require("node-fetch");
+var firebase = require('firebase');
+var app = firebase.initializeApp({
+  apiKey: "AIzaSyDp1LT3pw39OLN5-DFzSbDIkehO9-O2bL0",
+  authDomain: "jobboard-dfe79.firebaseapp.com",
+  databaseURL: "https://jobboard-dfe79.firebaseio.com",
+  projectId: "jobboard-dfe79",
+  storageBucket: "jobboard-dfe79.appspot.com",
+  messagingSenderId: "417803174373",
+  appId: "1:417803174373:web:56a061e570df8408ef6f0c",
+  measurementId: "G-3BHPKKH8P5"
+});
+
+var database = firebase.database();
+
 
 const baseUrl = 'https://jobs.github.com/positions.json'
 
@@ -36,7 +50,7 @@ async function fetchGithub() {
   console.log('filtered down to', jrJobs.length);
 
 
-
+  await database.ref("/jobs").set(JSON.stringify(jrJobs))
 
   console.log(`got `, allJobs.length, ` Jobs`)
 
@@ -44,5 +58,6 @@ async function fetchGithub() {
 }
 
 fetchGithub();
+
 
 module.exports = fetchGithub; 
