@@ -24,8 +24,6 @@ app.get('/jobs', async (req, res) => {
     ans = snapshot
   });
 
-  console.log("Hello")
-  console.log(ans)
   return res.send(ans)
 
 })

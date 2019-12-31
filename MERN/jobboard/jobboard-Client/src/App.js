@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import './App.css';
 import Jobs from './Jobs';
 
-const JOB_API_URL = 'http://localhost:5001/jobs';
+const JOB_API_URL = 'http://localhost:3001/jobs';
 
 const jobs = [
   { title: "SWE1 1", company: "google" },
