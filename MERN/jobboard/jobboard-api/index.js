@@ -1,4 +1,5 @@
 const express = require('express')
+var cors = require('cors')
 var firebase = require('firebase');
 firebase.initializeApp({
   apiKey: "AIzaSyDp1LT3pw39OLN5-DFzSbDIkehO9-O2bL0",
@@ -12,6 +13,7 @@ firebase.initializeApp({
 });
 const app = express()
 const port = 3001
+app.use(cors())
 
 
 app.get('/jobs', async (req, res) => {
