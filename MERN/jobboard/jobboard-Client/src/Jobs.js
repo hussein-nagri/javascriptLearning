@@ -4,17 +4,23 @@ import Job from './Job';
 
 
 
-function Jobs({ jobs }) {
+function Jobs({ jobsList }) {
+
+  console.log(jobsList)
   return (
     <div className='jobs'>
       <Typography variant="h1">
         Entry level Software Jobs
       </Typography>
       {
-        jobs.map(job =>
-          <Job job={job} key={job.title} />
+        (jobsList !== undefined) ? (
+          jobsList.map(job =>
+            <Job job={job} key={job.title} />
+          )
+        ) : (<div>
+          Loading...
+        </div>)
 
-        )
       }
     </div>
   )

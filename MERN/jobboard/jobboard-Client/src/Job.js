@@ -4,7 +4,7 @@ function Job({ job }) {
   return (
     <div className="job">
       {job.title}
-      {job.company}
+      {/* {job.company} */}
     </div>
   )
 }

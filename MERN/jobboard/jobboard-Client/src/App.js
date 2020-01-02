@@ -9,11 +9,13 @@ const jobs = [
   { title: "SWE1 2", company: "Google" }
 ]
 
-async function fetchJobs() {
+async function fetchJobs(updateCb) {
 
   const res = await fetch(JOB_API_URL);
   const json = await res.json();
-  console.log(json);
+
+  console.log("Hi There", json);
+  updateCb(json);
 }
 
 function App() {
@@ -22,8 +24,10 @@ function App() {
 
 
   useEffect(() => {
-    fetchJobs()
+
+    fetchJobs(setjobsList)
   }, [])
+
 
   return (
     <div className="App">

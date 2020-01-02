@@ -23,6 +23,7 @@ app.get('/jobs', async (req, res) => {
   const jobs = await firebase.database().ref('/jobs').once('value').then(function (snapshot) {
     ans = snapshot
   });
+  console.log(ans)
 
   return res.send(ans)
 
