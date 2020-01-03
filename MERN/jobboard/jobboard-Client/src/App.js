@@ -12,8 +12,9 @@ const jobs = [
 async function fetchJobs(updateCb) {
 
   const res = await fetch(JOB_API_URL);
-  const json = await res.json();
+  var json = await res.json();
 
+  // json = json.toArray()
   console.log("Hi There", json);
   updateCb(json);
 }
@@ -31,7 +32,7 @@ function App() {
 
   return (
     <div className="App">
-      <Jobs jobs={jobsList}></Jobs>
+      <Jobs jobsList={jobsList}></Jobs>
     </div>
   );
 }

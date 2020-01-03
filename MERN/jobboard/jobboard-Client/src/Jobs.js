@@ -14,12 +14,17 @@ function Jobs({ jobsList }) {
       </Typography>
       {
         (jobsList !== undefined) ? (
-          jobsList.map(job =>
-            <Job job={job} key={job.title} />
+          jobsList.map(job => <Job job={job} key={job.title} />
           )
         ) : (<div>
           Loading...
         </div>)
+
+
+        // jobsList.map(job =>
+        //   <Job job={job} key={job.title} />
+        // )
+
 
       }
     </div>
