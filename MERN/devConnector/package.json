@@ -13,6 +13,7 @@
   "author": "Brad Traversy",
   "license": "MIT",
   "dependencies": {
+    "babel-jest": "^24.9.0",
     "bcryptjs": "^2.4.3",
     "config": "^3.1.0",
     "express": "^4.16.4",

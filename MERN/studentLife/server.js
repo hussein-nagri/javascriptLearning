@@ -1,12 +1,12 @@
 const express = require('express');
-// const connectDB = require('./config/db');
+const connectDB = require('./config/db');
 const path = require('path');
 
 const app = express();
 
 // Connect Database
 
-// connectDB();
+connectDB();
 
 // Init Middleware
 app.use(express.json({ extended: false }));
@@ -25,8 +25,9 @@ app.get('/api', async (req, res) => {
 })
 
 
-app.get('/', async (req, res) => {
-  return res.json("jobs")
+app.get('/hi', async (req, res) => {
+  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
+  return res.send(JSON.stringify({ greeting: `Hello world!` }))
 })
 
 
