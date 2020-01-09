@@ -13,22 +13,9 @@ app.use(express.json({ extended: false }));
 
 // Define Routes
 
-// app.use('/api/users', require('./routes/api/users'));
-// app.use('/api/auth', require('./routes/api/auth'));
-// app.use('/api/profile', require('./routes/api/profile'));
-// app.use('/api/posts', require('./routes/api/posts'));
-
-app.get('/api', async (req, res) => {
-  const jobs = await getAsync('github');
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-  return res.send(jobs)
-})
+app.use('/api/users', require('./routes/api/users'));
 
 
-app.get('/hi', async (req, res) => {
-  res.header("Access-Control-Allow-Origin", "http://localhost:3000");
-  return res.send(JSON.stringify({ greeting: `Hello world!` }))
-})
 
 
 const PORT = process.env.PORT || 5000;
