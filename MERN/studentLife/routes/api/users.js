@@ -34,55 +34,52 @@ router.post(
       return res.status(400).json({ errors: errors.array() });
     }
 
-    //   const { name, email, password } = req.body;
+    const { fname, lname, email, password } = req.body;
 
-    //   try {
-    //     let user = await User.findOne({ email });
+    try {
+      let user = await User.findOne({ email });
+      let name = fname + " " + lname;
 
-    //     if (user) {
-    //       return res
-    //         .status(400)
-    //         .json({ errors: [{ msg: 'User already exists' }] });
-    //     }
+      if (user) {
+        return res
+          .status(400)
+          .json({ errors: [{ msg: 'User already exists' }] });
+      }
 
-    //     const avatar = gravatar.url(email, {
-    //       s: '200',
-    //       r: 'pg',
-    //       d: 'mm'
-    //     });
 
-    //     user = new User({
-    //       name,
-    //       email,
-    //       avatar,
-    //       password
-    //     });
 
-    //     const salt = await bcrypt.genSalt(10);
+      user = new User({
+        name,
+        email,
+        password
+      });
 
-    //     user.password = await bcrypt.hash(password, salt);
+      // const salt = await bcrypt.genSalt(10);
 
-    //     await user.save();
+      // user.password = await bcrypt.hash(password, salt);
 
-    //     const payload = {
-    //       user: {
-    //         id: user.id
-    //       }
-    //     };
+      await user.save();
 
-    //     jwt.sign(
-    //       payload,
-    //       config.get('jwtSecret'),
-    //       { expiresIn: 360000 },
-    //       (err, token) => {
-    //         if (err) throw err;
-    //         res.json({ token });
-    //       }
-    //     );
-    //   } catch (err) {
-    //     console.error(err.message);
-    //     res.status(500).send('Server error');
-    //   }
+      // const payload = {
+      //   user: {
+      //     id: user.id
+      //   }
+      // };
+
+      // jwt.sign(
+      //   payload,
+      //   config.get('jwtSecret'),
+      //   { expiresIn: 360000 },
+      //   (err, token) => {
+      //     if (err) throw err;
+      //     res.json({ token });
+      //   }
+      // );
+      console.log("user saved")
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('Server error');
+    }
   }
 );
 

@@ -33,24 +33,26 @@ class HomePage extends Component {
       .then(res => console.log("Hi", res))
       .catch(err => {
         // console.error(err)
-         console.log(err.response.data)
-         var ers = err.response.data.errors
-          var errors = []
-         ers.forEach(error => 
-          
+        console.log(err.response.data)
+        var ers = err.response.data.errors
+        var errors = []
+        ers.forEach(error =>
           errors.push(error.msg)
-          )
-          this.setState({
-            errors: errors
-         })
-         
+        );
+        this.setState({
+          errors: errors
+        });
 
-        //  alert(`${}`)
+        this.state.errors.map(error => alert(error))
+        this.setState({
+          errors: {}
+
+        });
         //  if (err.response.data)
       })
 
-      console.log("Done")
-       console.log(this.state.errors)
+    console.log("Done")
+    console.log(this.state.errors)
 
   }
 
@@ -94,8 +96,9 @@ class HomePage extends Component {
                     <div className="col">
                       <input type="text" placeholder="First Name" className="form-control input-text" onClick={this.inputOnclickHandler} onChange={e => this.onChangeHandler(e)} value={this.state.fname} name="fname" />
                     </div>
-                   
+
                   </div>
+
                   <br />
 
                   <div className="form-row">
@@ -127,13 +130,6 @@ class HomePage extends Component {
                         <button type="submit" className="btn btn-primary btn-lg">Sign Up</button>
                       </div>
                     </div>
-
-                     {
-                      (this.state.errors) ? (
-                       <p> {this.state.errors}</p>
-                       
-                      ) : ("")
-                    }
                   </center>
                 </form>
               </div>
