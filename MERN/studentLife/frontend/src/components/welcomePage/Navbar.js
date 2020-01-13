@@ -1,6 +1,25 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Link, Redirect } from 'react-router-dom';
 
-export class Navbar extends Component {
+
+class Navbar extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+
+    }
+    this.handleLogin = this.handleLogin.bind(this);
+
+  }
+
+
+  handleLogin = (e) => {
+    e.persist();
+    console.log(e)
+
+
+  }
+
   render() {
     return (
       <nav className="navbar navbar-expand-lg navbar-light bg-dark fixed-top" id="mainNav">
@@ -21,7 +40,7 @@ export class Navbar extends Component {
                 <a className="nav-link text-white js-scroll-trigger" href="#signup">Sign Up</a>
               </li>
               <li className="nav-item">
-                <a className="btn btn-outline-primary" href="/login">Log in</a>
+                <a className="btn btn-outline-primary text-white" onClick={e => this.handleLogin(e)}><Link to='/login'>Log in </Link></a>
               </li>
             </ul>
           </div>
