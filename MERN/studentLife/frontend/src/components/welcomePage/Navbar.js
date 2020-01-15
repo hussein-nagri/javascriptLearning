@@ -40,7 +40,7 @@ class Navbar extends Component {
                 <a className="nav-link text-white js-scroll-trigger" href="#signup">Sign Up</a>
               </li>
               <li className="nav-item">
-                <a className="btn btn-outline-primary text-white" onClick={e => this.handleLogin(e)}><Link to='/login'>Log in </Link></a>
+                <div className="btn btn-outline-primary text-white" onClick={e => this.handleLogin(e)}><Link to='/login'>Log in </Link></div>
               </li>
             </ul>
           </div>
