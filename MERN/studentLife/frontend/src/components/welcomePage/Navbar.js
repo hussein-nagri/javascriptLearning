@@ -13,12 +13,6 @@ class Navbar extends Component {
   }
 
 
-  handleLogin = (e) => {
-    e.persist();
-    console.log(e)
-
-
-  }
 
   render() {
     return (
@@ -40,7 +34,7 @@ class Navbar extends Component {
                 <a className="nav-link text-white js-scroll-trigger" href="#signup">Sign Up</a>
               </li>
               <li className="nav-item">
-                <div className="btn btn-outline-primary text-white" onClick={e => this.handleLogin(e)}><Link to='/login'>Log in </Link></div>
+                <div className="btn btn-outline-primary text-white" ><Link to='/login'>Log in </Link></div>
               </li>
             </ul>
           </div>

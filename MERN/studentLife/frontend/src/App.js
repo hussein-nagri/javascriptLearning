@@ -32,7 +32,6 @@ function App() {
           <Route exact path='/' component={HomePage} />
           <Route exact path='/login' component={Login} />
           {/* <Route component={Routes} /> */}
-          <Route exact path='/page' component={Pager} />
         </Switch>
       </Fragment>
     </Router>

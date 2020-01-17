@@ -83,4 +83,39 @@ router.post(
   }
 );
 
+
+// @route    POST api/users
+// @desc     Register user
+// @access   Public
+router.post(
+  '/login',
+  async (req, res) => {
+
+
+    console.log(req.body);
+    let { email, password } = req.body;
+
+    try {
+      let user = await User.findOne({ email, password });
+
+      if (user) {
+        return res.status(200).json({ success })
+      }
+      else {
+
+        return res
+          .status(400)
+          .json({ errors: [{ msg: 'Invalid credentials. Please try again' }] });
+
+      }
+
+
+    } catch (err) {
+      console.error(err)
+    }
+
+
+  }
+);
+
 module.exports = router;
