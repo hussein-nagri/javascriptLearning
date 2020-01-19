@@ -60,7 +60,10 @@ export default function SignIn() {
 
     await axios.post("/api/users/login", userData)
       .then(res => {
-        console.log(res);
+        return res.data;
+      })
+      .then(response => {
+
       })
     console.log(e);
   }

@@ -99,7 +99,8 @@ router.post(
       let user = await User.findOne({ email, password });
 
       if (user) {
-        return res.status(200).json({ success })
+        //return the user data, and redirect to a new page
+        return res.status(200).json({ msg: "success" })
       }
       else {
 
