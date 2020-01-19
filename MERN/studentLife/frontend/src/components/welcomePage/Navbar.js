@@ -5,10 +5,7 @@ import { Link, Redirect } from 'react-router-dom';
 class Navbar extends Component {
   constructor(props) {
     super(props)
-    this.state = {
 
-    }
-    this.handleLogin = this.handleLogin.bind(this);
 
   }
 
