@@ -2,9 +2,7 @@ import React, { useEffect, Fragment } from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 import HomePage from './components/welcomePage/HomePage';
 import Login from './components/welcomePage/Login';
-
-import Pager from './components/welcomePage/Pager';
-// import Routes from './components/routing/Routes';
+import Routes from './components/routing/Routes';
 import './App.css';
 
 function App() {
@@ -31,7 +29,7 @@ function App() {
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route exact path='/login' component={Login} />
-          {/* <Route component={Routes} /> */}
+          <Route component={Routes} />
         </Switch>
       </Fragment>
     </Router>

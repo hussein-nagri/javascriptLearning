@@ -13,7 +13,8 @@ import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
 import { Link as ReactLink } from 'react-router-dom';
 import axios from 'axios';
-
+import Dashboard from '../layout/Dashboard';
+import { Redirect } from 'react-router-dom';
 
 const useStyles = makeStyles(theme => ({
   paper: {
@@ -63,7 +64,12 @@ export default function SignIn() {
         return res.data;
       })
       .then(response => {
-
+        if (response.msg == "success") {
+          console.log(response.msg)
+          return (<Redirect to="/home" />);
+        }
+        alert(response.msg);
+        console.log(response);
       })
     console.log(e);
   }
