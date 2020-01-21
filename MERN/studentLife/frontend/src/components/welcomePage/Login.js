@@ -36,7 +36,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-export default function SignIn() {
+export default function SignIn(props) {
   const classes = useStyles();
 
   const [userName, setuserName] = useState("");
@@ -65,8 +65,10 @@ export default function SignIn() {
       })
       .then(response => {
         if (response.msg == "success") {
-          console.log(response.msg)
-          return (<Redirect to="/home" />);
+          //This redirect statement is not working. why?
+          // return (<Redirect to="/home" />);
+          
+          props.history.push("/home");
         }
         alert(response.msg);
         console.log(response);
