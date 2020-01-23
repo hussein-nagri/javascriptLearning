@@ -67,11 +67,10 @@ export default function SignIn(props) {
         if (response.msg == "success") {
           //This redirect statement is not working. why?
           // return (<Redirect to="/home" />);
-          
           props.history.push("/home");
         }
-        alert(response.msg);
-        console.log(response);
+        console.log(response.errors)
+        alert(response.errors)
       })
     console.log(e);
   }

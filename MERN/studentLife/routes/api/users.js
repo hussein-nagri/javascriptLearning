@@ -105,7 +105,7 @@ router.post(
       else {
         return res
           .status(400)
-          .json({ errors: [{ msg: 'Invalid credentials. Please try again' }] });
+          .json({ errors: 'Invalid credentials. Please try again' });
 
       }
 
