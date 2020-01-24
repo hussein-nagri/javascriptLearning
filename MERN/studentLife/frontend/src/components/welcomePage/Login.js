@@ -69,8 +69,12 @@ export default function SignIn(props) {
           // return (<Redirect to="/home" />);
           props.history.push("/home");
         }
-        console.log(response.errors)
-        alert(response.errors)
+        // console.log(response.errors)
+        // alert(response.errors)
+      })
+      .catch(err => {
+        console.error(err);
+        alert(err.response.data.errors)
       })
     console.log(e);
   }
