@@ -8,6 +8,8 @@ import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
+import logo from '../../img/logo.png';
+
 
 class Dashboard extends Component {
 
@@ -38,7 +40,7 @@ class Dashboard extends Component {
         <CardActionArea>
           <CardMedia
             className={classes.media}
-            image="/static/images/cards/contemplative-reptile.jpg"
+            image={logo}
             title="Contemplative Reptile"
           />
           <CardContent>
@@ -53,10 +55,10 @@ class Dashboard extends Component {
         </CardActionArea>
         <CardActions>
           <Button size="small" color="primary">
-            Share
+            Yes
         </Button>
           <Button size="small" color="primary">
-            Learn More
+            No, I just want to see the upcoming hackathons
         </Button>
         </CardActions>
       </Card>
