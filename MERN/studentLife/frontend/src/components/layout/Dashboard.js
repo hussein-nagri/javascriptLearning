@@ -58,7 +58,7 @@ class Dashboard extends Component {
             Yes
         </Button>
           <Button size="small" color="primary">
-            No, I just want to see the upcoming hackathons
+            See Upcoming Hackathons
         </Button>
         </CardActions>
       </Card>
