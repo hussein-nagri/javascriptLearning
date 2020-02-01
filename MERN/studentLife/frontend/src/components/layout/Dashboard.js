@@ -10,6 +10,8 @@ import Typography from '@material-ui/core/Typography';
 
 import logo from '../../img/logo.png';
 
+import { Link } from 'react-router-dom';
+
 
 class Dashboard extends Component {
 
@@ -48,8 +50,7 @@ class Dashboard extends Component {
               Welcome! Are you attending a hackathon?
           </Typography>
             <Typography variant="body2" color="textSecondary" component="p">
-              Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-              across all continents except Antarctica
+              Hackathons are a fun way to interact with people like you, and help make a product from scratch.
           </Typography>
           </CardContent>
         </CardActionArea>
@@ -57,9 +58,9 @@ class Dashboard extends Component {
           <Button size="small" color="primary">
             Yes
         </Button>
-          <Button size="small" color="primary">
-            See Upcoming Hackathons
-        </Button>
+          <div size="small" color="primary">
+            <Link to="/hackathons"> See Upcoming Hackathons</Link>
+        </div>
         </CardActions>
       </Card>
     )
