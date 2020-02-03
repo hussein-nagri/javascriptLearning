@@ -14,6 +14,8 @@ app.use(express.json({ extended: false }));
 // Define Routes
 
 app.use('/api/users', require('./routes/api/users'));
+app.use('/api/hackathons', require('./routes/api/hackathons'));
+
 
 
 
