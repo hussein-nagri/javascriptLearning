@@ -4,7 +4,8 @@ const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const config = require('config');
 const { check, validationResult } = require('express-validator/check');
-
+const fs = require("fs");
+var path = require('path');
 
 
 // const User = require('../../models/User');
@@ -16,9 +17,12 @@ router.get(
   '/',
   async (req, res) => {
 
-    console.log(req.body)
-    return res.status(200).json({ msg: "Succes" });
+    var jsonPath = path.join(__dirname, '..', '..', 'config', 'hackathons.txt');
 
+    fs.readFile(jsonPath, { encoding: 'utf-8' }, (err, data) => {
+      if (err) return err;
+      return res.status(200).json(data);
+    })
   }
 );
 
