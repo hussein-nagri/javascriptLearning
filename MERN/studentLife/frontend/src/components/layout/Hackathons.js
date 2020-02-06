@@ -20,11 +20,9 @@ class Hackathons extends Component {
 
     axios.get("/api/hackathons")
       .then(res => {
-        console.log(res.data);
-
-        // res.data["data"].forEach(item => console.log(item));
+        // console.log(res.data);
         this.setState({
-          data: res
+          data: res.data
         })
       })
   }
@@ -32,10 +30,21 @@ class Hackathons extends Component {
 
 
   render() {
+    if (this.state.data) {
+      var arr = this.state.data.split("[")[1].slice(0, -2);
+      arr = arr.split("}, {");
+      arr[0] = arr[0].substr(1);
+    }
+    console.log(arr);
     return (
-      <div>
+      //     {
+      //       if(this.state.data) {
+      //     <div>{data}</div>
+      //   }
+      // }
+      < div >
         WElcome to the hackathon page
-      </div>
+      </div >
     )
   }
 }
