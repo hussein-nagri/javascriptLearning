@@ -35,45 +35,41 @@ class Hackathons extends Component {
       arr = arr.split("}, {");
       arr[0] = arr[0].substr(1);
       arr = arr.map(dict => dict.split(","));
+      // arr = arr.map(dict => dict.forEach(index => index.split(":")));
+
     }
     console.log(arr);
     return (
       < Fragment >
+
+        <div className="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
+          <h1 className="display-4">Hackathons</h1>
+          <p className="lead"></p>
+        </div>
         {
           arr && arr.map((dict, index) =>
             <Fragment key={index}>
-
               <div className="container">
                 <div className="card-deck mb-3 text-center">
                   <div className="card-body shadow-sm mt-3 mr-3" style={{ width: "12rem" }}>
-                    <a href={dict["link"]}>
-                      <img src={dict["logo"]} className="card-img-top" />
+                    <a>
+                      <img src={dict[6].split("\'")[3]} className="card-img-top" />
                     </a>
                     <hr />
                     <ul className="list-unstyled">
-                      <h4 className="card-title pricing-card-title">{dict['name']}</h4>
-                      <li>{dict['start date']}</li>
-                      <li>{dict['city']}</li>
-                      <li>{dict['state']}</li>
-                      <li><a href={dict['link']} target="_blank">Website Link</a></li>
+                      <h4 className="card-title pricing-card-title">{dict[0].split(':')[1].split("\'").join("")}</h4>
+                      <li>{dict[1].split(':')[1].split("\'").join("")}</li>
+                      {/* <li>{dict[2].split(':')[1].split("\'").join("")}</li> */}
+                      <li>{dict[3].split(':')[1].split("\'").join("")}</li>
+                      <li>{dict[4].split(':')[1].split("\'").join("")}</li>
+                      <li><a href={dict[5].split("\'")[3]} target="_blank">Website Link</a></li>
                     </ul>
                   </div>
 
                 </div>
               </div>
-              {/* 
-              <div>
-                {dict[0]}
-              </div>
-              <div>
-                {dict[1]}
-              </div>
-              <div>
-                {dict[2]}
-              </div>
-              <div>
-                Hello
-            </div> */}
+
+
             </Fragment>
 
 
@@ -88,3 +84,11 @@ class Hackathons extends Component {
 }
 
 export default Hackathons
+
+
+//<style>
+//   .img - sm{
+//   height: 100 %;
+//   width: 35px;
+// }
+//     </style >
