@@ -16,9 +16,7 @@ var path = require('path');
 router.get(
   '/',
   async (req, res) => {
-
     var jsonPath = path.join(__dirname, '..', '..', 'config', 'hackathons.txt');
-
     fs.readFile(jsonPath, { encoding: 'utf-8' }, (err, data) => {
       if (err) return err;
       return res.status(200).json(data);
