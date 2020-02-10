@@ -1,4 +1,4 @@
-import React, { Component, useEffect, Fragment } from 'react'
+import React, { Component, Fragment } from 'react'
 import axios from 'axios';
 
 class Hackathons extends Component {
@@ -30,8 +30,9 @@ class Hackathons extends Component {
       arr = arr.map(dict => dict.split(","));
     }
     return (
+
       < Fragment >
-        <div className="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center" >
+        <div style={{ marginTop: "-100px" }} className="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center" >
           <h1 className="display-4">Hackathons</h1>
           <p className="lead"></p>
         </div>
@@ -45,7 +46,7 @@ class Hackathons extends Component {
                       <img style={{
                         height: '100px',
                         width: '50px'
-                      }} src={dict[6].split("\'")[3]} className="card-img-top" />
+                      }} alt="hackathon logo" src={dict[6].split("\'")[3]} className="card-img-top" />
                     </a>
                     <hr />
                     <ul className="list-unstyled">
@@ -53,7 +54,7 @@ class Hackathons extends Component {
                       <li>{dict[1].split(':')[1].split("\'").join("")}</li>
                       <li>{dict[3].split(':')[1].split("\'").join("")}</li>
                       <li>{dict[4].split(':')[1].split("\'").join("")}</li>
-                      <li><a href={dict[5].split("\'")[3]} target="_blank">Website Link</a></li>
+                      <li><a href={dict[5].split("\'")[3]} target="_blank" rel="noopener noreferrer">Website Link</a></li>
                     </ul>
                   </div>
                 </Fragment>

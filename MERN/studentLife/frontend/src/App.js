@@ -4,6 +4,7 @@ import HomePage from './components/welcomePage/HomePage';
 import Login from './components/welcomePage/Login';
 import Routes from './components/routing/Routes';
 import './App.css';
+import SignedInNav from './components/layout/SignedInNav';
 
 function App() {
   useEffect(() => {
@@ -26,6 +27,7 @@ function App() {
   return (
     <Router>
       <Fragment>
+        <SignedInNav />
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route exact path='/login' component={Login} />

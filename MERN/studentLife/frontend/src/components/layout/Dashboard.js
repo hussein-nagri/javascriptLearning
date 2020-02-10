@@ -38,6 +38,7 @@ class Dashboard extends Component {
     const classes = this.useStyles();
 
     return (
+
       <Card className={classes.card}>
         <CardActionArea>
           <CardMedia
@@ -60,7 +61,7 @@ class Dashboard extends Component {
         </Button>
           <div size="small" color="primary">
             <Link to="/hackathons"> See Upcoming Hackathons</Link>
-        </div>
+          </div>
         </CardActions>
       </Card>
     )
