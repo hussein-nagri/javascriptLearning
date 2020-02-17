@@ -27,7 +27,6 @@ function App() {
   return (
     <Router>
       <Fragment>
-        <SignedInNav />
         <Switch>
           <Route exact path='/' component={HomePage} />
           <Route exact path='/login' component={Login} />

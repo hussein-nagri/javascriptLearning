@@ -93,7 +93,6 @@ export default function SignedInNav() {
               >
                 <MenuItem onClick={handleClose}>Profile</MenuItem>
                 <MenuItem onClick={handleClose}>Settings</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
               </Menu>
             </div>
           )}
@@ -103,22 +102,3 @@ export default function SignedInNav() {
   );
 }
 
-
-// // 
-// class SignedInNav extends Component {
-//   render() {
-//     return (
-//       <Navbar bg="dark" variant="dark">
-//         <Navbar.Brand href="#home">Navbar</Navbar.Brand>
-//         <Nav className="mr-auto">
-//           <Nav.Link href="#home">Home</Nav.Link>
-//           <Nav.Link href="#features">Features</Nav.Link>
-//           <Nav.Link href="#pricing">Pricing</Nav.Link>
-//         </Nav>
-
-//       </Navbar>
-//     )
-//   }
-// }
-
-// export default SignedInNav
