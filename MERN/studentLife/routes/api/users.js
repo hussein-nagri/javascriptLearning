@@ -30,7 +30,6 @@ router.post(
     console.log(req.body)
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-      console.log("went here")
       return res.status(400).json({ errors: errors.array() });
     }
 
@@ -84,8 +83,8 @@ router.post(
 );
 
 
-// @route    POST api/users
-// @desc     Register user
+// @route    POST api/users/login
+// @desc     login user
 // @access   Public
 router.post(
   '/login',
@@ -97,21 +96,41 @@ router.post(
 
     try {
       let user = await User.findOne({ email, password });
-
-      if (user) {
-        //return the user data, and redirect to a new page
-        return res.status(200).json({ msg: "success" })
-      }
-      else {
+  
+      if (!user) {
         return res
           .status(400)
-          .json({ errors: 'Invalid credentials. Please try again' });
+          .json({ errors: 'Invalid Credentials. Please try again' });
+      }
 
+      if (user) {
+
+        userObj = {
+          id: user._id,
+          name: user.name,
+          email: user.email,
+          password: user.password
+        }
+
+        // //activate a token 
+        // jwt.sign(
+        //   userObj,
+        //   config.get('jwtSecret'),
+        //   { expiresIn: 360000 },
+        //   (err, token) => {
+        //     if (err) throw err;
+        //     res.json({ token });
+        //   }
+        // );
+
+        //return the user data, and redirect to a new page
+        return res.status(200).json({ msg: "success" })
       }
 
 
     } catch (err) {
       console.error(err)
+      res.status(500).send('Server error');
     }
 
 

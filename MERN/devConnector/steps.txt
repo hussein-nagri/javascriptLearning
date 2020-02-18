@@ -15,5 +15,5 @@ steps to a full stack application :
 9. app.use(express.json({ extended: false })); put it in server.js to allow json data passing
 10.setup user route.. and get verification
 11.bunch of verification and authorization setup --> token, middleware, etc
-12. once this stuff;s done, setup profile model
+12. once this stuff's done, setup profile model
 13. 
