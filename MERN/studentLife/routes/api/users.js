@@ -96,7 +96,7 @@ router.post(
 
     try {
       let user = await User.findOne({ email, password });
-  
+
       if (!user) {
         return res
           .status(400)
@@ -112,19 +112,18 @@ router.post(
           password: user.password
         }
 
-        // //activate a token 
-        // jwt.sign(
-        //   userObj,
-        //   config.get('jwtSecret'),
-        //   { expiresIn: 360000 },
-        //   (err, token) => {
-        //     if (err) throw err;
-        //     res.json({ token });
-        //   }
-        // );
+        //activate a token 
+        let token = jwt.sign(
+          userObj,
+          config.get('jwtSecret'),
+          { expiresIn: 360000 });
+
 
         //return the user data, and redirect to a new page
-        return res.status(200).json({ msg: "success" })
+        return res.status(200).json({
+          msg: 'successf',
+          token: token
+        })
       }
 
 
