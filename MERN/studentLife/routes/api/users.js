@@ -121,7 +121,7 @@ router.post(
 
         //return the user data, and redirect to a new page
         return res.status(200).json({
-          msg: 'successf',
+          msg: 'success',
           token: token
         })
       }

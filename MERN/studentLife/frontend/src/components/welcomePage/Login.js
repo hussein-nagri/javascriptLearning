@@ -67,10 +67,11 @@ export default function SignIn(props) {
         if (response.msg == "success") {
           //This redirect statement is not working. why?
           // return (<Redirect to="/home" />);
+
+          localStorage.setItem("token", response.token);
           props.history.push("/home");
         }
-        // console.log(response.errors)
-        // alert(response.errors)
+
       })
       .catch(err => {
         console.error(err);
@@ -138,3 +139,8 @@ export default function SignIn(props) {
     </Container>
   );
 }
+
+//use this to create private routes 
+// {
+//   headers: { Authorization: "Bearer " + localStorage.getItem("token") }
+// }
