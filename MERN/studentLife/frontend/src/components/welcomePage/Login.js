@@ -139,8 +139,3 @@ export default function SignIn(props) {
     </Container>
   );
 }
-
-//use this to create private routes 
-// {
-//   headers: { Authorization: "Bearer " + localStorage.getItem("token") }
-// }

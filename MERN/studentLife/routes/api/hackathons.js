@@ -6,6 +6,7 @@ const config = require('config');
 const { check, validationResult } = require('express-validator/check');
 const fs = require("fs");
 var path = require('path');
+const auth = require('../../middleware/auth');
 
 
 // const User = require('../../models/User');

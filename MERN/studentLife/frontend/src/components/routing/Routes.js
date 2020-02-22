@@ -4,7 +4,7 @@ import Dashboard from '../layout/Dashboard';
 import Hackathons from '../layout/Hackathons';
 import SignedInNav from '../layout/SignedInNav';
 import { Fragment } from 'react';
-import {PrivateRoute} from './PrivateRoute';
+import { PrivateRoute } from './PrivateRoute';
 
 const Routes = () => {
   return (
@@ -21,3 +21,6 @@ const Routes = () => {
 };
 
 export default Routes;
+
+
+//need to create a logout function that removes token from local storage
