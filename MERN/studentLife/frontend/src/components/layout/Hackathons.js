@@ -54,7 +54,7 @@ class Hackathons extends Component {
                       <li>{dict[1].split(':')[1].split("\'").join("")}</li>
                       <li>{dict[3].split(':')[1].split("\'").join("")}</li>
                       <li>{dict[4].split(':')[1].split("\'").join("")}</li>
-                      <li><a href={dict[5].split("\'")[3]} target="_blank" rel="noopener noreferrer">Website Link</a></li>
+                      <li><a href={dict[5].split("\'")[3]} target="_blank" rel="noopener noreferrer">Sign Up</a></li>
                     </ul>
                   </div>
                 </Fragment>
