@@ -4,6 +4,8 @@ import Nav from 'react-bootstrap/Nav';
 import Form from 'react-bootstrap/Form';
 import FormControl from 'react-bootstrap/FormControl';
 import Button from 'react-bootstrap/Button';
+import { Link as ReactLink } from 'react-router-dom';
+
 
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -18,6 +20,10 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
+
+
+
+
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -91,8 +97,8 @@ export default function SignedInNav() {
                 open={open}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Profile</MenuItem>
-                <MenuItem onClick={handleClose}>Settings</MenuItem>
+                <MenuItem onClick={handleClose}><ReactLink to="/profile"> Profile </ReactLink></MenuItem>
+                <MenuItem onClick={handleClose}><ReactLink to="/settings"> Settings </ReactLink></MenuItem>
               </Menu>
             </div>
           )}
