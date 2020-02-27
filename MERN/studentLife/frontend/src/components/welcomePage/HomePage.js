@@ -12,6 +12,7 @@ class HomePage extends Component {
       lname: '',
       email: '',
       password: '',
+      success: false,
       errors: []
     }
     this.submitHandler = this.submitHandler.bind(this);
@@ -30,7 +31,11 @@ class HomePage extends Component {
     }
 
     await axios.post("/api/users", form)
-      .then(res => console.log("Hi", res))
+      .then(res => {
+        this.setState({
+          success: true
+        })
+      })
       .catch(err => {
         // console.error(err)
         console.log(err.response.data)
@@ -51,8 +56,10 @@ class HomePage extends Component {
         //  if (err.response.data)
       })
 
+    this.state.success ? this.props.history.push("/login") : console.log(this.state.errors);
     console.log("Done")
     console.log(this.state.errors)
+
 
   }
 
