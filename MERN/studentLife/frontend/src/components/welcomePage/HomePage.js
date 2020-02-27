@@ -32,6 +32,9 @@ class HomePage extends Component {
 
     await axios.post("/api/users", form)
       .then(res => {
+        console.log("here", res);
+
+        localStorage.setItem("token", res.data.token)
         this.setState({
           success: true
         })
@@ -56,7 +59,7 @@ class HomePage extends Component {
         //  if (err.response.data)
       })
 
-    this.state.success ? this.props.history.push("/login") : console.log(this.state.errors);
+    this.state.success ? this.props.history.push("/registerPersonal") : console.log(this.state.errors);
     console.log("Done")
     console.log(this.state.errors)
 

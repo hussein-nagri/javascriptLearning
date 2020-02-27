@@ -6,6 +6,7 @@ import SignedInNav from '../layout/SignedInNav';
 import { Fragment } from 'react';
 import { PrivateRoute } from './PrivateRoute';
 import MainProfile from '../profile/MainProfile';
+import PersonalInfo from '../signup/PersonalInfo';
 
 const Routes = () => {
   return (
@@ -16,6 +17,8 @@ const Routes = () => {
           <PrivateRoute exact path='/home' component={Dashboard} />
           <PrivateRoute exact path='/hackathons' component={Hackathons} />
           <PrivateRoute exact path='/profile' component={MainProfile} />
+          <PrivateRoute exact path='/registerPersonal' component={PersonalInfo} />
+
         </Switch>
       </section>
     </Fragment>

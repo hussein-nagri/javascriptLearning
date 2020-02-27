@@ -58,6 +58,30 @@ router.post(
       // user.password = await bcrypt.hash(password, salt);
 
       await user.save();
+      let userRetrieved = await User.findOne({ email, password });
+      if (userRetrieved) {
+
+        userObj = {
+          id: userRetrieved._id,
+          name: userRetrieved.name,
+          email: userRetrieved.email,
+          password: userRetrieved.password
+        }
+
+        //activate a token 
+        let token = jwt.sign(
+          userObj,
+          config.get('jwtSecret'),
+          { expiresIn: 360000 });
+
+
+        //return the user data, and redirect to a new page
+        return res.status(200).json({
+          msg: 'success',
+          token: token
+        })
+
+      }
 
       // const payload = {
       //   user: {
