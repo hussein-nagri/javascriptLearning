@@ -1,10 +1,15 @@
 import React, { Component } from 'react'
 
+import { steps } from '../signup/SignUpHead'
+
+import MultiStep from 'react-multistep'
+
+
 class MainProfile extends Component {
   render() {
     return (
       <div>
-        hello
+        <MultiStep showNavigation={false} steps={steps} />
       </div>
     )
   }
