@@ -1,5 +1,14 @@
 import React, { Component } from 'react'
 import TextField from '@material-ui/core/TextField';
+import ModernDatepicker from 'react-modern-datepicker';
+
+
+import Calendar from 'react-calendar'
+
+
+
+
+
 
 
 import Radio from '@material-ui/core/Radio';
@@ -27,18 +36,20 @@ class PersonalInfo extends Component {
     super(props)
     this.state = {
       firstName: "",
-      middleName: "",
       lastName: "",
       gender: "female",
+      date: "",
       error: true
     }
     this.onChangeHandler = this.onChangeHandler.bind(this);
+    this.onChangeDate = this.onChangeDate.bind(this);
   }
 
   onChangeHandler = (e) => {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  onChangeDate = date => this.setState({ date })
 
 
 
@@ -48,22 +59,9 @@ class PersonalInfo extends Component {
 
 
       <form className="container" noValidate autoComplete="off">
-
-
         <div className="row">
+
           <div className="col">
-            <FormControl component="fieldset">
-              <FormLabel component="legend">Gender</FormLabel>
-              <RadioGroup aria-label="gender" name="gender" value={this.state.gender} onChange={e => this.onChangeHandler(e)}>
-                <FormControlLabel value="female" control={<Radio />} label="Female" />
-                <FormControlLabel value="male" control={<Radio />} label="Male" />
-              </RadioGroup>
-            </FormControl>
-
-          </div>
-          <div className="col">
-
-
             <TextField
               autoFocus
               required
@@ -72,12 +70,8 @@ class PersonalInfo extends Component {
               value={this.state.firstName}
               onChange={e => this.onChangeHandler(e)}
               variant="outlined"
-
-
               style={{ marginRight: "100px", marginBottom: "10px" }}
             />
-
-
           </div>
           <div className="col">
             <TextField
@@ -90,22 +84,30 @@ class PersonalInfo extends Component {
               variant="outlined"
             />
           </div>
-          {/* <div className="col">
-            <TextField
-              autoFocus
-              required
-              name="middleName"
-              placeholder="Middle Name"
-              value={this.state.middleName}
-              onChange={e => this.onChangeHandler(e)}
-              variant="outlined"
+          <div className="col">
+
+
+            <ModernDatepicker
+              // date={this.state.date}
+              format={'DD-MM-YYYY'}
+              maxDate={new Date()}
+              showBorder
+              date={this.state.date}
+              onChange={date => this.onChangeDate(date)}
+              placeholder={'Date Of Birth'}
             />
-          </div> */}
-          {/* <div className="row">
+            {/* <Calendar onChange={this.onChangeDate}
+              value={this.state.date} /> */}
 
+            {/* <FormControl component="fieldset">
+              <FormLabel component="legend">Gender</FormLabel>
+              <RadioGroup aria-label="gender" name="gender" value={this.state.gender} onChange={e => this.onChangeHandler(e)}>
+                <FormControlLabel value="female" control={<Radio />} label="Female" />
+                <FormControlLabel value="male" control={<Radio />} label="Male" />
+              </RadioGroup>
+            </FormControl> */}
 
-          </div> */}
-
+          </div>
 
         </div>
       </form >

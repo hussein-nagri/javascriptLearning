@@ -18,7 +18,7 @@ const Routes = () => {
           <PrivateRoute exact path='/hackathons' component={Hackathons} />
           <PrivateRoute exact path='/profile' component={MainProfile} />
           <PrivateRoute exact path='/registerPersonal' component={PersonalInfo} />
-          <PrivateRoute exact path="/random" component={steps} />
+          {/* <PrivateRoute exact path="/random" component={steps} /> */}
         </Switch>
       </section>
     </Fragment>
