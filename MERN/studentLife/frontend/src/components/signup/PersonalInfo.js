@@ -6,7 +6,7 @@ import ModernDatepicker from 'react-modern-datepicker';
 import Calendar from 'react-calendar'
 
 
-
+import '../../App.css'
 
 
 
@@ -86,9 +86,15 @@ class PersonalInfo extends Component {
           </div>
           <div className="col">
 
-
+            {/* <FormControl component="fieldset">
+              <FormLabel component="legend">Gender</FormLabel>
+              <RadioGroup aria-label="gender" name="gender" value={this.state.gender} onChange={e => this.onChangeHandler(e)}>
+                <FormControlLabel value="female" control={<Radio />} label="Female" />
+                <FormControlLabel value="male" control={<Radio />} label="Male" />
+              </RadioGroup>
+            </FormControl> */}
             <ModernDatepicker
-              // date={this.state.date}
+              className="fix"
               format={'DD-MM-YYYY'}
               maxDate={new Date()}
               showBorder
@@ -99,13 +105,7 @@ class PersonalInfo extends Component {
             {/* <Calendar onChange={this.onChangeDate}
               value={this.state.date} /> */}
 
-            {/* <FormControl component="fieldset">
-              <FormLabel component="legend">Gender</FormLabel>
-              <RadioGroup aria-label="gender" name="gender" value={this.state.gender} onChange={e => this.onChangeHandler(e)}>
-                <FormControlLabel value="female" control={<Radio />} label="Female" />
-                <FormControlLabel value="male" control={<Radio />} label="Male" />
-              </RadioGroup>
-            </FormControl> */}
+
 
           </div>
 
