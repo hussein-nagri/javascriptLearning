@@ -38,6 +38,8 @@ class PersonalInfo extends Component {
       firstName: "",
       lastName: "",
       gender: "female",
+      address: "",
+      city: "",
       date: "",
       error: true
     }
@@ -61,10 +63,12 @@ class PersonalInfo extends Component {
       <form className="container" noValidate autoComplete="off">
         <div className="row">
 
-          <div className="col">
+          <div className="col textfield">
             <TextField
               autoFocus
+              
               required
+              className="textfield"
               name="firstName"
               placeholder="First Name"
               value={this.state.firstName}
@@ -77,6 +81,7 @@ class PersonalInfo extends Component {
             <TextField
               autoFocus
               required
+              className="textfield"
               name="lastName"
               placeholder="Last Name"
               value={this.state.lastName}
@@ -86,28 +91,51 @@ class PersonalInfo extends Component {
           </div>
           <div className="col">
 
-            {/* <FormControl component="fieldset">
+            <FormControl component="fieldset">
               <FormLabel component="legend">Gender</FormLabel>
               <RadioGroup aria-label="gender" name="gender" value={this.state.gender} onChange={e => this.onChangeHandler(e)}>
                 <FormControlLabel value="female" control={<Radio />} label="Female" />
                 <FormControlLabel value="male" control={<Radio />} label="Male" />
               </RadioGroup>
-            </FormControl> */}
-            <ModernDatepicker
-              className="fix"
-              format={'DD-MM-YYYY'}
-              maxDate={new Date()}
-              showBorder
-              date={this.state.date}
-              onChange={date => this.onChangeDate(date)}
-              placeholder={'Date Of Birth'}
-            />
-            {/* <Calendar onChange={this.onChangeDate}
-              value={this.state.date} /> */}
-
-
+            </FormControl>
 
           </div>
+
+          <ModernDatepicker
+            className="fix"
+            format={'DD-MM-YYYY'}
+            maxDate={new Date()}
+            showBorder
+            date={this.state.date}
+            onChange={date => this.onChangeDate(date)}
+            placeholder={'Date Of Birth'}
+          />
+
+
+          <TextField
+            autoFocus
+            required
+            className="textfield"
+            name="address"
+            placeholder="Address"
+            value={this.state.address}
+            onChange={e => this.onChangeHandler(e)}
+            variant="outlined"
+            style={{ marginTop: "100px" }}
+
+          />
+          <TextField
+            autoFocus
+            required
+            className="textfield"
+            name="city"
+            placeholder="City"
+            value={this.state.city}
+            onChange={e => this.onChangeHandler(e)}
+            variant="outlined"
+            style={{ marginTop: "100px", marginLeft: "100px" }}
+
+          />
 
         </div>
       </form >

@@ -135,6 +135,11 @@ section {
 
 
 .fix {
-  height: 150%;
-  width: 60%;
+  width: 20%;
 }
+
+/* 
+.textfield {
+  height: 20%;
+  background-color: #FC466B;
+} */
