@@ -164,7 +164,7 @@ class PersonalInfo extends Component {
 
 
 
-            <FormControl style={{marginTop:"5%"}} className="col-3">
+            <FormControl style={{ marginTop: "5%" }} className="col-3">
               <InputLabel id="demo-controlled-open-select-label">Province</InputLabel>
 
               <Select
@@ -175,13 +175,14 @@ class PersonalInfo extends Component {
                 onOpen={this.onOpen}
                 value={this.state.province}
                 onChange={this.onChangeHandler}
+                name="province"
               >
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                <MenuItem value={10}>Ontario</MenuItem>
-                <MenuItem value={20}>Manitoba</MenuItem>
-                <MenuItem value={30}>Quebec</MenuItem>
+                <MenuItem value={"Ontario"}>Ontario</MenuItem>
+                <MenuItem value={"Manitoba"}>Manitoba</MenuItem>
+                <MenuItem value={"Quebec"}>Quebec</MenuItem>
               </Select>
             </FormControl>
 
