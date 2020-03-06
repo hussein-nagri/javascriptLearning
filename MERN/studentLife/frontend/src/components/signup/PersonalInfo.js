@@ -44,8 +44,10 @@ class PersonalInfo extends Component {
       address: "",
       city: "",
       province: "",
+      country: "",
       date: "",
       open: false,
+
       error: true
     }
     this.onChangeHandler = this.onChangeHandler.bind(this);
@@ -183,8 +185,25 @@ class PersonalInfo extends Component {
                 <MenuItem value={"Ontario"}>Ontario</MenuItem>
                 <MenuItem value={"Manitoba"}>Manitoba</MenuItem>
                 <MenuItem value={"Quebec"}>Quebec</MenuItem>
+                <MenuItem value={"Alberta"}>Alberta</MenuItem>
+                <MenuItem value={"British Columbia"}>British Columbia</MenuItem>
+                <MenuItem value={"Saskatchewan"}>Saskatchewan</MenuItem>
               </Select>
             </FormControl>
+
+
+            <TextField
+              autoFocus
+              required
+              className="textfield"
+              name="country"
+              placeholder="Country"
+              value={this.state.country}
+              onChange={e => this.onChangeHandler(e)}
+              variant="outlined"
+              style={{ marginTop: "100px", marginLeft: "100px" }}
+
+            />
 
           </div>
 
