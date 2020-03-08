@@ -182,12 +182,19 @@ class PersonalInfo extends Component {
                 <MenuItem value="">
                   <em>None</em>
                 </MenuItem>
-                <MenuItem value={"Ontario"}>Ontario</MenuItem>
-                <MenuItem value={"Manitoba"}>Manitoba</MenuItem>
-                <MenuItem value={"Quebec"}>Quebec</MenuItem>
-                <MenuItem value={"Alberta"}>Alberta</MenuItem>
                 <MenuItem value={"British Columbia"}>British Columbia</MenuItem>
+                <MenuItem value={"Alberta"}>Alberta</MenuItem>
                 <MenuItem value={"Saskatchewan"}>Saskatchewan</MenuItem>
+                <MenuItem value={"Manitoba"}>Manitoba</MenuItem>
+                <MenuItem value={"Ontario"}>Ontario</MenuItem>
+                <MenuItem value={"Quebec"}>Quebec</MenuItem>
+                <MenuItem value={"Newfoundland"}>Newfoundland</MenuItem>
+                <MenuItem value={"New Brunswick"}>New Brunswick</MenuItem>
+                <MenuItem value={"Nova Scotia"}>Nova Scotia</MenuItem>
+                <MenuItem value={"PEI"}>PEI</MenuItem>
+                <MenuItem value={"Yukon"}>Yukon</MenuItem>
+                <MenuItem value={"NWT"}>NWT</MenuItem>
+                <MenuItem value={"Nunavut"}>Nunavut</MenuItem>
               </Select>
             </FormControl>
 
