@@ -10,6 +10,16 @@ import '../../App.css'
 
 
 
+import 'date-fns';
+import Grid from '@material-ui/core/Grid';
+import DateFnsUtils from '@date-io/date-fns';
+import {
+  MuiPickersUtilsProvider,
+  KeyboardTimePicker,
+  KeyboardDatePicker,
+} from '@material-ui/pickers';
+
+
 
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
@@ -75,10 +85,9 @@ class PersonalInfo extends Component {
       <form className="container" noValidate autoComplete="off">
         <div className="row">
 
-          <div className="col textfield">
+          <div className="col-3">
             <TextField
               autoFocus
-
               required
               className="textfield"
               name="firstName"
@@ -86,10 +95,9 @@ class PersonalInfo extends Component {
               value={this.state.firstName}
               onChange={e => this.onChangeHandler(e)}
               variant="outlined"
-              style={{ marginRight: "100px", marginBottom: "10px" }}
             />
           </div>
-          <div className="col">
+          <div className="col-3">
             <TextField
               autoFocus
               required
@@ -99,10 +107,23 @@ class PersonalInfo extends Component {
               value={this.state.lastName}
               onChange={e => this.onChangeHandler(e)}
               variant="outlined"
+              fullWidth
             />
           </div>
-          <div className="col">
 
+
+          {/* <div className="col-3">
+            <ModernDatepicker
+              className="fix"
+              format={'DD-MM-YYYY'}
+              maxDate={new Date()}
+              showBorder
+              date={this.state.date}
+              onChange={date => this.onChangeDate(date)}
+              placeholder={'Date Of Birth'}
+            />
+          </div>
+          <div className="col-2">
             <FormControl component="fieldset">
               <FormLabel component="legend">Gender</FormLabel>
               <RadioGroup aria-label="gender" name="gender" value={this.state.gender} onChange={e => this.onChangeHandler(e)}>
@@ -110,123 +131,113 @@ class PersonalInfo extends Component {
                 <FormControlLabel value="male" control={<Radio />} label="Male" />
               </RadioGroup>
             </FormControl>
-
-          </div>
-
-          <ModernDatepicker
-            className="fix"
-            format={'DD-MM-YYYY'}
-            maxDate={new Date()}
-            showBorder
-            date={this.state.date}
-            onChange={date => this.onChangeDate(date)}
-            placeholder={'Date Of Birth'}
-          />
-
-
-          <TextField
-            autoFocus
-            required
-            className="textfield"
-            name="address"
-            placeholder="Address"
-            value={this.state.address}
-            onChange={e => this.onChangeHandler(e)}
-            variant="outlined"
-            style={{ marginTop: "100px" }}
-
-          />
-          <TextField
-            autoFocus
-            required
-            className="textfield"
-            name="city"
-            placeholder="City"
-            value={this.state.city}
-            onChange={e => this.onChangeHandler(e)}
-            variant="outlined"
-            style={{ marginTop: "100px", marginLeft: "100px" }}
-
-          />
-          <TextField
-            autoFocus
-            required
-            className="textfield"
-            name="city"
-            placeholder="City"
-            value={this.state.city}
-            onChange={e => this.onChangeHandler(e)}
-            variant="outlined"
-            style={{ marginTop: "100px", marginLeft: "100px" }}
-
-          />
-
-
-          <div className="col col-7">
-
-
-
-            <FormControl style={{ marginTop: "5%" }} className="col-3">
-              <InputLabel id="demo-controlled-open-select-label">Province</InputLabel>
-
-              <Select
-                labelId="demo-controlled-open-select-label"
-                id="demo-controlled-open-select"
-                open={this.state.open}
-                onClose={this.onOpen}
-                onOpen={this.onOpen}
-                value={this.state.province}
-                onChange={this.onChangeHandler}
-                name="province"
-              >
-                <MenuItem value="">
-                  <em>None</em>
-                </MenuItem>
-                <MenuItem value={"British Columbia"}>British Columbia</MenuItem>
-                <MenuItem value={"Alberta"}>Alberta</MenuItem>
-                <MenuItem value={"Saskatchewan"}>Saskatchewan</MenuItem>
-                <MenuItem value={"Manitoba"}>Manitoba</MenuItem>
-                <MenuItem value={"Ontario"}>Ontario</MenuItem>
-                <MenuItem value={"Quebec"}>Quebec</MenuItem>
-                <MenuItem value={"Newfoundland"}>Newfoundland</MenuItem>
-                <MenuItem value={"New Brunswick"}>New Brunswick</MenuItem>
-                <MenuItem value={"Nova Scotia"}>Nova Scotia</MenuItem>
-                <MenuItem value={"PEI"}>PEI</MenuItem>
-                <MenuItem value={"Yukon"}>Yukon</MenuItem>
-                <MenuItem value={"NWT"}>NWT</MenuItem>
-                <MenuItem value={"Nunavut"}>Nunavut</MenuItem>
-              </Select>
-            </FormControl>
-
-
-            <TextField
-              autoFocus
-              required
-              className="textfield"
-              name="country"
-              placeholder="Country"
-              value={this.state.country}
-              onChange={e => this.onChangeHandler(e)}
-              variant="outlined"
-              style={{ marginTop: "100px", marginLeft: "100px" }}
-
-            />
-
-            <TextField
-              autoFocus
-              required
-              className="textfield"
-              name="country"
-              placeholder="Please enter the name of a language that you know"
-              onChange={e => this.onChangeHandler(e)}
-              variant="outlined"
-              style={{ marginTop: "100px", marginLeft: "100px" }}
-
-            />
-
-          </div>
+          </div> */}
 
         </div>
+        <div className="row" style={{ marginTop: "25px" }}>
+          <div className="col-6">
+            <TextField
+              autoFocus
+              required
+              className="textfield"
+              name="address"
+              placeholder="Address"
+              value={this.state.address}
+              onChange={e => this.onChangeHandler(e)}
+              variant="outlined"
+              fullWidth
+            />
+
+          </div>
+        </div>
+
+        <div className="row" style={{ marginTop: "25px" }}>
+          <div className="col-6">
+            <TextField
+              autoFocus
+              required
+              className="textfield"
+              name="city"
+              placeholder="City"
+              value={this.state.city}
+              onChange={e => this.onChangeHandler(e)}
+              variant="outlined"
+              fullWidth
+            />
+          </div>
+
+
+          <div className="col-6">
+            <div className="col-12">
+
+
+
+              <FormControl className="col-12">
+                <InputLabel id="demo-controlled-open-select-label">Province</InputLabel>
+
+                <Select
+                  labelId="demo-controlled-open-select-label"
+                  id="demo-controlled-open-select"
+                  open={this.state.open}
+                  onClose={this.onOpen}
+                  onOpen={this.onOpen}
+                  value={this.state.province}
+                  onChange={this.onChangeHandler}
+                  name="province"
+                >
+                  <MenuItem value="">
+                    <em>None</em>
+                  </MenuItem>
+                  <MenuItem value={"British Columbia"}>British Columbia</MenuItem>
+                  <MenuItem value={"Alberta"}>Alberta</MenuItem>
+                  <MenuItem value={"Saskatchewan"}>Saskatchewan</MenuItem>
+                  <MenuItem value={"Manitoba"}>Manitoba</MenuItem>
+                  <MenuItem value={"Ontario"}>Ontario</MenuItem>
+                  <MenuItem value={"Quebec"}>Quebec</MenuItem>
+                  <MenuItem value={"Newfoundland"}>Newfoundland</MenuItem>
+                  <MenuItem value={"New Brunswick"}>New Brunswick</MenuItem>
+                  <MenuItem value={"Nova Scotia"}>Nova Scotia</MenuItem>
+                  <MenuItem value={"PEI"}>PEI</MenuItem>
+                  <MenuItem value={"Yukon"}>Yukon</MenuItem>
+                  <MenuItem value={"NWT"}>NWT</MenuItem>
+                  <MenuItem value={"Nunavut"}>Nunavut</MenuItem>
+                </Select>
+              </FormControl>
+
+
+
+            </div>
+          </div>
+
+
+
+          <TextField
+            autoFocus
+            required
+            className="textfield"
+            name="country"
+            placeholder="Country"
+            value={this.state.country}
+            onChange={e => this.onChangeHandler(e)}
+            variant="outlined"
+            style={{ marginTop: "100px", marginLeft: "100px" }}
+
+          />
+
+          <TextField
+            autoFocus
+            required
+            className="textfield"
+            name="country"
+            placeholder="Please enter the name of a language that you know"
+            onChange={e => this.onChangeHandler(e)}
+            variant="outlined"
+            style={{ marginTop: "100px", marginLeft: "100px" }}
+
+          />
+
+        </div>
+
       </form >
     )
   }
