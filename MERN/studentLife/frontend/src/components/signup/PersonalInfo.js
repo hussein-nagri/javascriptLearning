@@ -212,6 +212,18 @@ class PersonalInfo extends Component {
 
             />
 
+            <TextField
+              autoFocus
+              required
+              className="textfield"
+              name="country"
+              placeholder="Please enter the name of a language that you know"
+              onChange={e => this.onChangeHandler(e)}
+              variant="outlined"
+              style={{ marginTop: "100px", marginLeft: "100px" }}
+
+            />
+
           </div>
 
         </div>
