@@ -3,6 +3,11 @@ import TextField from '@material-ui/core/TextField';
 import ModernDatepicker from 'react-modern-datepicker';
 
 
+import Select from '@material-ui/core/Select';
+
+
+
+import DropdownButton from 'react-bootstrap/DropdownButton'
 import Calendar from 'react-calendar'
 
 
@@ -30,7 +35,6 @@ import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
-import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 
 
@@ -50,8 +54,12 @@ class PersonalInfo extends Component {
     this.state = {
       firstName: "",
       lastName: "",
+      age: "",
       gender: "female",
+      email: "",
+      number: "",
       address: "",
+      uni: "",
       city: "",
       province: "",
       country: "",
@@ -110,29 +118,41 @@ class PersonalInfo extends Component {
               fullWidth
             />
           </div>
-
-
-          {/* <div className="col-3">
-            <ModernDatepicker
-              className="fix"
-              format={'DD-MM-YYYY'}
-              maxDate={new Date()}
-              showBorder
-              date={this.state.date}
-              onChange={date => this.onChangeDate(date)}
-              placeholder={'Date Of Birth'}
+          <div className="col-3">
+            <TextField
+              autoFocus
+              required
+              className="textfield"
+              name="age"
+              placeholder="Age"
+              value={this.state.age}
+              onChange={e => this.onChangeHandler(e)}
+              variant="outlined"
+              fullWidth
             />
           </div>
-          <div className="col-2">
-            <FormControl component="fieldset">
-              <FormLabel component="legend">Gender</FormLabel>
-              <RadioGroup aria-label="gender" name="gender" value={this.state.gender} onChange={e => this.onChangeHandler(e)}>
-                <FormControlLabel value="female" control={<Radio />} label="Female" />
-                <FormControlLabel value="male" control={<Radio />} label="Male" />
-              </RadioGroup>
-            </FormControl>
-          </div> */}
 
+          <div className="col-3">
+            <FormControl variant="outlined" style={{
+              minWidth: 120,
+            }} >
+              <InputLabel ref="age" id="demo-simple-select-outlined-label">
+                Gender
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-outlined-label"
+                id="demo-simple-select-outlined"
+                value={this.state.gender}
+                onChange={e => this.onChangeHandler(e)}
+                name="gender"
+              >
+                <MenuItem value={"Female"}>Female</MenuItem>
+                <MenuItem value={"Male"}>Male</MenuItem>
+              </Select>
+            </FormControl>
+
+
+          </div>
         </div>
         <div className="row" style={{ marginTop: "25px" }}>
           <div className="col-6">
@@ -148,6 +168,20 @@ class PersonalInfo extends Component {
               fullWidth
             />
 
+          </div>
+
+          < div className="col-3">
+            <TextField
+              autoFocus
+              required
+              className="textfield"
+              name="email"
+              placeholder="Email"
+              value={this.state.email}
+              onChange={e => this.onChangeHandler(e)}
+              variant="outlined"
+              fullWidth
+            />
           </div>
         </div>
 
@@ -165,79 +199,49 @@ class PersonalInfo extends Component {
               fullWidth
             />
           </div>
-
-
-          <div className="col-6">
-            <div className="col-12">
-
-
-
-              <FormControl className="col-12">
-                <InputLabel id="demo-controlled-open-select-label">Province</InputLabel>
-
-                <Select
-                  labelId="demo-controlled-open-select-label"
-                  id="demo-controlled-open-select"
-                  open={this.state.open}
-                  onClose={this.onOpen}
-                  onOpen={this.onOpen}
-                  value={this.state.province}
-                  onChange={this.onChangeHandler}
-                  name="province"
-                >
-                  <MenuItem value="">
-                    <em>None</em>
-                  </MenuItem>
-                  <MenuItem value={"British Columbia"}>British Columbia</MenuItem>
-                  <MenuItem value={"Alberta"}>Alberta</MenuItem>
-                  <MenuItem value={"Saskatchewan"}>Saskatchewan</MenuItem>
-                  <MenuItem value={"Manitoba"}>Manitoba</MenuItem>
-                  <MenuItem value={"Ontario"}>Ontario</MenuItem>
-                  <MenuItem value={"Quebec"}>Quebec</MenuItem>
-                  <MenuItem value={"Newfoundland"}>Newfoundland</MenuItem>
-                  <MenuItem value={"New Brunswick"}>New Brunswick</MenuItem>
-                  <MenuItem value={"Nova Scotia"}>Nova Scotia</MenuItem>
-                  <MenuItem value={"PEI"}>PEI</MenuItem>
-                  <MenuItem value={"Yukon"}>Yukon</MenuItem>
-                  <MenuItem value={"NWT"}>NWT</MenuItem>
-                  <MenuItem value={"Nunavut"}>Nunavut</MenuItem>
-                </Select>
-              </FormControl>
-
-
-
-            </div>
+          <div className="col-3">
+            <TextField
+              autoFocus
+              required
+              className="textfield"
+              name="number"
+              placeholder="Phone Number"
+              value={this.state.number}
+              onChange={e => this.onChangeHandler(e)}
+              variant="outlined"
+              fullWidth
+            />
           </div>
-
-
-
-          <TextField
-            autoFocus
-            required
-            className="textfield"
-            name="country"
-            placeholder="Country"
-            value={this.state.country}
-            onChange={e => this.onChangeHandler(e)}
-            variant="outlined"
-            style={{ marginTop: "100px", marginLeft: "100px" }}
-
-          />
-
-          <TextField
-            autoFocus
-            required
-            className="textfield"
-            name="country"
-            placeholder="Please enter the name of a language that you know"
-            onChange={e => this.onChangeHandler(e)}
-            variant="outlined"
-            style={{ marginTop: "100px", marginLeft: "100px" }}
-
-          />
-
         </div>
 
+        <div className="row" style={{ marginTop: "25px" }}>
+          <div className="col-6">
+            <TextField
+              autoFocus
+              required
+              className="textfield"
+              name="country"
+              placeholder="Country"
+              value={this.state.country}
+              onChange={e => this.onChangeHandler(e)}
+              variant="outlined"
+              fullWidth
+            />
+          </div>
+          <div className="col-6">
+            <TextField
+              autoFocus
+              required
+              className="textfield"
+              name="uni"
+              placeholder="Univerisity"
+              value={this.state.uni}
+              onChange={e => this.onChangeHandler(e)}
+              variant="outlined"
+              fullWidth
+            />
+          </div>
+        </div>
       </form >
     )
   }
