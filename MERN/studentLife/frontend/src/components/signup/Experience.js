@@ -16,18 +16,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 
-
-const useStyles = makeStyles(theme => ({
-  root: {
-    '& .MuiTextField-root': {
-      margin: theme.spacing(1),
-      width: 200,
-    },
-  },
-}));
-
-class PersonalInfo extends Component {
-
+export class Experience extends Component {
   constructor(props) {
     super(props)
     this.state = {
@@ -44,7 +33,6 @@ class PersonalInfo extends Component {
       country: "",
       date: "",
       open: false,
-
       error: true
     }
     this.onChangeHandler = this.onChangeHandler.bind(this);
@@ -63,12 +51,8 @@ class PersonalInfo extends Component {
     this.setState({ open: !(this.state.open) });
   }
 
-
   render() {
-
     return (
-
-
       <form className="container" noValidate autoComplete="off">
         <div className="row">
 
@@ -111,27 +95,6 @@ class PersonalInfo extends Component {
             />
           </div>
 
-          <div className="col-3">
-            <FormControl variant="outlined" style={{
-              minWidth: 120,
-            }} >
-              <InputLabel ref="age" id="demo-simple-select-outlined-label">
-                Gender
-              </InputLabel>
-              <Select
-                labelId="demo-simple-select-outlined-label"
-                id="demo-simple-select-outlined"
-                value={this.state.gender}
-                onChange={e => this.onChangeHandler(e)}
-                name="gender"
-              >
-                <MenuItem value={"Female"}>Female</MenuItem>
-                <MenuItem value={"Male"}>Male</MenuItem>
-              </Select>
-            </FormControl>
-
-
-          </div>
         </div>
         <div className="row" style={{ marginTop: "25px" }}>
           <div className="col-6">
@@ -178,49 +141,9 @@ class PersonalInfo extends Component {
               fullWidth
             />
           </div>
-          <div className="col-3">
-            <TextField
-              autoFocus
-              required
-              className="textfield"
-              name="number"
-              placeholder="Phone Number"
-              value={this.state.number}
-              onChange={e => this.onChangeHandler(e)}
-              variant="outlined"
-              fullWidth
-            />
-          </div>
+
         </div>
 
-        <div className="row" style={{ marginTop: "25px" }}>
-          <div className="col-6">
-            <TextField
-              autoFocus
-              required
-              className="textfield"
-              name="country"
-              placeholder="Country"
-              value={this.state.country}
-              onChange={e => this.onChangeHandler(e)}
-              variant="outlined"
-              fullWidth
-            />
-          </div>
-          <div className="col-6">
-            <TextField
-              autoFocus
-              required
-              className="textfield"
-              name="uni"
-              placeholder="Univerisity"
-              value={this.state.uni}
-              onChange={e => this.onChangeHandler(e)}
-              variant="outlined"
-              fullWidth
-            />
-          </div>
-        </div>
 
         <div className="row" style={{ marginTop: "25px" }}>
 
@@ -244,4 +167,4 @@ class PersonalInfo extends Component {
   }
 }
 
-export default PersonalInfo
+export default Experience

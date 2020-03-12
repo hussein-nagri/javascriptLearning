@@ -7,7 +7,7 @@ import { Fragment } from 'react';
 import { PrivateRoute } from './PrivateRoute';
 import MainProfile from '../profile/MainProfile';
 import PersonalInfo from '../signup/PersonalInfo';
-import { steps } from '../signup/SignUpHead'
+import Experience from '../signup/Experience';
 const Routes = () => {
   return (
     <Fragment>
@@ -18,6 +18,7 @@ const Routes = () => {
           <PrivateRoute exact path='/hackathons' component={Hackathons} />
           <PrivateRoute exact path='/profile' component={MainProfile} />
           <PrivateRoute exact path='/registerPersonal' component={PersonalInfo} />
+          <PrivateRoute exact path='/registerExperience' component={Experience} />
           {/* <PrivateRoute exact path="/random" component={steps} /> */}
         </Switch>
       </section>

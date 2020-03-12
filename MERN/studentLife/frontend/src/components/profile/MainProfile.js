@@ -1,6 +1,5 @@
 import React, { Component } from 'react'
 
-import { steps } from '../signup/SignUpHead'
 
 import MultiStep from 'react-multistep'
 
