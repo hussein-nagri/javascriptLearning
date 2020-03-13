@@ -3,7 +3,11 @@ import TextField from '@material-ui/core/TextField';
 
 
 import Select from '@material-ui/core/Select';
-
+import Checkbox from '@material-ui/core/Checkbox';
+import FormLabel from '@material-ui/core/FormLabel';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
 
 import '../../App.css'
 
@@ -32,6 +36,9 @@ export class Experience extends Component {
       province: "",
       country: "",
       date: "",
+      hussein: false,
+      jy: false,
+      ahmed: false,
       open: false,
       error: true
     }
@@ -45,6 +52,10 @@ export class Experience extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
+  onBoolChange = (e) => {
+    this.setState({ [e.target.name]: !(e.target.value) })
+  }
+
   onChangeDate = date => this.setState({ date })
 
   onOpen = (e) => {
@@ -55,18 +66,27 @@ export class Experience extends Component {
     return (
       <form className="container" noValidate autoComplete="off">
         <div className="row">
-
           <div className="col-3">
-            <TextField
-              autoFocus
-              required
-              className="textfield"
-              name="firstName"
-              placeholder="First Name"
-              value={this.state.firstName}
-              onChange={e => this.onChangeHandler(e)}
-              variant="outlined"
-            />
+            <FormControl required component="fieldset">
+              <FormLabel component="legend">Pick two</FormLabel>
+              <FormGroup>
+                <FormControlLabel
+                  control={<Checkbox name="hussein" onChange={e => this.onChangeHandler(e)} value={this.state.hussein} />}
+                  label="Gilad Gray"
+                />
+                <FormControlLabel
+                  control={<Checkbox value={this.state.jy} name="jy" onChange={e => this.onChangeHandler(e)} />}
+                  label="Jason Killian"
+                />
+                <FormControlLabel
+                  control={
+                    <Checkbox value={this.state.ahmed} name="ahmed" onChange={e => this.onChangeHandler(e)} />
+                  }
+                  label="Antoine Llorca"
+                />
+              </FormGroup>
+              <FormHelperText>You can display an error</FormHelperText>
+            </FormControl>
           </div>
           <div className="col-3">
             <TextField
