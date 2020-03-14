@@ -20,31 +20,19 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
 
+import Languages from './Languages'
+
+
 export class Experience extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      firstName: "",
-      lastName: "",
-      age: "",
-      gender: "female",
-      email: "",
-      number: "",
-      address: "",
-      uni: "",
-      city: "",
-      province: "",
-      country: "",
-      date: "",
-      hussein: false,
-      jy: false,
-      ahmed: false,
-      open: false,
-      error: true
+      languages: ["Python", "C/C++", "Java", "React", "HTML/CSS", "Swift", "Django", "Flask", "Nodejs/Express", "Kotlin", "SQL/MYSQL", "AWS", "GCP", "GO", "Javascript", "Ruby", "R", "Postgres", "MongoDB"],
+      val: ""
     }
     this.onChangeHandler = this.onChangeHandler.bind(this);
-    this.onChangeDate = this.onChangeDate.bind(this);
-    this.onOpen = this.onOpen.bind(this);
+    this.saveState = this.saveState.bind(this);
+
 
   }
 
@@ -52,121 +40,65 @@ export class Experience extends Component {
     this.setState({ [e.target.name]: e.target.value });
   }
 
-  onBoolChange = (e) => {
-    this.setState({ [e.target.name]: !(e.target.value) })
+
+  saveState = (e) => {
+    console.log(this.props)
+    console.log(e);
   }
 
-  onChangeDate = date => this.setState({ date })
 
-  onOpen = (e) => {
-    this.setState({ open: !(this.state.open) });
-  }
 
   render() {
+
     return (
       <form className="container" noValidate autoComplete="off">
         <div className="row">
-          <div className="col-3">
-            <FormControl required component="fieldset">
-              <FormLabel component="legend">Pick two</FormLabel>
+          <div className="col-4">
+            <FormControl component="fieldset">
+              <FormLabel component="legend">Beginner</FormLabel>
               <FormGroup>
-                <FormControlLabel
-                  control={<Checkbox name="hussein" onChange={e => this.onChangeHandler(e)} value={this.state.hussein} />}
-                  label="Gilad Gray"
-                />
-                <FormControlLabel
-                  control={<Checkbox value={this.state.jy} name="jy" onChange={e => this.onChangeHandler(e)} />}
-                  label="Jason Killian"
-                />
-                <FormControlLabel
-                  control={
-                    <Checkbox value={this.state.ahmed} name="ahmed" onChange={e => this.onChangeHandler(e)} />
-                  }
-                  label="Antoine Llorca"
-                />
+                {
+                  this.state.languages.map(language =>
+                    <Languages saveState={this.saveState} key={language} language={language} />
+                  )
+                }
+
+              </FormGroup>
+
+            </FormControl>
+          </div>
+          <div className="col-4">
+            <FormControl component="fieldset">
+              <FormLabel component="legend">Intermediate</FormLabel>
+              <FormGroup>
+                {
+                  this.state.languages.map(language =>
+                    <Languages saveState={this.saveState} key={language} language={language} />
+                  )
+                }
               </FormGroup>
               <FormHelperText>You can display an error</FormHelperText>
             </FormControl>
           </div>
-          <div className="col-3">
-            <TextField
-              autoFocus
-              required
-              className="textfield"
-              name="lastName"
-              placeholder="Last Name"
-              value={this.state.lastName}
-              onChange={e => this.onChangeHandler(e)}
-              variant="outlined"
-              fullWidth
-            />
-          </div>
-          <div className="col-3">
-            <TextField
-              autoFocus
-              required
-              className="textfield"
-              name="age"
-              placeholder="Age"
-              value={this.state.age}
-              onChange={e => this.onChangeHandler(e)}
-              variant="outlined"
-              fullWidth
-            />
-          </div>
+          <div className="col-4">
+            <FormControl component="fieldset">
+              <FormLabel component="legend">Advanced</FormLabel>
+              <FormGroup>
+                {
+                  this.state.languages.map(language =>
+                    <Languages saveState={this.saveState} key={language} language={language} />
+                  )
 
-        </div>
-        <div className="row" style={{ marginTop: "25px" }}>
-          <div className="col-6">
-            <TextField
-              autoFocus
-              required
-              className="textfield"
-              name="address"
-              placeholder="Address"
-              value={this.state.address}
-              onChange={e => this.onChangeHandler(e)}
-              variant="outlined"
-              fullWidth
-            />
-
-          </div>
-
-          < div className="col-3">
-            <TextField
-              autoFocus
-              required
-              className="textfield"
-              name="email"
-              placeholder="Email"
-              value={this.state.email}
-              onChange={e => this.onChangeHandler(e)}
-              variant="outlined"
-              fullWidth
-            />
+                }
+              </FormGroup>
+              <FormHelperText>You can display an error</FormHelperText>
+            </FormControl>
           </div>
         </div>
 
-        <div className="row" style={{ marginTop: "25px" }}>
-          <div className="col-6">
-            <TextField
-              autoFocus
-              required
-              className="textfield"
-              name="city"
-              placeholder="City"
-              value={this.state.city}
-              onChange={e => this.onChangeHandler(e)}
-              variant="outlined"
-              fullWidth
-            />
-          </div>
-
-        </div>
 
 
         <div className="row" style={{ marginTop: "25px" }}>
-
           <div className="col-4">
           </div>
           <div className="col-4">
