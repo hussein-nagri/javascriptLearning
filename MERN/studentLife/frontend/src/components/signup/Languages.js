@@ -22,13 +22,13 @@ class Languages extends Component {
     await this.setState({ checked: !this.state.checked });
 
     console.log(this.props)
-    this.props.saveState(this.state.checked);
+    this.props.saveState(this.state.checked, this.props.type, this.props.language);
   }
 
   render() {
     return (
       <FormControlLabel
-        control={<Checkbox checked={this.state.checked} onClick={this.onCheck} />}
+        control={<Checkbox disabled={this.props.disabled} checked={this.state.checked} onClick={this.onCheck} />}
         label={this.props.language}
       />
     )

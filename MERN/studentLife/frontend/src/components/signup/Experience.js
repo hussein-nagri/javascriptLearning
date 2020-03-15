@@ -28,7 +28,26 @@ export class Experience extends Component {
     super(props)
     this.state = {
       languages: ["Python", "C/C++", "Java", "React", "HTML/CSS", "Swift", "Django", "Flask", "Nodejs/Express", "Kotlin", "SQL/MYSQL", "AWS", "GCP", "GO", "Javascript", "Ruby", "R", "Postgres", "MongoDB"],
-      val: ""
+      Python: "",
+      ["C/C++"]: "",
+      Java: "",
+      React: "",
+      ["HTML/CSS"]: "",
+      Swift: "",
+      Django: "",
+      Flask: "",
+      ["Nodejs/Express"]: "",
+      Kotlin: "",
+      ["SQL/MYSQL"]: "",
+      AWS: "",
+      GCP: "",
+      GO: "",
+      Javascript: "",
+      Ruby: "",
+      R: "",
+      Postgres: "",
+      MongoDB: ""
+
     }
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.saveState = this.saveState.bind(this);
@@ -41,9 +60,24 @@ export class Experience extends Component {
   }
 
 
-  saveState = (e) => {
+  saveState = (checked, type, language) => {
     console.log(this.props)
-    console.log(e);
+    if (checked === true) {
+      console.log("Inside");
+      console.log(type)
+      var prevLang = [language];
+      console.log(typeof prevLang)
+
+      this.setState(prevState => ({
+        [language]: type
+      }));
+    } else {
+      this.setState({
+        [language]: ""
+      });
+    }
+
+    console.log(language, checked, type);
   }
 
 
@@ -58,8 +92,13 @@ export class Experience extends Component {
               <FormLabel component="legend">Beginner</FormLabel>
               <FormGroup>
                 {
-                  this.state.languages.map(language =>
-                    <Languages saveState={this.saveState} key={language} language={language} />
+                  this.state.languages.map(language => {
+                    if (this.state[language] === "" || this.state[language] === "beginner") {
+                      return <Languages disabled={false} type="beginner" saveState={this.saveState} key={language} language={language} />
+                    } else {
+                      return <Languages disabled={true} type="beginner" saveState={this.saveState} key={language} language={language} />
+                    }
+                  }
                   )
                 }
 
@@ -72,8 +111,14 @@ export class Experience extends Component {
               <FormLabel component="legend">Intermediate</FormLabel>
               <FormGroup>
                 {
-                  this.state.languages.map(language =>
-                    <Languages saveState={this.saveState} key={language} language={language} />
+                  this.state.languages.map(language => {
+                    if (this.state[language] === "" || this.state[language] === "intermediate") {
+                      return <Languages disabled={false} type="intermediate" saveState={this.saveState} key={language} language={language} />
+                    } else {
+                      return <Languages disabled={true} type="intermediate" saveState={this.saveState} key={language} language={language} />
+
+                    }
+                  }
                   )
                 }
               </FormGroup>
@@ -85,10 +130,16 @@ export class Experience extends Component {
               <FormLabel component="legend">Advanced</FormLabel>
               <FormGroup>
                 {
-                  this.state.languages.map(language =>
-                    <Languages saveState={this.saveState} key={language} language={language} />
-                  )
+                  this.state.languages.map(language => {
+                    if (this.state[language] === "" || this.state[language] === "advanced") {
+                      return <Languages disabled={false} type="advanced" saveState={this.saveState} key={language} language={language} />
+                    }
+                    else {
+                      return <Languages disabled={true} type="advanced" saveState={this.saveState} key={language} language={language} />
 
+                    }
+                  }
+                  )
                 }
               </FormGroup>
               <FormHelperText>You can display an error</FormHelperText>
