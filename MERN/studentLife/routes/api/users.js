@@ -116,20 +116,16 @@ router.post(
 router.post(
   '/login',
   async (req, res) => {
-
-
     console.log(req.body);
     let { email, password } = req.body;
 
     try {
       let user = await User.findOne({ email, password });
-
       if (!user) {
         return res
           .status(400)
           .json({ errors: 'Invalid Credentials. Please try again' });
       }
-
       if (user) {
 
         userObj = {
@@ -152,14 +148,34 @@ router.post(
           token: token
         })
       }
-
-
     } catch (err) {
       console.error(err)
       res.status(500).send('Server error');
     }
+  }
+);
 
 
+
+// @route    POST api/users/personalInfo
+// @desc     login user
+// @access   Private
+router.post(
+  '/personalInfo', [
+    // check('fname', 'First name is required')
+    //   .not()
+    //   .isEmpty(),
+    // check('lname', 'Last name is required')
+    //   .not()
+    //   .isEmpty(),
+    // check('email', 'Please include a valid email').isEmail(),
+    // check(
+    //   'password',
+    //   'Please enter a password with 6 or more characters'
+    // ).isLength({ min: 6 })
+  ],
+  async (req, res) => {
+    console.log(req.body);
   }
 );
 
