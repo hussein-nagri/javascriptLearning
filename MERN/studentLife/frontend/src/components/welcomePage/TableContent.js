@@ -93,7 +93,7 @@ export class TableContent extends Component {
             <div className="row">
               <div className="col-lg-12 mx-auto">
                 <h2 style={{ textAlign: "center" }}>Features</h2>
-                <List >
+                <List style={{ display: "table", margin: "0 auto" }} >
                   <ListItem>
                     <ListItemIcon>
                       <DoneIcon />
