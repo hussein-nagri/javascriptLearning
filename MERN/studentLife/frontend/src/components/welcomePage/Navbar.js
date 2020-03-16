@@ -1,38 +1,39 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 
 class Navbar extends Component {
-  // constructor(props) {
-  //   super(props)
-  // }
 
   render() {
     return (
-      <nav className="navbar navbar-expand-lg navbar-light bg-dark fixed-top" id="mainNav">
-        <div className="container">
-          <a className="navbar-brand js-scroll-trigger text-white">StudentLife</a>
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon"></span>
-          </button>
-          <div className="collapse navbar-collapse" id="navbarResponsive">
-            <ul className="navbar-nav ml-auto">
-              <li className="nav-item">
-                <a className="nav-link text-white js-scroll-trigger" href="#about">About</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link text-white js-scroll-trigger" href="#services">Features</a>
-              </li>
-              <li className="nav-item">
-                <a className="nav-link text-white js-scroll-trigger" href="#signup">Sign Up</a>
-              </li>
-              <li className="nav-item">
-                <div className="btn btn-outline-primary text-white" ><Link to='/login'>Log in </Link></div>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
+
+      <AppBar position="fixed">
+        <Toolbar>
+
+          <Typography variant="h6" style={{ flexGrow: 1 }}>
+            StudentLife
+          </Typography>
+
+          <Button>
+            <a style={{ color: 'white' }} href="#about">About</a>
+          </Button>
+          <Button color="default">
+            <a style={{ color: 'white' }} href="#services">Features</a>
+          </Button>
+
+          <Button color="default">
+            <a style={{ color: 'white' }} href="#signup">Sign Up</a>
+          </Button>
+          <Button color="default"><Link style={{ color: 'white' }} to='/login'>Login</Link> </Button>
+
+          {/* <Button color="inherit">Login</Button> */}
+        </Toolbar>
+      </AppBar >
+
     )
   }
 }

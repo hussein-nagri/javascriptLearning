@@ -122,7 +122,6 @@ export class Experience extends Component {
                   )
                 }
               </FormGroup>
-              <FormHelperText>You can display an error</FormHelperText>
             </FormControl>
           </div>
           <div className="col-4">
@@ -142,7 +141,6 @@ export class Experience extends Component {
                   )
                 }
               </FormGroup>
-              <FormHelperText>You can display an error</FormHelperText>
             </FormControl>
           </div>
         </div>
@@ -158,7 +156,7 @@ export class Experience extends Component {
               color="primary"
               size="large"
               component={Link}
-              to="/registerExperience"
+              to="/home"
               fullWidth
             >Next</Button>
 

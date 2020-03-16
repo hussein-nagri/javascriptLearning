@@ -3,6 +3,24 @@ import React, { Component, Fragment } from 'react'
 import logo from '../../img/logo.png'
 import sitting_group from '../../img/sitting_group.jpg'
 
+import List from '@material-ui/core/List';
+import ListItem from '@material-ui/core/ListItem';
+import ListItemAvatar from '@material-ui/core/ListItemAvatar';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
+import ListItemText from '@material-ui/core/ListItemText';
+import Avatar from '@material-ui/core/Avatar';
+import IconButton from '@material-ui/core/IconButton';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import Checkbox from '@material-ui/core/Checkbox';
+import Grid from '@material-ui/core/Grid';
+import Typography from '@material-ui/core/Typography';
+import FolderIcon from '@material-ui/icons/Folder';
+import DeleteIcon from '@material-ui/icons/Delete';
+
+
+import DoneIcon from '@material-ui/icons/Done';
 
 export class TableContent extends Component {
   render() {
@@ -33,13 +51,38 @@ export class TableContent extends Component {
                 <h2>Why StudentLife</h2>
                 <p className="lead">
                   Ever want to do something fun with like-minded people? Are all your friends busy? StudentLife will find people LIKE you, and connect you together.
-          </p>
-                <ul>
-                  <li>Find sports to play near you!</li>
-                  <li>Collaborate with others on various projects</li>
-                  <li>Learn from different study groups</li>
-                  <li>Meet with like minded people</li>
-                </ul>
+                </p>
+                <List >
+                  <ListItem>
+                    <ListItemIcon>
+                      <DoneIcon />
+                    </ListItemIcon>
+                    <ListItemText style={{ marginLeft: "-5%" }}
+                      primary="Find sports to play near you!"
+                    />
+                    <ListItemIcon>
+                      <DoneIcon />
+                    </ListItemIcon>
+                    <ListItemText style={{ marginLeft: "-5%" }}
+                      primary="Learn from different study groups"
+                    />
+                  </ListItem>
+                  <ListItem>
+                    <ListItemIcon>
+                      <DoneIcon />
+                    </ListItemIcon>
+                    <ListItemText style={{ marginLeft: "-5%" }}
+                      primary="Collaborate with others on various projects"
+                    />
+                    <ListItemIcon>
+                      <DoneIcon />
+                    </ListItemIcon>
+                    <ListItemText style={{ marginLeft: "-5%" }}
+                      primary=" Meet with like minded people"
+                    />
+                  </ListItem>
+
+                </List>
               </div>
             </div>
           </div>
@@ -48,14 +91,33 @@ export class TableContent extends Component {
         <section id="services" className="bg-light">
           <div className="container">
             <div className="row">
-              <div className="col-lg-8 mx-auto">
-                <h2>Features</h2>
-                <ul>
-                  <li>Hackathon Group Formation</li>
-                  <li>Study Groups Nearby</li>
-                  <li>Pickup Sports Nearby</li>
-                </ul>
-                <p className="lead"></p>
+              <div className="col-lg-12 mx-auto">
+                <h2 style={{ textAlign: "center" }}>Features</h2>
+                <List >
+                  <ListItem>
+                    <ListItemIcon>
+                      <DoneIcon />
+                    </ListItemIcon>
+                    <ListItemText style={{ marginLeft: "-5%" }}
+                      primary="Hackathon Group Formation"
+                    />
+                    <ListItemIcon>
+                      <DoneIcon />
+                    </ListItemIcon>
+                    <ListItemText style={{ marginLeft: "-5%" }}
+                      primary="Study Groups Nearby"
+                    />
+
+                    <ListItemIcon>
+                      <DoneIcon />
+                    </ListItemIcon>
+                    <ListItemText style={{ marginLeft: "-5%" }}
+                      primary="Pickup Sports Nearby"
+                    />
+                  </ListItem>
+
+                </List>
+
               </div>
             </div>
           </div>
