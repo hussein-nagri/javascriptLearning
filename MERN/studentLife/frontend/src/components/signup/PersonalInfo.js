@@ -78,8 +78,7 @@ class PersonalInfo extends Component {
       uni: this.state.uni,
       city: this.state.city,
       province: this.state.province,
-      country: this.state.country,
-      date: this.state.date
+      country: this.state.country
     }
 
     await axios.post("/api/users/registerPersonal", form)
@@ -119,7 +118,7 @@ class PersonalInfo extends Component {
     return (
 
 
-      <form className="container" onSubmit={e => this.submitHandler(e)} required noValidate autoComplete="off">
+      <form className="container" method="post" onSubmit={e => this.submitHandler(e)} required noValidate autoComplete="off">
         <div className="row">
 
           <div className="col-3">
@@ -154,8 +153,9 @@ class PersonalInfo extends Component {
               className="textfield"
               name="age"
               placeholder="Age"
+              type="number"
               value={this.state.age}
-              onChange={e => this.onChangeHandler(e)}
+              onChange={e => { this.setState({ [e.target.name]: parseInt(e.target.value) }) }}
               variant="outlined"
               fullWidth
             />
@@ -165,7 +165,7 @@ class PersonalInfo extends Component {
             <FormControl variant="outlined" style={{
               minWidth: 120,
             }} >
-              <InputLabel ref="age" id="demo-simple-select-outlined-label">
+              <InputLabel ref="gender" id="demo-simple-select-outlined-label">
                 Gender
               </InputLabel>
               <Select

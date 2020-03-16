@@ -161,21 +161,45 @@ router.post(
 // @desc     login user
 // @access   Private
 router.post(
-  '/personalInfo', [
-    // check('fname', 'First name is required')
-    //   .not()
-    //   .isEmpty(),
-    // check('lname', 'Last name is required')
-    //   .not()
-    //   .isEmpty(),
-    // check('email', 'Please include a valid email').isEmail(),
-    // check(
-    //   'password',
-    //   'Please enter a password with 6 or more characters'
-    // ).isLength({ min: 6 })
+  '/registerPersonal', [
+    check('firstName', 'First name is required')
+      .not()
+      .isEmpty(),
+    check('lastName', 'Last name is required')
+      .not()
+      .isEmpty(),
+    check('age', 'Please include an age').isNumeric(),
+    check(
+      'gender',
+      'Please choose a gender'
+    )
+      .not()
+      .isEmpty(),
+    check('email', 'Please include a valid email').isEmail(),
+    check('number', "Please enter a valid phone number").isMobilePhone(),
+    check('address', 'Address is required')
+      .not()
+      .isEmpty(),
+    check('uni', 'University is required')
+      .not()
+      .isEmpty(),
+    check('city', 'City is required')
+      .not()
+      .isEmpty(),
+    check('province', 'Province is required')
+      .not()
+      .isEmpty(),
+    check('country', 'Country is required')
+      .not()
+      .isEmpty(),
   ],
   async (req, res) => {
     console.log(req.body);
+    const errors = await validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
   }
 );
 
