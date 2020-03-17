@@ -186,9 +186,6 @@ router.post(
     check('city', 'City is required')
       .not()
       .isEmpty(),
-    check('province', 'Province is required')
-      .not()
-      .isEmpty(),
     check('country', 'Country is required')
       .not()
       .isEmpty(),
@@ -199,6 +196,12 @@ router.post(
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
+
+    
+    return res.status(200).json({
+      msg: 'success'
+    })
+   
 
   }
 );

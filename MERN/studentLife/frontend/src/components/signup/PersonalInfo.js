@@ -40,11 +40,23 @@ class PersonalInfo extends Component {
       address: "",
       uni: "",
       city: "",
-      province: "",
       country: "",
       date: "",
       open: false,
       errors: false,
+      errorDict: {
+        "firstName": "",
+        "lastName": "",
+        "age": "",
+        "gender": "",
+        "email": "",
+        "number": "",
+        "address": "",
+        "uni": "",
+        "city": "",
+        "province": "",
+        "country": ""
+      },
       success: false
     }
     this.onChangeHandler = this.onChangeHandler.bind(this);
@@ -55,7 +67,10 @@ class PersonalInfo extends Component {
   }
 
   onChangeHandler = (e) => {
-    this.setState({ [e.target.name]: e.target.value });
+
+    this.setState({
+      [e.target.name]: e.target.value
+    });
   }
 
   onChangeDate = date => this.setState({ date })
@@ -77,9 +92,12 @@ class PersonalInfo extends Component {
       address: this.state.address,
       uni: this.state.uni,
       city: this.state.city,
-      province: this.state.province,
       country: this.state.country
     }
+
+    this.setState({
+      errorDict: {}
+    })
 
     await axios.post("/api/users/registerPersonal", form)
       .then(res => {
@@ -90,20 +108,15 @@ class PersonalInfo extends Component {
       })
       .catch(err => {
         console.error(err)
-        // console.log(err.response.data)
-        // var ers = err.response.data.errors
-        // var errors = []
-        // ers.forEach(error =>
-        //   errors.push(error.msg)
-        // );
-        // this.setState({
-        //   errors: errors
-        // });
-
-        // this.state.errors.map(error => alert(error))
-        // this.setState({
-        //   errors: {}
-        // });
+        console.log(err.response.data)
+        var ers = err.response.data.errors
+        var errorDict = {}
+        ers.forEach(error =>
+          errorDict[error.param] = error.msg
+        );
+        this.setState({
+          errorDict
+        });
       })
 
     this.state.success ? this.props.history.push("/registerExperience") : console.log(this.state.errors);
@@ -131,6 +144,8 @@ class PersonalInfo extends Component {
               value={this.state.firstName}
               onChange={e => this.onChangeHandler(e)}
               variant="outlined"
+              error={(this.state.errorDict["firstName"] === "" || this.state.errorDict["firstName"] === undefined) ? false : true}
+              helperText={this.state.errorDict["firstName"]}
             />
           </div>
           <div className="col-3">
@@ -144,6 +159,8 @@ class PersonalInfo extends Component {
               onChange={e => this.onChangeHandler(e)}
               variant="outlined"
               fullWidth
+              error={(this.state.errorDict["lastName"] === "" || this.state.errorDict["lastName"] === undefined) ? false : true}
+              helperText={this.state.errorDict["lastName"]}
             />
           </div>
           <div className="col-3">
@@ -158,6 +175,8 @@ class PersonalInfo extends Component {
               onChange={e => { this.setState({ [e.target.name]: parseInt(e.target.value) }) }}
               variant="outlined"
               fullWidth
+              error={(this.state.errorDict["age"] === "" || this.state.errorDict["age"] === undefined) ? false : true}
+              helperText={this.state.errorDict["age"]}
             />
           </div>
 
@@ -195,6 +214,8 @@ class PersonalInfo extends Component {
               onChange={e => this.onChangeHandler(e)}
               variant="outlined"
               fullWidth
+              error={(this.state.errorDict["address"] === "" || this.state.errorDict["address"] === undefined) ? false : true}
+              helperText={this.state.errorDict["address"]}
             />
 
           </div>
@@ -210,6 +231,8 @@ class PersonalInfo extends Component {
               onChange={e => this.onChangeHandler(e)}
               variant="outlined"
               fullWidth
+              error={(this.state.errorDict["email"] === "" || this.state.errorDict["email"] === undefined) ? false : true}
+              helperText={this.state.errorDict["email"]}
             />
           </div>
         </div>
@@ -226,6 +249,8 @@ class PersonalInfo extends Component {
               onChange={e => this.onChangeHandler(e)}
               variant="outlined"
               fullWidth
+              error={(this.state.errorDict["city"] === "" || this.state.errorDict["city"] === undefined) ? false : true}
+              helperText={this.state.errorDict["city"]}
             />
           </div>
           <div className="col-3">
@@ -239,6 +264,8 @@ class PersonalInfo extends Component {
               onChange={e => this.onChangeHandler(e)}
               variant="outlined"
               fullWidth
+              error={(this.state.errorDict["number"] === "" || this.state.errorDict["number"] === undefined) ? false : true}
+              helperText={this.state.errorDict["number"]}
             />
           </div>
         </div>
@@ -255,6 +282,8 @@ class PersonalInfo extends Component {
               onChange={e => this.onChangeHandler(e)}
               variant="outlined"
               fullWidth
+              error={(this.state.errorDict["country"] === "" || this.state.errorDict["country"] === undefined) ? false : true}
+              helperText={this.state.errorDict["country"]}
             />
           </div>
           <div className="col-6">
@@ -263,11 +292,13 @@ class PersonalInfo extends Component {
               required
               className="textfield"
               name="uni"
-              placeholder="Univerisity"
+              placeholder="University"
               value={this.state.uni}
               onChange={e => this.onChangeHandler(e)}
               variant="outlined"
               fullWidth
+              error={(this.state.errorDict["uni"] === "" || this.state.errorDict["uni"] === undefined) ? false : true}
+              helperText={this.state.errorDict["uni"]}
             />
           </div>
         </div>
