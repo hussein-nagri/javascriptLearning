@@ -99,7 +99,14 @@ class PersonalInfo extends Component {
       errorDict: {}
     })
 
-    await axios.post("/api/users/registerPersonal", form)
+    let token = localStorage.getItem("token");
+
+
+    await axios.post("/api/users/registerPersonal", form, {
+      headers: {
+        'Authorization': `${token}`
+      }
+    })
       .then(res => {
         console.log("here", res);
         this.setState({

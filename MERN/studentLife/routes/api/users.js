@@ -191,17 +191,26 @@ router.post(
       .isEmpty(),
   ],
   async (req, res) => {
-    console.log(req.body);
+    console.log(req.headers.authorization);
+
+    var token = req.headers.authorization;
+    var decoded = await jwt.verify(token.tostring(), 'secretkey');
+
+    // jwt.verify(token, 'secretkey', function (err, decoded) {
+    //   console.log(decoded) // bar
+    // });
+    console.log(decoded);
+
     const errors = await validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
 
-    
+
     return res.status(200).json({
       msg: 'success'
     })
-   
+
 
   }
 );
