@@ -193,23 +193,29 @@ router.post(
   async (req, res) => {
     console.log(req.headers.authorization);
 
-    var token = req.headers.authorization;
-    var decoded = await jwt.verify(token.tostring(), 'secretkey');
-
-    // jwt.verify(token, 'secretkey', function (err, decoded) {
-    //   console.log(decoded) // bar
-    // });
-    console.log(decoded);
-
     const errors = await validationResult(req);
     if (!errors.isEmpty()) {
       return res.status(400).json({ errors: errors.array() });
     }
 
+    //TODO: check if email, last name, first name are the same
 
-    return res.status(200).json({
-      msg: 'success'
-    })
+
+
+
+
+
+
+    var token = req.headers.authorization;
+    var decoded = await jwt.verify(token, 'mysecrettoken');
+    console.log(decoded);
+
+    console.log(req.body)
+
+
+    // return res.status(200).json({
+    //   msg: 'success'
+    // })
 
 
   }

@@ -17,6 +17,25 @@ const UserSchema = new mongoose.Schema({
   date: {
     type: Date,
     default: Date.now
+  },
+  age: {
+    type: Number
+
+  },
+  gender: {
+    type: String
+  },
+  number: {
+    type: Number
+  },
+  university: {
+    type: Number
+  },
+  city: {
+    type: Number
+  },
+  country: {
+    type: Number
   }
 });
 
