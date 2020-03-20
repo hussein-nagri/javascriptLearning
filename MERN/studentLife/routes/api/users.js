@@ -191,7 +191,7 @@ router.post(
       .isEmpty(),
   ],
   async (req, res) => {
-    console.log(req.headers.authorization);
+    // console.log(req.headers.authorization);
 
     const errors = await validationResult(req);
     if (!errors.isEmpty()) {
@@ -202,15 +202,40 @@ router.post(
 
 
 
-
-
-
-
     var token = req.headers.authorization;
     var decoded = await jwt.verify(token, 'mysecrettoken');
-    console.log(decoded);
 
-    console.log(req.body)
+    if ((req.body.email) !== decoded.email) {
+      return res.status(400).json({ errors: [{ msg: "Please use the same email as when you signed up", param: "email" }] })
+    }
+
+
+
+
+    //TODO: if phone number has - - -, remove them
+
+    let { firstName, lastName, age, gender, email, number, address, uni, city, country } = req.body;
+    let user = await User.findOne({ email });
+
+    console.log(user);
+
+   await User.collection.update(
+      { email: user.email },
+      {
+        $set:
+        {
+          age,
+          gender,
+          number,
+          address,
+          uni,
+          city,
+          country
+        }
+      }
+
+    );
+
 
 
     // return res.status(200).json({
