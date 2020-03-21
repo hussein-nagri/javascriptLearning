@@ -242,9 +242,9 @@ router.post(
       }
 
     );
-    // return res.status(200).json({
-    //   msg: 'success'
-    // })
+    return res.status(200).json({
+      msg: 'success'
+    })
 
 
   }
