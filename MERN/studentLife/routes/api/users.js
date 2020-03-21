@@ -214,12 +214,21 @@ router.post(
 
     //TODO: if phone number has - - -, remove them
 
+
+
+
     let { firstName, lastName, age, gender, email, number, address, uni, city, country } = req.body;
     let user = await User.findOne({ email });
 
-    console.log(user);
+    if (number.includes("-")) {
+      number = number.split("-");
+      number = number.reduce((accumulator, val) => accumulator + val, 0)
+      number = parseInt(number)
+    }
 
-   await User.collection.update(
+    console.log(number);
+
+    await User.collection.updateOne(
       { email: user.email },
       {
         $set:
@@ -235,9 +244,6 @@ router.post(
       }
 
     );
-
-
-
     // return res.status(200).json({
     //   msg: 'success'
     // })

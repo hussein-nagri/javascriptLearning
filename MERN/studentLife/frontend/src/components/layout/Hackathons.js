@@ -53,7 +53,6 @@ class Hackathons extends Component {
                   <Card className="col-3" style={{ maxWidth: 345 }}>
                     <CardActionArea>
                       <CardMedia
-
                         img style={{
                           height: '150px',
                           width: '150px',
@@ -62,10 +61,8 @@ class Hackathons extends Component {
                           marginLeft: "auto",
                           marginRight: "auto",
                         }}
-
                         image={(dict[6].split("\'")[3]).toString()}
                         title="Contemplative Reptile"
-
                       />
                       <CardContent>
                         <Typography gutterBottom variant="h5" component="h2">
@@ -82,7 +79,6 @@ class Hackathons extends Component {
                       </CardContent>
                     </CardActionArea>
                     <CardActions>
-
                       <Button style={{ margin: "0 auto" }} size="small" color="primary">
                         <a href={dict[5].split("\'")[3]} target="_blank" rel="noopener noreferrer">Sign Up</a>
                       </Button>
