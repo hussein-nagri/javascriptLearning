@@ -72,15 +72,8 @@ class Hackathons extends Component {
                           {dict[0].split(':')[1].split("\'").join("")}
                         </Typography>
                         <Typography variant="body2" color="textSecondary" component="p">
-                          {/* Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
-                          across all continents except Antarctica */}
-
-
-
                           {dict[3].split(':')[1].split("\'").join("")}
                           {dict[4].split(':')[1].split("\'").join("")}
-
-
                         </Typography>
                         <Typography variant="body2" color="textSecondary" component="p">
                           <li>{dict[1].split(':')[1].split("\'").join("")}</li>
@@ -95,23 +88,6 @@ class Hackathons extends Component {
                       </Button>
                     </CardActions>
                   </Card>
-
-                  {/* <div className="card-body shadow-sm mt-3 mr-3" style={{ width: "12rem" }}>
-                    <a>
-                      <img style={{
-                        height: '100px',
-                        width: '50px'
-                      }} alt="hackathon logo" src={dict[6].split("\'")[3]} className="card-img-top" />
-                    </a>
-                    <hr />
-                    <ul className="list-unstyled">
-                      <h4 className="card-title pricing-card-title">{dict[0].split(':')[1].split("\'").join("")}</h4>
-                      <li>{dict[1].split(':')[1].split("\'").join("")}</li>
-                      <li>{dict[3].split(':')[1].split("\'").join("")}</li>
-                      <li>{dict[4].split(':')[1].split("\'").join("")}</li>
-                      <li><a href={dict[5].split("\'")[3]} target="_blank" rel="noopener noreferrer">Sign Up</a></li>
-                    </ul>
-                  </div> */}
                 </Fragment>
               )
             }
