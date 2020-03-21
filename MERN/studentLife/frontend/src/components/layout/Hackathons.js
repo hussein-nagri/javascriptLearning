@@ -1,6 +1,15 @@
 import React, { Component, Fragment } from 'react'
 import axios from 'axios';
 
+import Card from '@material-ui/core/Card';
+import CardActionArea from '@material-ui/core/CardActionArea';
+import CardActions from '@material-ui/core/CardActions';
+import CardContent from '@material-ui/core/CardContent';
+import CardMedia from '@material-ui/core/CardMedia';
+import Button from '@material-ui/core/Button';
+import Typography from '@material-ui/core/Typography';
+
+
 class Hackathons extends Component {
 
   constructor(props) {
@@ -41,7 +50,53 @@ class Hackathons extends Component {
             {
               arr && arr.map((dict, index) =>
                 <Fragment key={index}>
-                  <div className="card-body shadow-sm mt-3 mr-3" style={{ width: "12rem" }}>
+                  <Card className="col-3" style={{ maxWidth: 345 }}>
+                    <CardActionArea>
+                      <CardMedia
+
+                        img style={{
+                          height: '150px',
+                          width: '150px',
+                          alignContent: "center",
+                          display: "block",
+                          marginLeft: "auto",
+                          marginRight: "auto",
+                        }}
+
+                        image={(dict[6].split("\'")[3]).toString()}
+                        title="Contemplative Reptile"
+
+                      />
+                      <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                          {dict[0].split(':')[1].split("\'").join("")}
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                          {/* Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging
+                          across all continents except Antarctica */}
+
+
+
+                          {dict[3].split(':')[1].split("\'").join("")}
+                          {dict[4].split(':')[1].split("\'").join("")}
+
+
+                        </Typography>
+                        <Typography variant="body2" color="textSecondary" component="p">
+                          <li>{dict[1].split(':')[1].split("\'").join("")}</li>
+
+                        </Typography>
+                      </CardContent>
+                    </CardActionArea>
+                    <CardActions>
+
+                      <Button style={{ margin: "0 auto" }} size="small" color="primary">
+                        <a href={dict[5].split("\'")[3]} target="_blank" rel="noopener noreferrer">Sign Up</a>
+                      </Button>
+                    </CardActions>
+                  </Card>
+
+                  {/* <div className="card-body shadow-sm mt-3 mr-3" style={{ width: "12rem" }}>
                     <a>
                       <img style={{
                         height: '100px',
@@ -56,7 +111,7 @@ class Hackathons extends Component {
                       <li>{dict[4].split(':')[1].split("\'").join("")}</li>
                       <li><a href={dict[5].split("\'")[3]} target="_blank" rel="noopener noreferrer">Sign Up</a></li>
                     </ul>
-                  </div>
+                  </div> */}
                 </Fragment>
               )
             }
