@@ -226,8 +226,6 @@ router.post(
       number = parseInt(number)
     }
 
-    console.log(number);
-
     await User.collection.updateOne(
       { email: user.email },
       {
