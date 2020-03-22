@@ -10,7 +10,6 @@ class Languages extends Component {
     super(props);
     this.state = {
       checked: false
-
     }
     this.onCheck = this.onCheck.bind(this);
 
@@ -18,9 +17,7 @@ class Languages extends Component {
 
 
   async onCheck() {
-
     await this.setState({ checked: !this.state.checked });
-
     console.log(this.props)
     this.props.saveState(this.state.checked, this.props.type, this.props.language);
   }

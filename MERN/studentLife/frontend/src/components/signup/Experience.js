@@ -86,6 +86,10 @@ export class Experience extends Component {
 
     return (
       <form className="container" noValidate autoComplete="off">
+        <div style={{ marginTop: "-100px" }} className="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center" >
+          <h1 className="display-4">Language Skills</h1>
+          <p className="lead"></p>
+        </div>
         <div className="row">
           <div className="col-4">
             <FormControl component="fieldset">
