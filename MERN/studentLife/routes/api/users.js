@@ -53,12 +53,26 @@ router.post(
         password
       });
 
-      // const salt = await bcrypt.genSalt(10);
+      //saved hash password in the db so no one knows
+      await bcrypt.genSalt(10, (err, salt) =>
+        bcrypt.hash(user.password, salt, (err, hash) => {
+          if (err) throw err;
+          user.password = hash;
+          user.save();
+        })
+      );
 
-      // user.password = await bcrypt.hash(password, salt);
 
-      await user.save();
-      let userRetrieved = await User.findOne({ email, password });
+      let userRetrieved = await User.findOne({ email });
+
+
+      //to see if pwd matches, use bcrpyt.compare
+
+
+
+
+      //TODO: Use passportjs for auth
+
       if (userRetrieved) {
 
         userObj = {
@@ -210,22 +224,17 @@ router.post(
     }
 
 
-
-
-    //TODO: if phone number has - - -, remove them
-
-
-
-
     let { firstName, lastName, age, gender, email, number, address, uni, city, country } = req.body;
     let user = await User.findOne({ email });
 
+    //if phone number has - - -, remove them
     if (number.includes("-")) {
       number = number.split("-");
       number = number.reduce((accumulator, val) => accumulator + val, 0)
-      number = parseInt(number)
     }
 
+
+    number = parseInt(number)
     await User.collection.updateOne(
       { email: user.email },
       {

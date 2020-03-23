@@ -51,6 +51,7 @@ export class Experience extends Component {
     }
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.saveState = this.saveState.bind(this);
+    this.submitHandler = this.submitHandler.bind(this);
 
 
   }
@@ -61,13 +62,9 @@ export class Experience extends Component {
 
 
   saveState = (checked, type, language) => {
-    console.log(this.props)
+    // console.log(this.props)
     if (checked === true) {
-      console.log("Inside");
-      console.log(type)
       var prevLang = [language];
-      console.log(typeof prevLang)
-
       this.setState(prevState => ({
         [language]: type
       }));
@@ -76,16 +73,18 @@ export class Experience extends Component {
         [language]: ""
       });
     }
-
-    console.log(language, checked, type);
   }
 
 
+  submitHandler = async (e) => {
+    e.preventDefault();
+    console.log(e);
+  }
 
   render() {
 
     return (
-      <form className="container" noValidate autoComplete="off">
+      <form className="container" onSubmit={e => this.submitHandler(e)} noValidate autoComplete="off">
         <div style={{ marginTop: "-100px" }} className="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center" >
           <h1 className="display-4">Language Skills</h1>
           <p className="lead"></p>
@@ -159,8 +158,8 @@ export class Experience extends Component {
               variant="contained"
               color="primary"
               size="large"
-              component={Link}
-              to="/home"
+              // component={Link}
+              // to="/home"
               fullWidth
             >Next</Button>
 

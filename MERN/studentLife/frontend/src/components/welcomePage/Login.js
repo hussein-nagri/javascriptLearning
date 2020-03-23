@@ -65,9 +65,6 @@ export default function SignIn(props) {
       })
       .then(response => {
         if (response.msg == "success") {
-          //This redirect statement is not working. why?
-          // return (<Redirect to="/home" />);
-
           localStorage.setItem("token", response.token);
           props.history.push("/home");
         }
