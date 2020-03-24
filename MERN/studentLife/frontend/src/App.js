@@ -19,7 +19,10 @@ function App() {
     //     console.error(err)
     //   })
 
-    console.log("hi")
+    if (localStorage.getItem("token") === undefined){
+      localStorage.removeItem("token");
+    }
+
   })
 
 

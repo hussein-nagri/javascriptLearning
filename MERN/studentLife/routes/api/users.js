@@ -53,22 +53,28 @@ router.post(
         password
       });
 
+      var pass
+
       //saved hash password in the db so no one knows
-      await bcrypt.genSalt(10, (err, salt) =>
-        bcrypt.hash(user.password, salt, (err, hash) => {
-          if (err) throw err;
-          user.password = hash;
-          user.save();
-        })
-      );
+      // await bcrypt.genSalt(10, async (err, salt) =>
+      //   await bcrypt.hash(user.password, salt, async (err, hash) => {
+      //     if (err) throw err;
+      //     // user.password = hash;
+      //     pass = await hash;
+      //     // await user.save();
+      //   })
+      // );
 
+      const salt = await bcrypt.genSalt(10);
+      user.password = await bcrypt.hash(user.password, salt);
+      await user.save();
 
-      let userRetrieved = await User.findOne({ email });
+      let userRetrieved = await User.findOne({ name });
 
 
       //to see if pwd matches, use bcrpyt.compare
 
-
+      console.log("hello", userRetrieved)
 
 
       //TODO: Use passportjs for auth
