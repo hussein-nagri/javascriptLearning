@@ -53,18 +53,6 @@ router.post(
         password
       });
 
-      var pass
-
-      //saved hash password in the db so no one knows
-      // await bcrypt.genSalt(10, async (err, salt) =>
-      //   await bcrypt.hash(user.password, salt, async (err, hash) => {
-      //     if (err) throw err;
-      //     // user.password = hash;
-      //     pass = await hash;
-      //     // await user.save();
-      //   })
-      // );
-
       const salt = await bcrypt.genSalt(10);
       user.password = await bcrypt.hash(user.password, salt);
       await user.save();

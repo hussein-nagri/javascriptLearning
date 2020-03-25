@@ -79,6 +79,31 @@ export class Experience extends Component {
   submitHandler = async (e) => {
     e.preventDefault();
     console.log(e);
+
+    
+    const form = {
+      Python: this.state.Python,
+      ["C/C++"]: this.state["C/C++"],
+      Java: this.state.Java,
+      React: this.state.React,
+      ["HTML/CSS"]: this.state["HTML/CSS"],
+      Swift: this.state.Swift,
+      Django: this.state.Django,
+      Flask: this.state.Flask,
+      ["Nodejs/Express"]: this.state["Nodejs/Express"],
+      Kotlin: this.state.Kotlin,
+      ["SQL/MYSQL"]: this.state["SQL/MYSQL"],
+      AWS: this.state.AWS,
+      GCP: this.state.GCP,
+      GO: this.state.GO,
+      Javascript: this.state.Javascript,
+      Ruby: this.state.Ruby,
+      R: this.state.R,
+      Postgres: this.state.Postgres,
+      MongoDB: this.state.MongoDB
+    }
+
+
   }
 
   render() {
@@ -156,6 +181,7 @@ export class Experience extends Component {
           <div className="col-4">
             <Button
               variant="contained"
+              type="submit"
               color="primary"
               size="large"
               // component={Link}
