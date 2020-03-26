@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import TextField from '@material-ui/core/TextField';
 
-
+import axios from 'axios'
 import Select from '@material-ui/core/Select';
 import Checkbox from '@material-ui/core/Checkbox';
 import FormLabel from '@material-ui/core/FormLabel';
@@ -46,7 +46,8 @@ export class Experience extends Component {
       Ruby: "",
       R: "",
       Postgres: "",
-      MongoDB: ""
+      MongoDB: "",
+      errorDict: {}
 
     }
     this.onChangeHandler = this.onChangeHandler.bind(this);
@@ -80,7 +81,7 @@ export class Experience extends Component {
     e.preventDefault();
     console.log(e);
 
-    
+
     const form = {
       Python: this.state.Python,
       ["C/C++"]: this.state["C/C++"],
@@ -102,6 +103,28 @@ export class Experience extends Component {
       Postgres: this.state.Postgres,
       MongoDB: this.state.MongoDB
     }
+    
+    let token = localStorage.getItem("token");
+
+    await axios.post("/api/users/registerPersonal", form, {
+      headers: {
+        'Authorization': `${token}`
+      }
+    })
+      .then(res => {
+        console.log("here", res);
+        this.setState({
+          success: true
+        })
+      })
+      .catch(err => {
+        console.error(err)
+      })
+
+    this.state.success ? this.props.history.push("/registerExperience") : console.log(this.state.errors);
+    console.log("Done")
+    console.log(this.state.errors)
+
 
 
   }

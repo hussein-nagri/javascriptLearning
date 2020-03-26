@@ -253,4 +253,47 @@ router.post(
   }
 );
 
+
+// @route    POST api/users/personalInfo
+// @desc     login user
+// @access   Private
+router.post(
+  '/registerExperience',
+  async (req, res) => {
+    console.log(req.body);
+
+    var token = req.headers.authorization;
+    var decoded = await jwt.verify(token, 'mysecrettoken');
+
+    var userEmail = decoded.email;
+
+    let { firstName, lastName, age, gender, email, number, address, uni, city, country } = req.body;
+    let user = await User.findOne({ email });
+
+
+    await User.collection.updateOne(
+      { email: user.email },
+      {
+        $set:
+        {
+          age,
+          gender,
+          number,
+          address,
+          uni,
+          city,
+          country
+        }
+      }
+
+    );
+    return res.status(200).json({
+      msg: 'success'
+    })
+
+
+  }
+);
+
+
 module.exports = router;
