@@ -63,9 +63,7 @@ export class Experience extends Component {
 
 
   saveState = (checked, type, language) => {
-    // console.log(this.props)
     if (checked === true) {
-      var prevLang = [language];
       this.setState(prevState => ({
         [language]: type
       }));
@@ -80,7 +78,6 @@ export class Experience extends Component {
   submitHandler = async (e) => {
     e.preventDefault();
     console.log(e);
-
 
     const form = {
       Python: this.state.Python,
@@ -103,16 +100,15 @@ export class Experience extends Component {
       Postgres: this.state.Postgres,
       MongoDB: this.state.MongoDB
     }
-    
-    let token = localStorage.getItem("token");
 
-    await axios.post("/api/users/registerPersonal", form, {
+
+    let token = localStorage.getItem("token");
+    await axios.post("/api/users/registerExperience", form, {
       headers: {
         'Authorization': `${token}`
       }
     })
       .then(res => {
-        console.log("here", res);
         this.setState({
           success: true
         })
@@ -120,13 +116,7 @@ export class Experience extends Component {
       .catch(err => {
         console.error(err)
       })
-
-    this.state.success ? this.props.history.push("/registerExperience") : console.log(this.state.errors);
-    console.log("Done")
-    console.log(this.state.errors)
-
-
-
+    this.state.success ? this.props.history.push("/home") : this.props.history.push("/login");
   }
 
   render() {

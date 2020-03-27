@@ -267,31 +267,30 @@ router.post(
 
     var userEmail = decoded.email;
 
-    let { firstName, lastName, age, gender, email, number, address, uni, city, country } = req.body;
-    let user = await User.findOne({ email });
+    console.log(userEmail)
+    var languages = req.body;
+    let user = await User.findOne({ email: userEmail });
 
+    console.log(user)
+
+    if (!user) {
+      return res
+        .status(400)
+        .json({ errors: 'Login expired' });
+    }
 
     await User.collection.updateOne(
-      { email: user.email },
+      { email: userEmail },
       {
         $set:
         {
-          age,
-          gender,
-          number,
-          address,
-          uni,
-          city,
-          country
+          languages
         }
       }
-
     );
     return res.status(200).json({
       msg: 'success'
     })
-
-
   }
 );
 
