@@ -1,18 +1,46 @@
 import React, { Component } from 'react'
 
-
-import MultiStep from 'react-multistep'
+import axios from 'axios';
 
 
 class MainProfile extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      userInfo: {}
+    }
+    // this.onChangeHandler = this.onChangeHandler.bind(this);
+  }
+
+  async componentDidMount() {
+
+    var token = localStorage.getItem("token");
+    await axios.get("/api/users/getDetails", {
+      headers: {
+        'Authorization': `${token}`
+      }
+    })
+      .then(res => {
+        this.setState({
+          userInfo: res.data
+        })
+      })
+
+  }
+
   render() {
+
+
+
+
     return (
-      // <div>
-      //   <MultiStep showNavigation={false} steps={steps} />
-      // </div>
+
 
       <div>
-        hi
+        {this.state.userInfo ?
+          (<div>hi ther</div>)
+          : <div>Hello</div>}
       </div>
     )
   }

@@ -267,11 +267,8 @@ router.post(
 
     var userEmail = decoded.email;
 
-    console.log(userEmail)
     var languages = req.body;
     let user = await User.findOne({ email: userEmail });
-
-    console.log(user)
 
     if (!user) {
       return res
@@ -288,11 +285,41 @@ router.post(
         }
       }
     );
+
+
     return res.status(200).json({
       msg: 'success'
     })
   }
 );
 
+
+
+// @route    POST api/users/getDetails
+// @desc     login user
+// @access   Private
+router.get(
+  '/getDetails',
+  async (req, res) => {
+    console.log(req.body);
+
+    var token = req.headers.authorization;
+    var decoded = await jwt.verify(token, 'mysecrettoken');
+
+    var userEmail = decoded.email;
+
+    let user = await User.findOne({ email: userEmail });
+
+    if (!user) {
+      return res
+        .status(400)
+        .json({ errors: 'Login expired' });
+    }
+
+    return res.status(200).json({
+      user
+    })
+  }
+);
 
 module.exports = router;
