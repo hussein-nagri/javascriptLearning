@@ -1,9 +1,9 @@
-import React, { Component } from 'react'
+import React, { Component, createRef } from 'react'
 import TextField from '@material-ui/core/TextField';
 import axios from 'axios';
 
 import Select from '@material-ui/core/Select';
-
+import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 
 import '../../App.css'
 
@@ -57,12 +57,16 @@ class PersonalInfo extends Component {
         "province": "",
         "country": ""
       },
-      success: false
+      success: false,
+      file: null
     }
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.onChangeDate = this.onChangeDate.bind(this);
     this.onOpen = this.onOpen.bind(this);
     this.submitHandler = this.submitHandler.bind(this);
+    this.imageChange = this.imageChange.bind(this);
+
+    this.fileInput = React.createRef();
 
   }
 
@@ -70,6 +74,14 @@ class PersonalInfo extends Component {
 
     this.setState({
       [e.target.name]: e.target.value
+    });
+  }
+
+  imageChange = (e) => {
+
+    console.log(e.target.files)
+    this.setState({
+      file: URL.createObjectURL(e.target.files[0])
     });
   }
 
@@ -92,7 +104,8 @@ class PersonalInfo extends Component {
       address: this.state.address,
       uni: this.state.uni,
       city: this.state.city,
-      country: this.state.country
+      country: this.state.country,
+      // file: this.state.file
     }
 
     this.setState({
@@ -242,6 +255,17 @@ class PersonalInfo extends Component {
               helperText={this.state.errorDict["email"]}
             />
           </div>
+          {/* < div className="col-3">
+            Add cover photo:
+            <br />
+            <input onChange={e => this.imageChange(e)} ref={this.fileInput} accept="image/*" style={{ display: "none" }} id="icon-button-file" type="file" />
+            <label htmlFor="icon-button-file">
+              <Button color="primary" aria-label="upload picture" component="span">
+                <AddAPhotoIcon />
+              </Button>
+            </label>
+
+          </div> */}
         </div>
 
         <div className="row" style={{ marginTop: "25px" }}>
@@ -274,7 +298,17 @@ class PersonalInfo extends Component {
               error={(this.state.errorDict["number"] === "" || this.state.errorDict["number"] === undefined) ? false : true}
               helperText={this.state.errorDict["number"]}
             />
+
           </div>
+
+
+          {/* <div className="col-3">
+            <img
+              style={{
+                objectFit: "contain",
+                width: "100px", height: "50px"
+              }} src={this.state.file} />
+          </div> */}
         </div>
 
         <div className="row" style={{ marginTop: "25px" }}>
