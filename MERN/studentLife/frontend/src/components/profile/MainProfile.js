@@ -31,18 +31,14 @@ class MainProfile extends Component {
     this.state = {
       name: "",
       age: "",
-      gender: "",
       email: "",
       number: "",
-      address: "",
       uni: "",
-
-
+      password: "",
       open: false,
       errors: false,
       errorDict: {
-        "firstName": "",
-        "lastName": "",
+        "name": "",
         "age": "",
         "gender": "",
         "email": "",
@@ -52,8 +48,7 @@ class MainProfile extends Component {
 
       },
       success: false,
-      file: null,
-      userInfo: {}
+      file: null
     }
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.onChangeDate = this.onChangeDate.bind(this);
@@ -148,8 +143,14 @@ class MainProfile extends Component {
       }
     })
       .then(res => {
+        const { name, email, age, password, number, uni } = res.data.user
+        console.log(name)
         this.setState({
-          userInfo: res.data
+          name,
+          email,
+          age,
+          number,
+          uni
         })
       })
 
@@ -162,39 +163,34 @@ class MainProfile extends Component {
       <div>
 
         {
-          this.state.userInfo.user ? (
+          this.state.name ? (
 
             <form className="container" method="post" onSubmit={e => this.submitHandler(e)} required noValidate autoComplete="off">
               <div className="row">
-                <div className="col-3">
+                <div className="col-4">
                   <TextField
                     autoFocus
                     required
                     className="textfield"
                     label="Name"
-                    name="lastName"
-                    placeholder="Last Name"
-                    value={this.state.userInfo.user.name}
+                    name="name"
+                    placeholder="Name"
+                    value={this.state.name}
                     onChange={e => this.onChangeHandler(e)}
                     variant="outlined"
                     fullWidth
-                    error={(this.state.errorDict["lastName"] === "" || this.state.errorDict["lastName"] === undefined) ? false : true}
-                    helperText={this.state.errorDict["lastName"]}
+                    error={(this.state.errorDict["name"] === "" || this.state.errorDict["name"] === undefined) ? false : true}
+                    helperText={this.state.errorDict["name"]}
                   />
                 </div>
-
-              </div>
-              <div className="row" style={{ marginTop: "25px" }}>
-
-
-                < div className="col-3">
+                <div className="col-4">
                   <TextField
                     autoFocus
                     required
                     className="textfield"
                     name="email"
                     placeholder="Email"
-                    value={this.state.userInfo.user.email}
+                    value={this.state.email}
                     label="Email"
                     onChange={e => this.onChangeHandler(e)}
                     variant="outlined"
@@ -203,27 +199,36 @@ class MainProfile extends Component {
                     helperText={this.state.errorDict["email"]}
                   />
                 </div>
-                {/* < div className="col-3">
-            Add cover photo:
-            <br />
-            <input onChange={e => this.imageChange(e)} ref={this.fileInput} accept="image/*" style={{ display: "none" }} id="icon-button-file" type="file" />
-            <label htmlFor="icon-button-file">
-              <Button color="primary" aria-label="upload picture" component="span">
-                <AddAPhotoIcon />
-              </Button>
-            </label>
+                <div className="col-4">
+                  <TextField
+                    autoFocus
+                    required
+                    className="textfield"
+                    name="password"
+                    placeholder="Password"
+                    value={this.state.password}
+                    label="Password"
+                    onChange={e => this.onChangeHandler(e)}
+                    variant="outlined"
+                    fullWidth
+                    error={(this.state.errorDict["password"] === "" || this.state.errorDict["password"] === undefined) ? false : true}
+                    helperText={this.state.errorDict["password"]}
+                  />
+                </div>
 
-          </div> */}
+
               </div>
 
-              <div className="row" style={{ marginTop: "25px" }}>
 
-                <div className="col-3">
+              <div className="row" style={{ marginTop: "25px" }}>
+                <div className="col-4">
+
                   <TextField
                     autoFocus
                     required
                     className="textfield"
                     name="number"
+
                     placeholder="Phone Number"
                     value={this.state.number}
                     onChange={e => this.onChangeHandler(e)}
@@ -235,24 +240,12 @@ class MainProfile extends Component {
                   />
 
                 </div>
-
-
-                {/* <div className="col-3">
-            <img
-              style={{
-                objectFit: "contain",
-                width: "100px", height: "50px"
-              }} src={this.state.file} />
-          </div> */}
-              </div>
-
-              <div className="row" style={{ marginTop: "25px" }}>
-
-                <div className="col-3">
+                <div className="col-4">
                   <TextField
                     autoFocus
                     required
                     className="textfield"
+                    label="University"
                     name="uni"
                     placeholder="University"
                     value={this.state.uni}
@@ -263,8 +256,56 @@ class MainProfile extends Component {
                     helperText={this.state.errorDict["uni"]}
                   />
                 </div>
+                <div className="col-4">
+                  <TextField
+                    autoFocus
+                    required
+                    label="Age"
+                    className="textfield"
+                    name="age"
+                    placeholder="Age"
+                    type="number"
+                    value={this.state.age}
+                    onChange={e => { this.setState({ [e.target.name]: parseInt(e.target.value) }) }}
+                    variant="outlined"
+                    fullWidth
+                    error={(this.state.errorDict["age"] === "" || this.state.errorDict["age"] === undefined) ? false : true}
+                    helperText={this.state.errorDict["age"]}
+                  />
+                </div>
               </div>
 
+              <div className="row" style={{ marginTop: "25px" }}>
+
+                <div className="col-4">
+
+                  Add cover photo:
+            {/* <br /> */}
+                  <input onChange={e => this.imageChange(e)} ref={this.fileInput} accept="image/*" style={{ display: "none" }} id="icon-button-file" type="file" />
+                  <label htmlFor="icon-button-file">
+                    <Button color="primary" aria-label="upload picture" component="span">
+                      <AddAPhotoIcon />
+                    </Button>
+                  </label>
+
+
+
+                </div>
+                <div className="col-4">
+
+                  <img
+                    style={{
+                      objectFit: "contain",
+                      width: "250px", height: "250px"
+                    }} src={this.state.file} />
+
+                </div>
+
+
+
+              </div>
+
+              {/* 
               <div className="row" style={{ marginTop: "25px" }}>
 
                 <div className="col-4">
@@ -282,7 +323,7 @@ class MainProfile extends Component {
 
 
                 </div>
-              </div>
+              </div> */}
             </form >
 
 
