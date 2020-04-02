@@ -143,8 +143,7 @@ class MainProfile extends Component {
       }
     })
       .then(res => {
-        const { name, email, age, password, number, uni } = res.data.user
-        console.log(name)
+        const { name, email, age, number, uni } = res.data.user
         this.setState({
           name,
           email,
@@ -296,7 +295,10 @@ class MainProfile extends Component {
                   <img
                     style={{
                       objectFit: "contain",
-                      width: "250px", height: "250px"
+                      verticalAlign: "middle",
+                      borderRadius: "50%",
+                      width: "200px",
+                      height: "200px"
                     }} src={this.state.file} />
 
                 </div>
@@ -305,7 +307,7 @@ class MainProfile extends Component {
 
               </div>
 
-              {/* 
+
               <div className="row" style={{ marginTop: "25px" }}>
 
                 <div className="col-4">
@@ -323,7 +325,7 @@ class MainProfile extends Component {
 
 
                 </div>
-              </div> */}
+              </div>
             </form >
 
 
