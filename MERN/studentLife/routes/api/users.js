@@ -128,14 +128,21 @@ router.post(
     let { email, password } = req.body;
 
     try {
-      let user = await User.findOne({ email, password });
+      let user = await User.findOne({ email });
       if (!user) {
         return res
           .status(400)
-          .json({ errors: 'Invalid Credentials. Please try again' });
+          .json({ errors: 'Invalid Email. Please try again' });
       }
       if (user) {
 
+        console.log(user.password, password)
+        const match = await bcrypt.compare(password, user.password);
+        if (!match) {
+          return res
+            .status(400)
+            .json({ errors: 'Invalid Credentials. Please try again' });
+        }
         userObj = {
           id: user._id,
           name: user.name,
@@ -302,9 +309,15 @@ router.get(
   '/getDetails',
   async (req, res) => {
     console.log(req.body);
-
+    var decoded;
     var token = req.headers.authorization;
-    var decoded = await jwt.verify(token, 'mysecrettoken');
+    try {
+      decoded = await jwt.verify(token, 'mysecrettoken');
+    } catch{
+      return res
+        .status(400)
+        .json({ errors: 'Login expired' });
+    }
 
     var userEmail = decoded.email;
 

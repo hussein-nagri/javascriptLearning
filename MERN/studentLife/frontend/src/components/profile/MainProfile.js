@@ -48,7 +48,8 @@ class MainProfile extends Component {
 
       },
       success: false,
-      file: null
+      file: null,
+      fileObj: ""
     }
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.onChangeDate = this.onChangeDate.bind(this);
@@ -71,7 +72,8 @@ class MainProfile extends Component {
 
     console.log(e.target.files)
     this.setState({
-      file: URL.createObjectURL(e.target.files[0])
+      file: URL.createObjectURL(e.target.files[0]),
+      fileObj: e.target.files.base64
     });
   }
 
@@ -152,7 +154,6 @@ class MainProfile extends Component {
           uni
         })
       })
-
   }
 
 
@@ -160,10 +161,8 @@ class MainProfile extends Component {
 
     return (
       <div>
-
         {
           this.state.name ? (
-
             <form className="container" method="post" onSubmit={e => this.submitHandler(e)} required noValidate autoComplete="off">
               <div className="row">
                 <div className="col-4">
@@ -292,14 +291,22 @@ class MainProfile extends Component {
                 </div>
                 <div className="col-4">
 
-                  <img
-                    style={{
-                      objectFit: "contain",
-                      verticalAlign: "middle",
-                      borderRadius: "50%",
-                      width: "200px",
-                      height: "200px"
-                    }} src={this.state.file} />
+                  {
+                    this.state.file !== null ? (
+
+                      <img
+                        style={{
+                          objectFit: "contain",
+                          verticalAlign: "middle",
+                          borderRadius: "50%",
+                          width: "200px",
+                          height: "200px"
+                        }} src={this.state.file} />
+
+
+                    ) : (null)
+                  }
+
 
                 </div>
 
