@@ -48,8 +48,7 @@ class MainProfile extends Component {
 
       },
       success: false,
-      file: null,
-      fileObj: ""
+      file: null
     }
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.onChangeDate = this.onChangeDate.bind(this);
@@ -70,11 +69,17 @@ class MainProfile extends Component {
 
   imageChange = (e) => {
 
-    console.log(e.target.files)
-    this.setState({
-      file: URL.createObjectURL(e.target.files[0]),
-      fileObj: e.target.files.base64
-    });
+    let file = e.target.files[0];
+
+    let reader = new FileReader();
+    reader.readAsDataURL(file);
+
+    reader.onloadend = () => {
+      this.setState({
+        file: reader.result
+      });
+    };
+
   }
 
   onChangeDate = date => this.setState({ date })
@@ -87,27 +92,20 @@ class MainProfile extends Component {
     console.log(e);
 
     const form = {
-      firstName: this.state.firstName,
-      lastName: this.state.lastName,
+      name: this.state.name,
       age: this.state.age,
-      gender: this.state.gender,
       email: this.state.email,
-      number: this.state.number,
-      address: this.state.address,
+      password: this.state.password,
       uni: this.state.uni,
-      city: this.state.city,
-      country: this.state.country,
-      // file: this.state.file
+      number: this.state.number,
+      file: this.state.file
     }
 
-    this.setState({
-      errorDict: {}
-    })
 
     let token = localStorage.getItem("token");
 
 
-    await axios.post("/api/users/registerPersonal", form, {
+    await axios.post("/api/users/updateProfile", form, {
       headers: {
         'Authorization': `${token}`
       }
@@ -202,6 +200,7 @@ class MainProfile extends Component {
                     autoFocus
                     required
                     className="textfield"
+                    type="password"
                     name="password"
                     placeholder="Password"
                     value={this.state.password}
@@ -274,9 +273,7 @@ class MainProfile extends Component {
               </div>
 
               <div className="row" style={{ marginTop: "25px" }}>
-
                 <div className="col-4">
-
                   Add cover photo:
             {/* <br /> */}
                   <input onChange={e => this.imageChange(e)} ref={this.fileInput} accept="image/*" style={{ display: "none" }} id="icon-button-file" type="file" />
@@ -285,15 +282,10 @@ class MainProfile extends Component {
                       <AddAPhotoIcon />
                     </Button>
                   </label>
-
-
-
                 </div>
                 <div className="col-4">
-
                   {
                     this.state.file !== null ? (
-
                       <img
                         style={{
                           objectFit: "contain",
@@ -302,21 +294,11 @@ class MainProfile extends Component {
                           width: "200px",
                           height: "200px"
                         }} src={this.state.file} />
-
-
                     ) : (null)
                   }
-
-
                 </div>
-
-
-
               </div>
-
-
               <div className="row" style={{ marginTop: "25px" }}>
-
                 <div className="col-4">
                 </div>
                 <div className="col-4">
@@ -329,20 +311,12 @@ class MainProfile extends Component {
                     // to="/registerExperience"
                     fullWidth
                   >Next</Button>
-
-
                 </div>
               </div>
             </form >
-
-
-
-
           ) : (null)
-
         }
       </div>
-
     )
   }
 }

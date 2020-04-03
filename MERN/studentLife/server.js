@@ -2,6 +2,7 @@ const express = require('express');
 const connectDB = require('./config/db');
 const path = require('path');
 
+
 const app = express();
 
 // Connect Database
@@ -9,10 +10,10 @@ const app = express();
 connectDB();
 
 // Init Middleware
-app.use(express.json({ extended: false }));
+app.use(express.json({ extended: false, limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb' }));
 
 // Define Routes
-
 app.use('/api/users', require('./routes/api/users'));
 app.use('/api/hackathons', require('./routes/api/hackathons'));
 

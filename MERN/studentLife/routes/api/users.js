@@ -135,8 +135,6 @@ router.post(
           .json({ errors: 'Invalid Email. Please try again' });
       }
       if (user) {
-
-        console.log(user.password, password)
         const match = await bcrypt.compare(password, user.password);
         if (!match) {
           return res
@@ -302,8 +300,8 @@ router.post(
 
 
 
-// @route    POST api/users/getDetails
-// @desc     login user
+// @route    GET api/users/getDetails
+// @desc     get user details
 // @access   Private
 router.get(
   '/getDetails',
@@ -320,15 +318,63 @@ router.get(
     }
 
     var userEmail = decoded.email;
-
     let user = await User.findOne({ email: userEmail });
-
     if (!user) {
       return res
         .status(400)
         .json({ errors: 'Login expired' });
     }
 
+    return res.status(200).json({
+      user
+    })
+  }
+);
+
+
+
+// @route    POST api/users/updateProfile
+// @desc     update user details
+// @access   Private
+router.post(
+  '/updateProfile',
+  async (req, res) => {
+    console.log(req.body);
+    var decoded;
+    var token = req.headers.authorization;
+    try {
+      decoded = await jwt.verify(token, 'mysecrettoken');
+    } catch{
+      return res
+        .status(400)
+        .json({ errors: 'Login expired' });
+    }
+    var userEmail = decoded.email;
+    let user = await User.findOne({ email: userEmail });
+    if (!user) {
+      return res
+        .status(400)
+        .json({ errors: 'Login expired' });
+    }
+
+    const { name, age, email, password, uni, number, file } = req.body
+
+    await User.collection.updateOne(
+      { email: userEmail },
+      {
+        $set:
+        {
+          name,
+          age,
+          email,
+          password,
+          uni,
+          number,
+          file
+        }
+      });
+
+    console.log(user);
     return res.status(200).json({
       user
     })

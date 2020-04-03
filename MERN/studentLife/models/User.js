@@ -35,7 +35,11 @@ const UserSchema = new mongoose.Schema({
   },
   country: {
     type: Number
+  },
+  image: {
+    type: Buffer
   }
+
 });
 
 module.exports = User = mongoose.model('users', UserSchema);
