@@ -374,9 +374,10 @@ router.post(
         }
       });
 
-    console.log(user);
+    //saved image
+
     return res.status(200).json({
-      user
+      msg: "success"
     })
   }
 );

@@ -111,7 +111,6 @@ class MainProfile extends Component {
       }
     })
       .then(res => {
-        console.log("here", res);
         this.setState({
           success: true
         })
@@ -129,10 +128,7 @@ class MainProfile extends Component {
         });
       })
 
-    this.state.success ? this.props.history.push("/registerExperience") : console.log(this.state.errors);
-    console.log("Done")
-    console.log(this.state.errors)
-
+    this.state.success ? this.props.history.push("/home") : console.log(this.state.errors);
   }
   async componentDidMount() {
 
@@ -153,10 +149,7 @@ class MainProfile extends Component {
         })
       })
   }
-
-
   render() {
-
     return (
       <div>
         {
@@ -275,7 +268,6 @@ class MainProfile extends Component {
               <div className="row" style={{ marginTop: "25px" }}>
                 <div className="col-4">
                   Add cover photo:
-            {/* <br /> */}
                   <input onChange={e => this.imageChange(e)} ref={this.fileInput} accept="image/*" style={{ display: "none" }} id="icon-button-file" type="file" />
                   <label htmlFor="icon-button-file">
                     <Button color="primary" aria-label="upload picture" component="span">
