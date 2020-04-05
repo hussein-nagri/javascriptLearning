@@ -56,6 +56,9 @@ export default function SignedInNav() {
     setAnchorEl(null);
   };
 
+  const logout = (e) => {
+    localStorage.removeItem("token");
+  }
   return (
     <div className={classes.root}>
 
@@ -66,7 +69,7 @@ export default function SignedInNav() {
           </IconButton> */}
 
           <Typography variant="h6" className={classes.title}>
-            <Link style={{ color: "#FFFFFF"}} href="/home">
+            <Link style={{ color: "#FFFFFF" }} href="/home">
               StudentLife
              </Link>
           </Typography>
@@ -98,6 +101,8 @@ export default function SignedInNav() {
               >
                 <MenuItem onClick={handleClose}><ReactLink to="/profile"> Profile </ReactLink></MenuItem>
                 <MenuItem onClick={handleClose}><ReactLink to="/settings"> Settings </ReactLink></MenuItem>
+                <MenuItem onClick={e => logout(e)}><ReactLink to="/"> Logout </ReactLink></MenuItem>
+
               </Menu>
             </div>
           )}
