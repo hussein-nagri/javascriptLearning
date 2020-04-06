@@ -4,6 +4,7 @@ import HomePage from './components/welcomePage/HomePage';
 import Login from './components/welcomePage/Login';
 import Routes from './components/routing/Routes';
 import './App.css';
+import { NonPrivRoute } from './components/routing/NonPrivRoute';
 
 function App() {
   useEffect(() => {
@@ -19,7 +20,7 @@ function App() {
     //     console.error(err)
     //   })
 
-    if (localStorage.getItem("token") === undefined){
+    if (localStorage.getItem("token") === undefined) {
       localStorage.removeItem("token");
     }
 
@@ -30,11 +31,8 @@ function App() {
     <Router>
       <Fragment>
         <Switch>
-          <Route exact path='/' component={HomePage} />
-          <Route exact path='/login' component={Login} />
-
-          {/* <Route exact path='/' component={HomePage} />
-          <Route exact path='/login' component={Login} /> */}
+          <NonPrivRoute exact path='/' component={HomePage} />
+          <NonPrivRoute exact path='/login' component={Login} />
           <Route component={Routes} />
         </Switch>
       </Fragment>
