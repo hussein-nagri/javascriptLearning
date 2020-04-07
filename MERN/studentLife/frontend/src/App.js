@@ -8,17 +8,7 @@ import { NonPrivRoute } from './components/routing/NonPrivRoute';
 
 function App() {
   useEffect(() => {
-    // var hello = fetch("/hi")
-    //   .then(function (res) {
-    //     // return res.json()
-    //     console.log(res)
-    //   })
-    //   .then(function (res) {
-    //     console.log(res)
-    //   })
-    //   .catch(err => {
-    //     console.error(err)
-    //   })
+
 
     if (localStorage.getItem("token") === undefined) {
       localStorage.removeItem("token");
