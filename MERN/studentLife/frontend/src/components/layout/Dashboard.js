@@ -56,9 +56,9 @@ class Dashboard extends Component {
           </CardContent>
         </CardActionArea>
         <CardActions>
-          <Button size="small" color="primary">
-            Yes
-        </Button>
+          <div size="small" color="primary">
+            <Link to="/presentHackathons">  YES </Link>
+          </div>
           <div size="small" color="primary">
             <Link to="/hackathons"> See Upcoming Hackathons</Link>
           </div>
