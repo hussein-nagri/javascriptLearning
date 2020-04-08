@@ -48,19 +48,14 @@ router.get(
 router.get(
   '/init',
   async (req, res) => {
-
-
-    var value = await myCache.get("hackathons");
-    if (value == undefined) {
-
+    var exists = myCache.has('hackathons');
+    console.log("value: ", exists);
+    if (exists === false) {
       var jsonPath = path.join(__dirname, '..', '..', 'config', 'hackathons.txt');
       fs.readFile(jsonPath, { encoding: 'utf-8' }, async (err, data) => {
         if (err) return err;
-        await myCache.set("hackathons", data, 10000);
-        console.log("Here");
-        return res.status(200).json("success");
+        await myCache.set("hackathons", data, 0);
       });
-
     }
     return res.status(200).json("success");
   }
