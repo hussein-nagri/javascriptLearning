@@ -21,13 +21,6 @@ class Hackathons extends Component {
   }
 
   componentDidMount(prevProps) {
-    var hello = fetch("api/hackathons/init")
-      .then(function (res) {
-        console.log(res)
-      })
-      .catch(err => {
-        console.error(err)
-      })
     axios.get("/api/hackathons")
       .then(res => {
         this.setState({
