@@ -20,8 +20,9 @@ class Hackathons extends Component {
     }
   }
 
-  componentDidMount(prevProps) {
-    axios.get("/api/hackathons")
+  async componentDidMount(prevProps) {
+    await axios.get("/api/hackathons/init");
+    await axios.get("/api/hackathons")
       .then(res => {
         this.setState({
           data: res.data

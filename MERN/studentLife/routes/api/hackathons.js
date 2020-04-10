@@ -22,6 +22,28 @@ router.get(
   '/',
   async (req, res) => {
 
+    // var exists = myCache.has('hackathons');
+    // console.log("value: ", exists);
+    // if (exists === false) {
+    //   var jsonPath = path.join(__dirname, '..', '..', 'config', 'hackathons.txt');
+    //   fs.readFile(jsonPath, { encoding: 'utf-8' }, async (err, data) => {
+    //     if (err) return err;
+    //     await myCache.set("hackathons", data, 0);
+    //     // return res.status(200).json(data)
+    //   });
+    // }
+
+    var value = await myCache.get("hackathons");
+    return res.status(200).json(value)
+
+  }
+);
+
+
+router.get(
+  '/init',
+  async (req, res) => {
+
     var exists = myCache.has('hackathons');
     console.log("value: ", exists);
     if (exists === false) {
@@ -31,11 +53,8 @@ router.get(
         await myCache.set("hackathons", data, 0);
       });
     }
-
-    var value = await myCache.get("hackathons");
-    return res.status(200).json(value)
+    return res.status(200).json("done")
 
   }
 );
-
 module.exports = router;
