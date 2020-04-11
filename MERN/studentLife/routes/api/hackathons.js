@@ -1,7 +1,5 @@
 const express = require('express');
 const router = express.Router();
-const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 const config = require('config');
 const { check, validationResult } = require('express-validator/check');
 const fs = require("fs");
@@ -9,6 +7,8 @@ var path = require('path');
 const auth = require('../../middleware/auth');
 
 
+const axios = require("axios");
+const cheerio = require("cheerio");
 const NodeCache = require("node-cache");
 const myCache = new NodeCache();
 
@@ -21,17 +21,6 @@ const myCache = new NodeCache();
 router.get(
   '/',
   async (req, res) => {
-
-    // var exists = myCache.has('hackathons');
-    // console.log("value: ", exists);
-    // if (exists === false) {
-    //   var jsonPath = path.join(__dirname, '..', '..', 'config', 'hackathons.txt');
-    //   fs.readFile(jsonPath, { encoding: 'utf-8' }, async (err, data) => {
-    //     if (err) return err;
-    //     await myCache.set("hackathons", data, 0);
-    //     // return res.status(200).json(data)
-    //   });
-    // }
 
     var value = await myCache.get("hackathons");
     return res.status(200).json(value)
@@ -61,8 +50,19 @@ router.get(
 router.get(
   '/present',
   async (req, res) => {
+    var url = 'https://mlh.io/seasons/na-2020/events';
 
-    console.log(req)
+    const arr = [];
+
+    const result = await axios.get(url)
+    var $ = cheerio.load(result.data);
+    daa = $("a").each((index, element) => {
+      arr[index] = $(this).text();
+    })
+
+    // console.log(daa);
+    console.log(arr)
+
   }
 );
 module.exports = router;
