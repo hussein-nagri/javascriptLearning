@@ -39,7 +39,6 @@ router.get(
   }
 );
 
-
 router.get(
   '/init',
   async (req, res) => {
@@ -55,6 +54,15 @@ router.get(
     }
     return res.status(200).json("done")
 
+  }
+);
+
+
+router.get(
+  '/present',
+  async (req, res) => {
+
+    console.log(req)
   }
 );
 module.exports = router;

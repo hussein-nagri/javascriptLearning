@@ -19,6 +19,7 @@
     "@material-ui/pickers": "^3.2.10",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
+    "cheerio": "^1.0.0-rc.3",
     "concurrently": "^5.0.2",
     "config": "^3.2.4",
     "create-react-app": "^3.3.0",
