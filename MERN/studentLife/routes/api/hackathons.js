@@ -52,17 +52,33 @@ router.get(
   async (req, res) => {
     var url = 'https://mlh.io/seasons/na-2020/events';
 
-    const arr = [];
+    // const arr = [];
 
     const result = await axios.get(url)
     var $ = cheerio.load(result.data);
-    daa = $("a").each((index, element) => {
-      arr[index] = $(this).text();
-    })
 
+    const links = ($('.container > .row')[1]);
+
+
+    // console.log(links.forEach())
+
+
+    for (let i = 0; i < links.length; ++i) {
+      // console.log($(links[i]).find("div > div > a").attr("title"));
+      console.log("here", links[i]);
+    }
+
+    // daa = $("a").each((index, element) => {
+    //   arr[index] = $(this).text();
+    // })
+
+    // for (let index = 0; index < $.length; index++) {
+    //   console.log($[index]);
+    // }
     // console.log(daa);
-    console.log(arr)
 
+    // console.log(arr)
+    return res.status(200).json("went back")
   }
 );
 module.exports = router;
