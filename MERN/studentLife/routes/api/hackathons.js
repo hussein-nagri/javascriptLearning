@@ -58,27 +58,11 @@ router.get(
     var $ = cheerio.load(result.data);
 
     const links = ($('.container > .row')[1]);
+    const $links = $(links);
 
+    console.log($links.find("div "))//finish this
 
-    // console.log(links.forEach())
-
-
-    for (let i = 0; i < links.length; ++i) {
-      // console.log($(links[i]).find("div > div > a").attr("title"));
-      console.log("here", links[i]);
-    }
-
-    // daa = $("a").each((index, element) => {
-    //   arr[index] = $(this).text();
-    // })
-
-    // for (let index = 0; index < $.length; index++) {
-    //   console.log($[index]);
-    // }
-    // console.log(daa);
-
-    // console.log(arr)
-    return res.status(200).json("went back")
+    return res.status(200).json("went back");
   }
 );
 module.exports = router;
