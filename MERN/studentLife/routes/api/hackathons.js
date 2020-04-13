@@ -60,7 +60,14 @@ router.get(
     const links = ($('.container > .row')[1]);
     const $links = $(links);
 
-    console.log($links.find("div "))//finish this
+    const name = $links.find("div > div >  a > div > h3")
+    const $name = $(name);
+
+    console.log($name.text());
+
+
+
+    //finish this
 
     return res.status(200).json("went back");
   }
