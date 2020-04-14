@@ -17,7 +17,11 @@ class PresentHackathons extends Component {
   }
 
   async componentDidMount(prevProps) {
-    await axios.get("/api/hackathons/present")
+    await axios.get("/api/hackathons/present").then(hackathons => {
+      this.setState({
+        hackathons: hackathons.data
+      })
+    })
 
   }
 

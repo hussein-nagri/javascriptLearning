@@ -52,24 +52,67 @@ router.get(
   async (req, res) => {
     var url = 'https://mlh.io/seasons/na-2020/events';
 
-    // const arr = [];
+
+
+    var hackathonNames = [];
+
 
     const result = await axios.get(url)
     var $ = cheerio.load(result.data);
 
+    //find each upcoming hackathon
     const links = ($('.container > .row')[1]);
     const $links = $(links);
 
+    //save the names
     const name = $links.find("div > div >  a > div > h3")
     const $name = $(name);
 
-    console.log($name.text());
+    $name.each((i, e) => {
+      hackathonNames.push({ name: e.children[0].data })
+    });
+
+    //save the dates
+    const date = $links.find("div > div >  a > div > p")
+    const $date = $(date);
+
+    $date.each((i, e) => {
+      hackathonNames[i]["date"] = (e.children[0].data);
+    })
+
+    //save locations
+    const location = $links.find("div > div >  a > div > div >span")
+    const $location = $(location);
+
+    for (let i = 0; i < $location.length; i += 2) {
+      hackathonNames[i / 2]["location"] = ($location[i].children[0].data);
+    }
+
+    //save card image
+    const cImage = $links.find("div > div >  a > div >.image-wrap ")
+    const $cImage = $(cImage);
+
+    $cImage.each((i, e) => {
+      e.children.map((e, j) => {
+        hackathonNames[i]["cImage"] = e.attribs.src
+      })
+    })
+
+    //save icon image
+    const iImage = $links.find("div > div >  a > div >.event-logo ")
+    const $iImage = $(iImage);
+
+    $iImage.each((i, e) => {
+      e.children.map((e, j) => {
+        hackathonNames[i]["iImage"] = e.attribs.src
+      })
+    })
 
 
 
     //finish this
 
-    return res.status(200).json("went back");
+    return res.status(200).json(hackathonNames);
   }
 );
 module.exports = router;
