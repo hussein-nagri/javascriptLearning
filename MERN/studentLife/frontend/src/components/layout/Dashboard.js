@@ -11,6 +11,7 @@ import Typography from '@material-ui/core/Typography';
 import logo from '../../img/logo.png';
 
 import { Link } from 'react-router-dom';
+import { Fragment } from 'react';
 
 
 class Dashboard extends Component {
@@ -38,32 +39,43 @@ class Dashboard extends Component {
     const classes = this.useStyles();
 
     return (
-
-      <Card className={classes.card}>
-        <CardActionArea>
-          <CardMedia
-            className={classes.media}
-            image={logo}
-            title="Contemplative Reptile"
-          />
-          <CardContent>
-            <Typography gutterBottom variant="h5" component="h2">
-              Welcome! Are you attending a hackathon?
+      <Fragment>
+        <div>
+          <p style={{ textAlign: "center" }}>
+            <span style={{ textDecoration: "underline", color: "#000000" }}>
+              <strong>Welcome!&nbsp;</strong>
+            </span>
+          </p>
+          <p style={{ textAlign: "left" }}>
+            Are you attending a hackathon?
+        </p>
+        </div>
+        <Card className={classes.card}>
+          <CardActionArea>
+            <CardMedia
+              className={classes.media}
+              image={logo}
+              title="Contemplative Reptile"
+            />
+            <CardContent>
+              <Typography gutterBottom variant="h5" component="h2">
+                Welcome! Are you attending a hackathon?
           </Typography>
-            <Typography variant="body2" color="textSecondary" component="p">
-              Hackathons are a fun way to interact with people like you, and help make a product from scratch.
+              <Typography variant="body2" color="textSecondary" component="p">
+                Hackathons are a fun way to interact with people like you, and help make a product from scratch.
           </Typography>
-          </CardContent>
-        </CardActionArea>
-        <CardActions>
-          <div size="small" color="primary">
-            <Link to="/presentHackathons">  YES </Link>
-          </div>
-          <div size="small" color="primary">
-            <Link to="/hackathons"> See Upcoming Hackathons</Link>
-          </div>
-        </CardActions>
-      </Card>
+            </CardContent>
+          </CardActionArea>
+          <CardActions>
+            <div size="small" color="primary">
+              <Link to="/presentHackathons">  YES </Link>
+            </div>
+            <div size="small" color="primary">
+              <Link to="/hackathons"> See Upcoming Hackathons</Link>
+            </div>
+          </CardActions>
+        </Card>
+      </Fragment>
     )
   }
 }
