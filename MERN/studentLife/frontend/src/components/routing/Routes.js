@@ -9,6 +9,7 @@ import MainProfile from '../profile/MainProfile';
 import PersonalInfo from '../signup/PersonalInfo';
 import Experience from '../signup/Experience';
 import PresentHackathons from '../hackathons/PresentHackathons';
+import SelectedHackathon from '../hackathons/SelectedHackathon';
 const Routes = () => {
   return (
     <Fragment>
@@ -21,6 +22,7 @@ const Routes = () => {
           <PrivateRoute exact path='/registerPersonal' component={PersonalInfo} />
           <PrivateRoute exact path='/registerExperience' component={Experience} />
           <PrivateRoute exact path='/presentHackathons' component={PresentHackathons} />
+          <PrivateRoute exact path='/hackathons/:id' component={SelectedHackathon} />
 
         </Switch>
       </section>

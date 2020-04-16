@@ -40,7 +40,6 @@ class HomePage extends Component {
         })
       })
       .catch(err => {
-        // console.error(err)
         console.log(err.response.data)
         var ers = err.response.data.errors
         var errors = []
@@ -54,9 +53,8 @@ class HomePage extends Component {
         this.state.errors.map(error => alert(error))
         this.setState({
           errors: {}
-
         });
-        //  if (err.response.data)
+
       })
 
     this.state.success ? this.props.history.push("/registerPersonal") : console.log(this.state.errors);

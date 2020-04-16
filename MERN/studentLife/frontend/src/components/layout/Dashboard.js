@@ -41,11 +41,11 @@ class Dashboard extends Component {
     return (
       <Fragment>
         <div>
-          <p style={{ textAlign: "center" }}>
+          <h1 style={{ textAlign: "center" }}>
             <span style={{ textDecoration: "underline", color: "#000000" }}>
-              <strong>Welcome!&nbsp;</strong>
+              <strong>Welcome!</strong>
             </span>
-          </p>
+          </h1>
           <p style={{ textAlign: "left" }}>
             Are you attending a hackathon?
         </p>

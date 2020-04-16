@@ -54,7 +54,7 @@ class Hackathons extends Component {
                   <Card className="col-3" style={{ maxWidth: 345 }}>
                     <CardActionArea>
                       <CardMedia
-                        img style={{
+                         style={{
                           height: '150px',
                           width: '150px',
                           alignContent: "center",

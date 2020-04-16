@@ -21,7 +21,7 @@ class PresentHackathons extends Component {
     this.state = {
       hackathons: []
     }
-    // this.useStyles = this.useStyles.bind(this);
+    this.renderTeam = this.renderTeam.bind(this);
 
   }
 
@@ -31,8 +31,18 @@ class PresentHackathons extends Component {
         hackathons: hackathons.data
       })
     })
-
   }
+  renderTeam = async (e, idName) => {
+    e.persist();
+    console.log(e, idName)
+    idName = idName.split(" ").join("")
+    console.log(idName)
+
+    await axios.post(`/api/hackathons/${idName}`).then(data => {
+      console.log(data);
+    })
+  }
+
 
   render() {
 
@@ -49,10 +59,9 @@ class PresentHackathons extends Component {
             {
               this.state.hackathons ? (
                 this.state.hackathons.map((val, i) =>
-                  <Card className="col-4" style={{ maxWidth: 345 }}>
-
+                  <Card key={val.name} className="col-4" style={{ maxWidth: 345 }}>
                     <CardMedia
-                      img style={{
+                      style={{
                         height: '150px',
                         width: '150px',
                         alignContent: "center",
@@ -61,7 +70,7 @@ class PresentHackathons extends Component {
                         marginRight: "auto",
                       }}
                       image={val.cImage}
-                      title="Contemplative Reptile"
+                      title="hackathon Logo"
                     />
                     <CardContent>
                       <Typography gutterBottom variant="h5" component="h2">
@@ -74,15 +83,13 @@ class PresentHackathons extends Component {
                         {val.location}
                       </Typography>
                     </CardContent>
-
                     <CardActions>
-                      <Button style={{ margin: "0 auto" }} size="small" color="primary">
-                        <a href={val.iImage} target="_blank" rel="noopener noreferrer">Sign Up</a>
+                      <Button onClick={e => this.renderTeam(e, val.name)} style={{ margin: "0 auto" }} size="small" color="primary">
+                        Find team
                       </Button>
                     </CardActions>
                   </Card>
                 )
-
               ) : (
                   <div>
                     hello mate

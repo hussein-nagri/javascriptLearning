@@ -51,12 +51,7 @@ router.get(
   '/present',
   async (req, res) => {
     var url = 'https://mlh.io/seasons/na-2020/events';
-
-
-
     var hackathonNames = [];
-
-
     const result = await axios.get(url)
     var $ = cheerio.load(result.data);
 
@@ -109,10 +104,20 @@ router.get(
     })
 
 
-
-    //finish this
-
     return res.status(200).json(hackathonNames);
+  }
+);
+
+
+// @route    POST api/hackathons/:id
+// @desc     Register user
+// @access   Public
+router.post(
+  '/:id',
+  async (req, res) => {
+
+    console.log(req.body);
+
   }
 );
 module.exports = router;
