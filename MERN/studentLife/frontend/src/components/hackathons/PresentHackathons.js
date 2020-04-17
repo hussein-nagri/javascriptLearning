@@ -32,15 +32,18 @@ class PresentHackathons extends Component {
       })
     })
   }
+
   renderTeam = async (e, idName) => {
     e.persist();
     console.log(e, idName)
     idName = idName.split(" ").join("")
     console.log(idName)
 
-    await axios.post(`/api/hackathons/${idName}`).then(data => {
-      console.log(data);
-    })
+    this.props.history.push(`/hackathons/${idName}`)
+
+    // await axios.post(`/api/hackathons/${idName}`).then(data => {
+    //   console.log(data);
+    // })
   }
 
 
