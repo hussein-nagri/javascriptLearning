@@ -3,6 +3,12 @@ import axios from 'axios'
 
 
 
+import FormLabel from '@material-ui/core/FormLabel';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import Checkbox from '@material-ui/core/Checkbox';
+
 import { makeStyles } from '@material-ui/core/styles';
 import InputLabel from '@material-ui/core/InputLabel';
 import MenuItem from '@material-ui/core/MenuItem';
@@ -17,9 +23,20 @@ class SelectedHackathon extends Component {
     super(props)
     this.state = {
       hackathons: [],
-      pageName: ""
+      pageName: "",
+      interests: {
+        frontend: false,
+        backend: false,
+        fullstack: false,
+        AI: false,
+        blockchain: false,
+        design: false,
+        PM: false
+      },
+      teamInterests: []
     }
     this.onChangeHandler = this.onChangeHandler.bind(this);
+    this.onCheckHandler = this.onCheckHandler.bind(this);
 
     //  this.renderTeam = this.renderTeam.bind(this);
   }
@@ -41,10 +58,33 @@ class SelectedHackathon extends Component {
   }
 
   onChangeHandler = (e) => {
-
     this.setState({
       [e.target.name]: e.target.value
     });
+  }
+
+  onCheckHandler = (e) => {
+
+    var nameAttr = e.target.name.split(".")
+
+    var input = nameAttr[0] + "[" + [nameAttr[1]] + "]"
+
+
+    var name = this.state[nameAttr[0]][nameAttr[1]];
+
+    console.log(name, " ere", input)
+
+
+
+    this.setState(prevState => ({
+      [nameAttr[0][`${nameAttr[1]}`]]: true
+    }));
+
+    console.log(this.state[e.target.name])
+    console.log("My name is: ", e.target.name)
+
+    console.log(e.target.value)
+
   }
 
 
@@ -53,17 +93,45 @@ class SelectedHackathon extends Component {
       <form className="container" method="post" onSubmit={e => this.submitHandler(e)} required noValidate autoComplete="off">
         <div className="row">
           <div className="col-3">
-            Select what you plan on working on this hackathon --> Implement a select component to choose focus/interest areas
-            <TextField
-              autoFocus
-              required
-              className="textfield"
-              name="firstName"
-              placeholder="First Name"
-              value={this.state.firstName}
-              onChange={e => this.onChangeHandler(e)}
-              variant="outlined"
-            />
+
+            <FormControl component="fieldset" >
+              <FormLabel component="legend">Personal Interests</FormLabel>
+              <FormGroup>
+                <FormControlLabel
+                  control={<Checkbox checked={this.state.interests.frontend} onChange={e => this.onCheckHandler(e)} name="interests.frontend" />}
+                  label="Gilad Gray"
+                />
+                <FormControlLabel
+                  control={<Checkbox checked={true} onChange={e => this.onChangeHandler(e)} name="jason" />}
+                  label="Jason Killian"
+                />
+                <FormControlLabel
+                  control={<Checkbox checked={true} onChange={e => this.onChangeHandler(e)} name="antoine" />}
+                  label="Antoine Llorca"
+                />
+              </FormGroup>
+              <FormHelperText>Be careful</FormHelperText>
+            </FormControl>
+          </div>
+          <div className="col-3">
+            <FormControl component="fieldset" >
+              <FormLabel component="legend">Team Mate Interests</FormLabel>
+              <FormGroup>
+                <FormControlLabel
+                  control={<Checkbox checked={true} onChange={e => this.onChangeHandler(e)} name="gilad" />}
+                  label="Gilad Gray"
+                />
+                <FormControlLabel
+                  control={<Checkbox checked={true} onChange={e => this.onChangeHandler(e)} name="jason" />}
+                  label="Jason Killian"
+                />
+                <FormControlLabel
+                  control={<Checkbox checked={true} onChange={e => this.onChangeHandler(e)} name="antoine" />}
+                  label="Antoine Llorca"
+                />
+              </FormGroup>
+              <FormHelperText>Be careful</FormHelperText>
+            </FormControl>
           </div>
 
         </div>
