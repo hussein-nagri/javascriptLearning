@@ -33,7 +33,15 @@ class SelectedHackathon extends Component {
         design: false,
         PM: false
       },
-      teamInterests: []
+      teamInterests: {
+        frontend: false,
+        backend: false,
+        fullstack: false,
+        AI: false,
+        blockchain: false,
+        design: false,
+        PM: false
+      },
     }
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.onCheckHandler = this.onCheckHandler.bind(this);
@@ -63,27 +71,19 @@ class SelectedHackathon extends Component {
     });
   }
 
-  onCheckHandler = (e) => {
+  onCheckHandler = async (e, val) => {
 
     var nameAttr = e.target.name.split(".")
+    var input = nameAttr[0]
+    var in2 = nameAttr[1]
 
-    var input = nameAttr[0] + "[" + [nameAttr[1]] + "]"
+    var newDict = [this.state[input]][0]
+    newDict[in2] = !val
 
-
-    var name = this.state[nameAttr[0]][nameAttr[1]];
-
-    console.log(name, " ere", input)
-
-
-
-    this.setState(prevState => ({
-      [nameAttr[0][`${nameAttr[1]}`]]: true
-    }));
-
-    console.log(this.state[e.target.name])
-    console.log("My name is: ", e.target.name)
-
-    console.log(e.target.value)
+    console.log(input)
+    await this.setState({
+      [input]: newDict
+    });
 
   }
 
@@ -92,47 +92,79 @@ class SelectedHackathon extends Component {
     return (
       <form className="container" method="post" onSubmit={e => this.submitHandler(e)} required noValidate autoComplete="off">
         <div className="row">
-          <div className="col-3">
-
+          <div className="col-6 text-center">
             <FormControl component="fieldset" >
               <FormLabel component="legend">Personal Interests</FormLabel>
               <FormGroup>
                 <FormControlLabel
-                  control={<Checkbox checked={this.state.interests.frontend} onChange={e => this.onCheckHandler(e)} name="interests.frontend" />}
-                  label="Gilad Gray"
+                  control={<Checkbox checked={this.state.interests.frontend} onChange={e => this.onCheckHandler(e, this.state.interests.frontend)} name="interests.frontend" />}
+                  label="Frontend"
                 />
                 <FormControlLabel
-                  control={<Checkbox checked={true} onChange={e => this.onChangeHandler(e)} name="jason" />}
-                  label="Jason Killian"
+                  control={<Checkbox checked={this.state.interests.backend} onChange={e => this.onCheckHandler(e, this.state.interests.backend)} name="interests.backend" />}
+                  label="Backend"
                 />
                 <FormControlLabel
-                  control={<Checkbox checked={true} onChange={e => this.onChangeHandler(e)} name="antoine" />}
-                  label="Antoine Llorca"
+                  control={<Checkbox checked={this.state.interests.fullstack} onChange={e => this.onCheckHandler(e, this.state.interests.fullstack)} name="interests.fullstack" />}
+                  label="Fullstack"
+                />
+                <FormControlLabel
+                  control={<Checkbox checked={this.state.interests.blockchain} onChange={e => this.onCheckHandler(e, this.state.interests.blockchain)} name="interests.blockchain" />}
+                  label="Blockchain"
+                />
+                <FormControlLabel
+                  control={<Checkbox checked={this.state.interests.AI} onChange={e => this.onCheckHandler(e, this.state.interests.AI)} name="interests.AI" />}
+                  label="AI"
+                />
+                <FormControlLabel
+                  control={<Checkbox checked={this.state.interests.design} onChange={e => this.onCheckHandler(e, this.state.interests.design)} name="interests.design" />}
+                  label="Design"
+                />
+                <FormControlLabel
+                  control={<Checkbox checked={this.state.interests.PM} onChange={e => this.onCheckHandler(e, this.state.interests.PM)} name="interests.PM" />}
+                  label="PM"
                 />
               </FormGroup>
-              <FormHelperText>Be careful</FormHelperText>
+              {/* <FormHelperText>Be careful</FormHelperText> */}
             </FormControl>
           </div>
-          <div className="col-3">
+          <div className="col-6 text-center">
             <FormControl component="fieldset" >
-              <FormLabel component="legend">Team Mate Interests</FormLabel>
+              <FormLabel component="legend">Teammate Interests:</FormLabel>
               <FormGroup>
                 <FormControlLabel
-                  control={<Checkbox checked={true} onChange={e => this.onChangeHandler(e)} name="gilad" />}
-                  label="Gilad Gray"
+                  control={<Checkbox checked={this.state.teamInterests.frontend} onChange={e => this.onCheckHandler(e, this.state.teamInterests.frontend)} name="teamInterests.frontend" />}
+                  label="Frontend"
                 />
                 <FormControlLabel
-                  control={<Checkbox checked={true} onChange={e => this.onChangeHandler(e)} name="jason" />}
-                  label="Jason Killian"
+                  control={<Checkbox checked={this.state.teamInterests.backend} onChange={e => this.onCheckHandler(e, this.state.teamInterests.backend)} name="teamInterests.backend" />}
+                  label="Backend"
                 />
                 <FormControlLabel
-                  control={<Checkbox checked={true} onChange={e => this.onChangeHandler(e)} name="antoine" />}
-                  label="Antoine Llorca"
+                  control={<Checkbox checked={this.state.teamInterests.fullstack} onChange={e => this.onCheckHandler(e, this.state.teamInterests.fullstack)} name="teamInterests.fullstack" />}
+                  label="Fullstack"
+                />
+                <FormControlLabel
+                  control={<Checkbox checked={this.state.teamInterests.blockchain} onChange={e => this.onCheckHandler(e, this.state.teamInterests.blockchain)} name="teamInterests.blockchain" />}
+                  label="Blockchain"
+                />
+                <FormControlLabel
+                  control={<Checkbox checked={this.state.teamInterests.AI} onChange={e => this.onCheckHandler(e, this.state.teamInterests.AI)} name="teamInterests.AI" />}
+                  label="AI"
+                />
+                <FormControlLabel
+                  control={<Checkbox checked={this.state.teamInterests.design} onChange={e => this.onCheckHandler(e, this.state.teamInterests.design)} name="teamInterests.design" />}
+                  label="Design"
+                />
+                <FormControlLabel
+                  control={<Checkbox checked={this.state.teamInterests.PM} onChange={e => this.onCheckHandler(e, this.state.teamInterests.PM)} name="teamInterests.PM" />}
+                  label="PM"
                 />
               </FormGroup>
-              <FormHelperText>Be careful</FormHelperText>
+              {/* <FormHelperText>Be careful</FormHelperText> */}
             </FormControl>
           </div>
+
 
         </div>
         <div className="row" style={{ marginTop: "25px" }}>
