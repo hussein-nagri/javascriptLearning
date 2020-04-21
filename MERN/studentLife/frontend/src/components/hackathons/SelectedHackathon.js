@@ -2,7 +2,8 @@ import React, { Component } from 'react'
 import axios from 'axios'
 
 
-
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
 import FormLabel from '@material-ui/core/FormLabel';
 import FormGroup from '@material-ui/core/FormGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
@@ -42,9 +43,13 @@ class SelectedHackathon extends Component {
         design: false,
         PM: false
       },
+      goal: "",
+      idea: "",
+
     }
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.onCheckHandler = this.onCheckHandler.bind(this);
+    this.formChange = this.formChange.bind(this);
 
     //  this.renderTeam = this.renderTeam.bind(this);
   }
@@ -69,6 +74,14 @@ class SelectedHackathon extends Component {
     this.setState({
       [e.target.name]: e.target.value
     });
+  }
+
+  formChange = async (e) => {
+    e.persist();
+    this.setState({
+      goal: e.target.value
+    });
+
   }
 
   onCheckHandler = async (e, val) => {
@@ -167,81 +180,45 @@ class SelectedHackathon extends Component {
 
 
         </div>
-        <div className="row" style={{ marginTop: "25px" }}>
-          <div className="col-6">
-            <TextField
-              autoFocus
-              required
-              className="textfield"
-              name="address"
-              placeholder="Address"
-              value={this.state.address}
-              onChange={e => this.onChangeHandler(e)}
-              variant="outlined"
-              fullWidth
-            />
-          </div>
 
-          < div className="col-3">
-            <TextField
-              autoFocus
-              required
-              className="textfield"
-              name="email"
-              placeholder="Email"
-              value={this.state.email}
-              onChange={e => this.onChangeHandler(e)}
-              variant="outlined"
-              fullWidth
-            />
-          </div>
-        </div>
 
         <div className="row" style={{ marginTop: "25px" }}>
-          <div className="col-6">
-            <TextField
-              autoFocus
-              required
-              className="textfield"
-              name="city"
-              placeholder="City"
-              value={this.state.city}
-              onChange={e => this.onChangeHandler(e)}
-              variant="outlined"
-              fullWidth
-            />
-          </div>
-          <div className="col-3">
-            <TextField
-              autoFocus
-              required
-              className="textfield"
-              name="number"
-              placeholder="Phone Number"
-              value={this.state.number}
-              onChange={e => this.onChangeHandler(e)}
-              variant="outlined"
-              fullWidth
-            />
+          <div className="col-12 text-center">
+            <FormControl onChange={e => this.formChange(e)} component="fieldset">
+              <FormLabel component="legend">What is this hackathon about?</FormLabel>
+              <RadioGroup row aria-label="position" name="position" defaultValue="">
+
+                <FormControlLabel
+                  value="Networking"
+                  control={<Radio color="primary" />}
+                  label="Networking"
+                  labelPlacement="bottom"
+                />
+                <FormControlLabel
+                  value="Learning"
+                  control={<Radio color="primary" />}
+                  label="Learning"
+                  labelPlacement="bottom"
+                />
+                <FormControlLabel
+                  value="Completing a project"
+                  control={<Radio color="primary" />}
+                  label="Completing a project"
+                  labelPlacement="bottom"
+                />
+                <FormControlLabel
+                  value="Winning"
+                  control={<Radio color="primary" />}
+                  label="Winning"
+                  labelPlacement="bottom"
+                />
+              </RadioGroup>
+            </FormControl>
+
+
 
           </div>
-        </div>
-
-        <div className="row" style={{ marginTop: "25px" }}>
-          <div className="col-6">
-            <TextField
-              autoFocus
-              required
-              className="textfield"
-              name="country"
-              placeholder="Country"
-              value={this.state.country}
-              onChange={e => this.onChangeHandler(e)}
-              variant="outlined"
-              fullWidth
-            />
-          </div>
-          <div className="col-6">
+          {/* <div className="col-6">
             <TextField
               autoFocus
               required
@@ -252,9 +229,48 @@ class SelectedHackathon extends Component {
               onChange={e => this.onChangeHandler(e)}
               variant="outlined"
               fullWidth
+              label="helol"
+            />
+          </div> */}
+        </div>
+
+
+        <div className="row" style={{ marginTop: "25px" }}>
+          <div className="col-6">
+            <TextField
+              multiline
+              rows={6}
+              autoFocus
+              required
+              className="textfield"
+              name="address"
+              value={this.state.address}
+              onChange={e => this.onChangeHandler(e)}
+              variant="outlined"
+              label="Enter a Description of what you would like to make this hackathon"
+              fullWidth
+            />
+          </div>
+
+          <div className="col-6">
+            <TextField
+              multiline
+              rows={6}
+              autoFocus
+              required
+              className="textfield"
+              name="address"
+              value={this.state.address}
+              onChange={e => this.onChangeHandler(e)}
+              variant="outlined"
+              label="Enter a Description of what you would like to make this hackathon"
+              fullWidth
             />
           </div>
         </div>
+
+
+
 
         <div className="row" style={{ marginTop: "25px" }}>
 
