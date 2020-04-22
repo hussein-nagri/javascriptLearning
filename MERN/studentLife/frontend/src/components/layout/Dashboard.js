@@ -9,6 +9,9 @@ import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 
 import logo from '../../img/logo.png';
+import hackathon from '../../img/hackathon.jpeg'
+import hackathonProcess from '../../img/hackathonProcess.png'
+
 
 import { Link } from 'react-router-dom';
 import { Fragment } from 'react';
@@ -46,35 +49,53 @@ class Dashboard extends Component {
               <strong>Welcome!</strong>
             </span>
           </h1>
-          <p style={{ textAlign: "left" }}>
-            Are you attending a hackathon?
-        </p>
+
         </div>
-        <Card className={classes.card}>
-          <CardActionArea>
-            <CardMedia
-              className={classes.media}
-              image={logo}
-              title="Contemplative Reptile"
-            />
-            <CardContent>
-              <Typography gutterBottom variant="h5" component="h2">
-                Welcome! Are you attending a hackathon?
+        <div className="row">
+          <div className="col-12">
+            <Card className={classes.card}>
+              <CardActionArea>
+                <CardMedia
+                  className={classes.media}
+                  image={logo}
+                  title="Contemplative Reptile"
+                />
+                <CardContent>
+                  <Typography gutterBottom variant="h5" component="h2">
+                    Are you attending a hackathon?
           </Typography>
-              <Typography variant="body2" color="textSecondary" component="p">
-                Hackathons are a fun way to interact with people like you, and help make a product from scratch.
+                  <Typography variant="body2" color="textSecondary" component="p">
+                    Hackathons are a fun way to interact with people like you, and help make a product from scratch.
           </Typography>
-            </CardContent>
-          </CardActionArea>
-          <CardActions>
-            <div size="small" color="primary">
-              <Link to="/presentHackathons">  YES </Link>
-            </div>
-            <div size="small" color="primary">
-              <Link to="/hackathons"> See Upcoming Hackathons</Link>
-            </div>
-          </CardActions>
-        </Card>
+                </CardContent>
+              </CardActionArea>
+              <CardActions>
+                <div size="small" color="primary">
+                  <Link to="/presentHackathons">  YES </Link>
+                </div>
+                <div size="small" color="primary">
+                  <Link to="/hackathons"> See Upcoming Hackathons</Link>
+                </div>
+              </CardActions>
+            </Card>
+
+          </div>
+        </div>
+        <div style={{ marginTop: "25px" }} className="row">
+          <div className="col-6">
+
+            <img src={hackathonProcess} alt="Hackathons " style={{ width: "500px" }} className="thumbnail " />
+
+          </div>
+          <div className="col-6">
+
+            <img src={hackathon} alt="group work logo" className="thumbnail  d-none d-sm-none d-md-block" />
+
+
+          </div>
+
+        </div>
+
       </Fragment>
     )
   }
