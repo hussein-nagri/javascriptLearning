@@ -49,11 +49,17 @@ class Dashboard extends Component {
               <strong>Welcome!</strong>
             </span>
           </h1>
-
         </div>
         <div className="row">
-          <div className="col-12">
-            <Card className={classes.card}>
+          <div className="col-4">
+
+          </div>
+
+          <div style={{ textAlign: "center" }} className="col-4 ">
+            <Card style={{
+              width: "100%",
+
+            }} className={classes.card}>
               <CardActionArea>
                 <CardMedia
                   className={classes.media}
@@ -78,6 +84,10 @@ class Dashboard extends Component {
                 </div>
               </CardActions>
             </Card>
+
+          </div>
+
+          <div className="col-4">
 
           </div>
         </div>
