@@ -23,7 +23,6 @@ class SelectedHackathon extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      hackathons: [],
       pageName: "",
       interests: {
         frontend: false,
@@ -44,8 +43,8 @@ class SelectedHackathon extends Component {
         PM: false
       },
       goal: "",
-      idea: "",
-
+      makeInterests: "",
+      otherInt: ""
     }
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.onCheckHandler = this.onCheckHandler.bind(this);
@@ -181,7 +180,6 @@ class SelectedHackathon extends Component {
 
         </div>
 
-
         <div className="row" style={{ marginTop: "25px" }}>
           <div className="col-12 text-center">
             <FormControl onChange={e => this.formChange(e)} component="fieldset">
@@ -214,37 +212,19 @@ class SelectedHackathon extends Component {
                 />
               </RadioGroup>
             </FormControl>
-
-
-
           </div>
-          {/* <div className="col-6">
-            <TextField
-              autoFocus
-              required
-              className="textfield"
-              name="uni"
-              placeholder="University"
-              value={this.state.uni}
-              onChange={e => this.onChangeHandler(e)}
-              variant="outlined"
-              fullWidth
-              label="helol"
-            />
-          </div> */}
         </div>
 
 
         <div className="row" style={{ marginTop: "25px" }}>
-          <div className="col-6">
+          <div className="col-12 align-content-center">
             <TextField
               multiline
               rows={6}
-              autoFocus
               required
               className="textfield"
-              name="address"
-              value={this.state.address}
+              name="makeInterests"
+              value={this.state.makeInterests}
               onChange={e => this.onChangeHandler(e)}
               variant="outlined"
               label="Enter a Description of what you would like to make this hackathon"
@@ -252,25 +232,11 @@ class SelectedHackathon extends Component {
             />
           </div>
 
-          <div className="col-6">
-            <TextField
-              multiline
-              rows={6}
-              autoFocus
-              required
-              className="textfield"
-              name="address"
-              value={this.state.address}
-              onChange={e => this.onChangeHandler(e)}
-              variant="outlined"
-              label="Enter a Description of what you would like to make this hackathon"
-              fullWidth
-            />
-          </div>
+
         </div>
 
 
-
+        CREATE A "I accept that my information will be shared with my team" button
 
         <div className="row" style={{ marginTop: "25px" }}>
 
