@@ -44,13 +44,14 @@ class SelectedHackathon extends Component {
       },
       goal: "",
       makeInterests: "",
-      otherInt: ""
+      otherInt: "",
+      agreed : false
     }
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.onCheckHandler = this.onCheckHandler.bind(this);
     this.formChange = this.formChange.bind(this);
 
-    //  this.renderTeam = this.renderTeam.bind(this);
+     this.submitHandler = this.submitHandler.bind(this);
   }
 
   async componentDidMount(prevProps) {
@@ -67,6 +68,18 @@ class SelectedHackathon extends Component {
     }).then(data => {
       console.log(data)
     })
+  }
+
+
+  submitHandler = (e) => {
+    e.preventDefault();
+    const formData = {
+      interests : this.state.interests,
+      teamInterests : this.state.teamInterests,
+      //todo
+    }
+
+
   }
 
   onChangeHandler = (e) => {
@@ -234,9 +247,13 @@ class SelectedHackathon extends Component {
 
 
         </div>
+<div>
+  <Checkbox checked={this.state.agreed} 
+  onChange={e => {this.setState({ agreed : !this.state.agreed})}}/>
+      I accept that my information will be shared with my team
+    
+</div>
 
-
-        CREATE A "I accept that my information will be shared with my team" button
 
         <div className="row" style={{ marginTop: "25px" }}>
 
