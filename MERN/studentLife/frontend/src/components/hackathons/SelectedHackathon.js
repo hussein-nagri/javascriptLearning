@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React, { Component, Fragment } from 'react'
 import axios from 'axios'
 
 
@@ -44,7 +44,6 @@ class SelectedHackathon extends Component {
       },
       goal: "",
       makeInterests: "",
-      otherInt: "",
       agreed : false
     }
     this.onChangeHandler = this.onChangeHandler.bind(this);
@@ -73,11 +72,24 @@ class SelectedHackathon extends Component {
 
   submitHandler = (e) => {
     e.preventDefault();
+    if (!this.state.agreed){
+      return alert("Please accept the terms and conditions")
+    }
+
+    var tok = localStorage.getItem("token")
+
     const formData = {
       interests : this.state.interests,
       teamInterests : this.state.teamInterests,
-      //todo
+      goal : this.state.goal, 
+      makeInterests : this.state.makeInterests,
+      otherInt : this.state.otherInt,
+      token : tok
     }
+
+
+    axios.post("/api/hackathons/makeTeam", formData)
+    .then(data => console.log(data))
 
 
   }
@@ -115,6 +127,11 @@ class SelectedHackathon extends Component {
 
   render() {
     return (
+      <Fragment>
+      <div style={{ marginTop: "-100px" }} className="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center" >
+        <h1 className="display-4">Additional Information </h1>
+        <p className="lead"></p>
+      </div>
       <form className="container" method="post" onSubmit={e => this.submitHandler(e)} required noValidate autoComplete="off">
         <div className="row">
           <div className="col-6 text-center">
@@ -244,8 +261,6 @@ class SelectedHackathon extends Component {
               fullWidth
             />
           </div>
-
-
         </div>
 <div>
   <Checkbox checked={this.state.agreed} 
@@ -265,15 +280,14 @@ class SelectedHackathon extends Component {
               type="submit"
               color="primary"
               size="large"
-              // component={Link}
-              // to="/registerExperience"
               fullWidth
-            >Next</Button>
+            >Done</Button>
 
 
           </div>
         </div>
       </form >
+      </Fragment>
     )
   }
 }

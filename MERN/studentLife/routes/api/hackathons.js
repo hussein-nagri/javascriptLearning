@@ -115,11 +115,24 @@ router.get(
 router.post(
   '/:id',
   async (req, res) => {
-
+    //TODO
     console.log(req.body);
-
-
-
   }
 );
+
+
+// @route    POST api/hackathons/teamMake
+// @desc     Register user
+// @access   Public
+router.post(
+  '/makeTeam',
+  async (req, res) => {
+    //TODO
+    console.log(req.body);
+  }
+);
+
+
+
+
 module.exports = router;
