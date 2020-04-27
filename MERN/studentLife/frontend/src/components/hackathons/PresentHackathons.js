@@ -41,9 +41,6 @@ class PresentHackathons extends Component {
 
     this.props.history.push(`/hackathons/${idName}`)
 
-    // await axios.post(`/api/hackathons/${idName}`).then(data => {
-    //   console.log(data);
-    // })
   }
 
 

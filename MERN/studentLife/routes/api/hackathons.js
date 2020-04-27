@@ -109,16 +109,26 @@ router.get(
 );
 
 
+//---------------------------------------------MAYBE TO DO
+
 // @route    POST api/hackathons/:id
 // @desc     Register user
 // @access   Public
-router.post(
-  '/:id',
-  async (req, res) => {
-    //TODO
-    console.log(req.body);
-  }
-);
+
+// router.get(
+//   '/:id',
+//   async (req, res) => {
+//     //TODO
+//     console.log(req.body);
+
+
+
+//     return res.status(200).json({ msg: success })
+//   }
+// );
+
+
+//---------------------------------------------MAYBE TO DO
 
 
 // @route    POST api/hackathons/teamMake
@@ -128,7 +138,15 @@ router.post(
   '/makeTeam',
   async (req, res) => {
     //TODO
-    console.log(req.body);
+    await console.log(req.body);
+
+
+
+
+
+
+
+    return res.status(200).json({ msg: "success" })
   }
 );
 

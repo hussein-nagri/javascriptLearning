@@ -18,7 +18,6 @@ class Languages extends Component {
 
   async onCheck() {
     await this.setState({ checked: !this.state.checked });
-    // console.log(this.props)
     this.props.saveState(this.state.checked, this.props.type, this.props.language);
   }
 

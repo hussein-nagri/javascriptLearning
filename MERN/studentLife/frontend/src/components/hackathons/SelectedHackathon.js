@@ -44,7 +44,8 @@ class SelectedHackathon extends Component {
       },
       goal: "",
       makeInterests: "",
-      agreed : false
+      agreed : false,
+      success : false
     }
     this.onChangeHandler = this.onChangeHandler.bind(this);
     this.onCheckHandler = this.onCheckHandler.bind(this);
@@ -62,15 +63,15 @@ class SelectedHackathon extends Component {
       pageName: address
     })
 
-    await axios.post(`/api/hackathons/${address}`, {
-      address
-    }).then(data => {
-      console.log(data)
-    })
+    // await axios.post(`/api/hackathons/${address}`, {
+    //   address
+    // }).then(data => {
+    //   console.log(data)
+    // })
   }
 
 
-  submitHandler = (e) => {
+  submitHandler = async (e) => {
     e.preventDefault();
     if (!this.state.agreed){
       return alert("Please accept the terms and conditions")
@@ -83,15 +84,26 @@ class SelectedHackathon extends Component {
       teamInterests : this.state.teamInterests,
       goal : this.state.goal, 
       makeInterests : this.state.makeInterests,
-      otherInt : this.state.otherInt,
-      token : tok
+      otherInt : this.state.otherInt
     }
 
 
-    axios.post("/api/hackathons/makeTeam", formData)
-    .then(data => console.log(data))
+    await axios.post("/api/hackathons/makeTeam", formData, {
+      headers: {
+        'Authorization': `${tok}`
+      }
+    })
+    .then(data => {
+      this.setState({
+        success: true
+      })
+    })
+    .catch(err => 
+      console.log(err))
 
+    this.state.success ? console.log("was here") : console.log("NOTTTT")
 
+      
   }
 
   onChangeHandler = (e) => {
