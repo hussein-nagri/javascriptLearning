@@ -63,11 +63,6 @@ class SelectedHackathon extends Component {
       pageName: address
     })
 
-    // await axios.post(`/api/hackathons/${address}`, {
-    //   address
-    // }).then(data => {
-    //   console.log(data)
-    // })
   }
 
 
@@ -101,7 +96,9 @@ class SelectedHackathon extends Component {
     .catch(err => 
       console.log(err))
 
-    this.state.success ? console.log("was here") : console.log("NOTTTT")
+    this.state.success ?
+     this.props.history.push(`/hackathons/notifyEmail`) 
+     : console.log("NOTTTT")
 
       
   }
