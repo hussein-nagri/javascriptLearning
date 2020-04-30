@@ -100,7 +100,6 @@ export default function SignedInNav() {
                 onClose={handleClose}
               >
                 <MenuItem onClick={handleClose}><ReactLink to="/profile"> Profile </ReactLink></MenuItem>
-                <MenuItem onClick={handleClose}><ReactLink to="/settings"> Settings </ReactLink></MenuItem>
                 <MenuItem onClick={e => logout(e)}><ReactLink to="/"> Logout </ReactLink></MenuItem>
 
               </Menu>
