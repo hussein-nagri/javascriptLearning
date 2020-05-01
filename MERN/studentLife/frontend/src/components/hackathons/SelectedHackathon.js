@@ -78,8 +78,7 @@ class SelectedHackathon extends Component {
       interests : this.state.interests,
       teamInterests : this.state.teamInterests,
       goal : this.state.goal, 
-      makeInterests : this.state.makeInterests,
-      otherInt : this.state.otherInt
+      makeInterests : this.state.makeInterests
     }
 
 

@@ -11,6 +11,8 @@ const axios = require("axios");
 const cheerio = require("cheerio");
 const NodeCache = require("node-cache");
 const myCache = new NodeCache();
+const jwt = require('jsonwebtoken');
+
 
 
 // const User = require('../../models/User');
@@ -140,7 +142,13 @@ router.post(
     //TODO
     await console.log(req.body);
 
+    var token = req.headers.authorization;
+    console.log(token)
 
+    //TODO: have a .config file to pull secret token
+    var decoded = await jwt.verify(token, 'mysecrettoken');
+
+    console.log(decoded)
 
 
 
