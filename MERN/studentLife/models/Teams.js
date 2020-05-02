@@ -3,9 +3,9 @@ const mongoose = require('mongoose');
 const TeamSchema = new mongoose.Schema({
   hackathon: {
     type: String,
-    required: true
+    // required: true
   },
-  name: {
+  userId: {
     type: String,
     required: true
   },
@@ -18,7 +18,7 @@ const TeamSchema = new mongoose.Schema({
   goal: {
     type: String
   },
-  makingInterst: {
+  makeInterests: {
     type: String
   }
 });

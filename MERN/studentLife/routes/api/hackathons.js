@@ -15,7 +15,9 @@ const jwt = require('jsonwebtoken');
 
 
 
-// const User = require('../../models/User');
+const User = require('../../models/User');
+const Teams = require("../../models/Teams");
+
 
 // @route    POST api/hackathons
 // @desc     Register user
@@ -139,7 +141,6 @@ router.get(
 router.post(
   '/makeTeam',
   async (req, res) => {
-    //TODO
     await console.log(req.body);
 
     var token = req.headers.authorization;
@@ -150,7 +151,44 @@ router.post(
 
     console.log(decoded)
 
+    var userId = decoded.id;
 
+    const { interests, teamInterests, goal, makeInterests } = req.body;
+    let user = await User.findOne({ _id: userId });
+
+    if (!user) {
+      return res
+        .status(400)
+        .json({ errors: 'Login expired' });
+    }
+
+
+    //TODO: ADD hackathon name being pushed
+    //also need to have a frontnend button to renavigate to
+    //the home page once submitted
+    teamMake = new Teams({
+      interests,
+      teamInterests,
+      goal,
+      makeInterests,
+      userId
+    })
+
+    await teamMake.save();
+
+    // await Teams.collection.updateOne(
+    //   { userId },
+    //   {
+    //     $set:
+    //     {
+    //       interests,
+    //       teamInterests,
+    //       goal,
+    //       makeInterests,
+    //       userId
+    //     }
+    //   }
+    // );
 
 
 
