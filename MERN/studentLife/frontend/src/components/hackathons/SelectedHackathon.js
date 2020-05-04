@@ -78,7 +78,8 @@ class SelectedHackathon extends Component {
       interests : this.state.interests,
       teamInterests : this.state.teamInterests,
       goal : this.state.goal, 
-      makeInterests : this.state.makeInterests
+      makeInterests : this.state.makeInterests,
+      hackathon : this.state.pageName
     }
 
 
@@ -95,9 +96,19 @@ class SelectedHackathon extends Component {
     .catch(err => 
       console.log(err))
 
-    this.state.success ?
-     this.props.history.push(`/hackathons/notifyEmail`) 
-     : console.log("NOTTTT")
+
+      if (this.state.success)
+        this.props.history.push(`/hackathons/notifyEmail`) 
+      else{
+        localStorage.removeItem("token");
+        this.props.history.push(`/login`); 
+      }
+    
+        
+      
+        
+        
+
 
       
   }

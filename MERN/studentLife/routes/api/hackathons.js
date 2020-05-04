@@ -141,19 +141,25 @@ router.get(
 router.post(
   '/makeTeam',
   async (req, res) => {
-    await console.log(req.body);
 
     var token = req.headers.authorization;
-    console.log(token)
+    // console.log(token)
 
     //TODO: have a .config file to pull secret token
-    var decoded = await jwt.verify(token, 'mysecrettoken');
+
+    try {
+      var decoded = await jwt.verify(token, 'mysecrettoken');
+    } catch (error) {
+      return res
+        .status(400)
+        .json({ errors: 'Login expired' });
+    }
 
     console.log(decoded)
 
     var userId = decoded.id;
 
-    const { interests, teamInterests, goal, makeInterests } = req.body;
+    const { interests, teamInterests, goal, makeInterests, hackathon } = req.body;
     let user = await User.findOne({ _id: userId });
 
     if (!user) {
@@ -162,16 +168,13 @@ router.post(
         .json({ errors: 'Login expired' });
     }
 
-
-    //TODO: ADD hackathon name being pushed
-    //also need to have a frontnend button to renavigate to
-    //the home page once submitted
     teamMake = new Teams({
       interests,
       teamInterests,
       goal,
       makeInterests,
-      userId
+      userId,
+      hackathon
     })
 
     await teamMake.save();
