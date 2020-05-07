@@ -2,8 +2,7 @@ const mongoose = require('mongoose');
 
 const TeamSchema = new mongoose.Schema({
   hackathon: {
-    type: String,
-    // required: true
+    type: String
   },
   userId: {
     type: String,
