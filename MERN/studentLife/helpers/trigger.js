@@ -12,6 +12,9 @@ function getTeam() {
 
   //TODO: Once matched, delete from DB
 
+  //see this site for integration
+  //https://app.sendgrid.com/guide
+
   const msg = {
     to: 'husseinnagri@hotmail.com',
     from: 'hznagri@uwaterloo.ca',
