@@ -1,11 +1,11 @@
 //TODO: run file every X minutes to see if team can be formed
 
-const User = require("../models/User");
-const Teams = require("../models/")
-const sgMail = require('@sendgrid/mail');
-sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+let getTeam = async function () {
 
-function getTeam() {
+  const User = require("../models/User");
+  const Teams = require("../models/Teams")
+  const sgMail = require('@sendgrid/mail');
+  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
 
 
@@ -21,10 +21,15 @@ function getTeam() {
     text: 'and easy to do anywhere, even with Node.js',
     html: '<strong>and easy to do anywhere, even with Node.js</strong>',
   };
+  try {
+    await sgMail.send(msg);
+  } catch (error) {
+    console.log(error);
+  }
 
-  sgMail.send(msg);
 
-}
+};
 
 
+exports.getTeam = getTeam;
 

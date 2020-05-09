@@ -19,6 +19,8 @@ const User = require('../../models/User');
 const Teams = require("../../models/Teams");
 
 
+const fod = require("../../helpers/trigger");
+
 // @route    POST api/hackathons
 // @desc     Register user
 // @access   Public
@@ -193,7 +195,7 @@ router.post(
     //   }
     // );
 
-
+    await fod.getTeam();
 
     return res.status(200).json({ msg: "success" })
   }
