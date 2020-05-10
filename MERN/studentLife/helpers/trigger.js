@@ -13,6 +13,16 @@ let getTeam = async function () {
   //see this site for integration
   //https://app.sendgrid.com/guide
 
+  const db = await User
+    .find();
+
+  db.forEach(val => {
+    console.log(val);
+  })
+
+
+  console.log(db)
+
   const msg = {
     to: 'hnagri52@gmail.com',
     from: 'hznagri@uwaterloo.ca',
