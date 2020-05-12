@@ -13,15 +13,33 @@ let getTeam = async function () {
   //see this site for integration
   //https://app.sendgrid.com/guide
 
-  const db = await User
+  const db = await User.collection
     .find();
 
-  db.forEach(val => {
-    console.log(val);
+
+  // var toStore = [];
+
+  //REALIZE YOU HAVE A LONG STRING
+  //CUZ ITS THE image in str format
+  db.forEach(doc => {
+    JSON.stringify(doc)
   })
 
+  // db.forEach(function (doc) {
+  //   console.log("user: ", JSON.stringify(doc))
+  // })
 
-  console.log(db)
+
+  console.log("me", arr)
+
+
+  //ENCODED?
+  // db.forEach(val => {
+  //   // console.log(val);
+  // })
+
+
+  // console.log(db)
 
   const msg = {
     to: 'hnagri52@gmail.com',

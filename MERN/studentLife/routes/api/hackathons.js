@@ -157,7 +157,7 @@ router.post(
         .json({ errors: 'Login expired' });
     }
 
-    console.log(decoded)
+    // console.log(decoded)
 
     var userId = decoded.id;
 
