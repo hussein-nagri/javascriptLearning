@@ -14,32 +14,16 @@ let getTeam = async function () {
   //https://app.sendgrid.com/guide
 
   const db = await User.collection
-    .find();
+    .find({ hackathon: {});
 
+  //LOOP THRU CONTENTS AND DO WHATEVR U GOTTA
 
-  // var toStore = [];
-
-  //REALIZE YOU HAVE A LONG STRING
-  //CUZ ITS THE image in str format
-  db.forEach(doc => {
-    JSON.stringify(doc)
-  })
-
-  // db.forEach(function (doc) {
-  //   console.log("user: ", JSON.stringify(doc))
+  // db.forEach(doc => {
+  //   JSON.stringify(doc)
   // })
 
 
-  console.log("me", arr)
 
-
-  //ENCODED?
-  // db.forEach(val => {
-  //   // console.log(val);
-  // })
-
-
-  // console.log(db)
 
   const msg = {
     to: 'hnagri52@gmail.com',
