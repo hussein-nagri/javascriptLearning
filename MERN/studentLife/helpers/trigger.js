@@ -14,7 +14,7 @@ let getTeam = async function () {
   //https://app.sendgrid.com/guide
 
   const db = await User.collection
-    .find({ hackathon: {});
+    .find();
 
   //LOOP THRU CONTENTS AND DO WHATEVR U GOTTA
 
