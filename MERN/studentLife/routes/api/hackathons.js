@@ -195,8 +195,6 @@ router.post(
     //   }
     // );
 
-    await fod.getTeam();
-
     return res.status(200).json({ msg: "success" })
   }
 );
