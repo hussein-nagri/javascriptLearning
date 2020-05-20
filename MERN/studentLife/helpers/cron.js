@@ -1,15 +1,19 @@
 var CronJob = require('cron').CronJob;
-const fod = require("./trigger");
+const User = require('../models/User');
+const Teas = require('../models/Teams');
 
 
+// add this to start cron job \"node helpers/cron.js\" "
 
-
-var job = new CronJob('* * * * *', async function () {
+var job = new CronJob('* */2 * * *', async function () {
   console.log("Running");
 
   const sgMail = require('@sendgrid/mail');
   require('dotenv').config();
   sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+
+
 
   const msg = {
     to: 'hnagri52@gmail.com',

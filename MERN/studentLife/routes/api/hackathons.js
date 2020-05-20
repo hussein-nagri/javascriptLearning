@@ -19,8 +19,6 @@ const User = require('../../models/User');
 const Teams = require("../../models/Teams");
 
 
-const fod = require("../../helpers/trigger");
-
 // @route    POST api/hackathons
 // @desc     Register user
 // @access   Public
