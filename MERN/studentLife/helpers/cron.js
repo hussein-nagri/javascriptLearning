@@ -1,25 +1,38 @@
 var CronJob = require('cron').CronJob;
 const User = require('../models/User');
 const Teas = require('../models/Teams');
+const sgMail = require('@sendgrid/mail');
+require('dotenv').config();
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
+const axios = require("axios");
 
-// add this to start cron job \"node helpers/cron.js\" "
-
+// add this to packagejson to start cron job \"node helpers/cron.js\" "
 var job = new CronJob('* */2 * * *', async function () {
-  console.log("Running");
 
-  const sgMail = require('@sendgrid/mail');
-  require('dotenv').config();
-  sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+  myHacks = [];
 
+  axios.request({
+    method: 'get',
+    url: 'http://localhost:5000/api/hackathons/present',
+    port: 80,
+  }).then(
+    hackathons => {
+      myHacks = hackathons;
+    })
+    .catch(err => {
+      console.error(err);
+    })
+
+  console.log(myHacks);
 
 
 
   const msg = {
-    to: 'hnagri52@gmail.com',
+    to: 'sabihah.k2001@gmail.com',
     from: 'hznagri@uwaterloo.ca',
-    subject: 'Sending with Twilio SendGrid is Fun',
-    text: 'and easy to do anywhere, even with Node.js',
+    subject: 'This is to see if my api works to losers',
+    text: 'It works bc the hoe got it',
     html: '<strong>and easy to do anywhere, even with Node.js</strong>',
   };
   try {

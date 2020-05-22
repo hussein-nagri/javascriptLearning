@@ -30,7 +30,7 @@ class PresentHackathons extends Component {
       this.setState({
         hackathons: hackathons.data
       })
-    })
+    });
   }
 
   renderTeam = async (e, idName) => {
