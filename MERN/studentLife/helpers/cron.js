@@ -12,17 +12,19 @@ var job = new CronJob('* */2 * * *', async function () {
 
   myHacks = [];
 
-  axios.request({
+  var promise = await axios.request({
     method: 'get',
     url: 'http://localhost:5000/api/hackathons/present',
     port: 80,
-  }).then(
-    hackathons => {
-      myHacks = hackathons;
-    })
-    .catch(err => {
-      console.error(err);
-    })
+  })
+
+  // .then(
+  //   hackathons => {
+  //     myHacks = hackathons;
+  //   })
+  //   .catch(err => {
+  //     console.error(err);
+  //   })
 
   console.log(myHacks);
 
