@@ -1,0 +1,37 @@
+{
+  name: 'BackyardHacks',
+  date: 'May 23rd - 24th',
+  location: 'Everywhere',
+  cImage: 'https: //s3.amazonaws.com/assets.mlh.io/events/splashes/000/001/538/thumb/backyardhack_hero.png?1588625829',
+  iImage: 'https: //s3.amazonaws.com/assets.mlh.io/events/logos/000/001/538/thumb/backyardhack_mlh-event-title.png?1588625829'
+}, {
+  name: 'OpenHacks',
+  date: 'May 23rd - 24th',
+  location: 'Everywhere',
+  cImage: 'https: //s3.amazonaws.com/assets.mlh.io/events/splashes/000/001/541/thumb/openhacks_backgroundmlh.png?1588770238',
+  iImage: 'https: //s3.amazonaws.com/assets.mlh.io/events/logos/000/001/541/thumb/openhacks_wkspace.png?1588770238'
+}, {
+  name: 'RookieHacks',
+  date: 'May 29th - 31st',
+  location: 'Everywhere',
+  cImage: 'https: //s3.amazonaws.com/assets.mlh.io/events/splashes/000/001/543/thumb/rookiehack_mlh-event-hero.png?1589821242',
+  iImage: 'https: //s3.amazonaws.com/assets.mlh.io/events/logos/000/001/543/thumb/rookiehack_mlh-event-title.png?1589821241'
+}, {
+  name: 'MasseyHacks',
+  date: 'May 30th - 31st',
+  location: 'Windsor',
+  cImage: 'https: //s3.amazonaws.com/assets.mlh.io/events/splashes/000/001/552/thumb/blueBridge_4x.png?1590012053',
+  iImage: 'https: //s3.amazonaws.com/assets.mlh.io/events/logos/000/001/552/thumb/android-chrome-512x512.png?1590012053'
+}, {
+  name: 'NotUniversity Hacks',
+  date: 'Jun 6th - 7th',
+  location: 'Everywhere',
+  cImage: 'https: //s3.amazonaws.com/assets.mlh.io/events/splashes/000/001/546/thumb/notUniversity_mlh-event-hero.png?1589821548',
+  iImage: 'https: //s3.amazonaws.com/assets.mlh.io/events/logos/000/001/546/thumb/notUniversity_mlh-event-title.png?1589821547'
+}, {
+  name: 'Same Home Different Hacks',
+  date: 'Jun 12th - 14th',
+  location: 'Everywhere',
+  cImage: 'https: //s3.amazonaws.com/assets.mlh.io/events/splashes/000/001/549/thumb/same-home-different-hacks_mlh-event-hero.png?1589890515',
+  iImage: 'https: //s3.amazonaws.com/assets.mlh.io/events/logos/000/001/549/thumb/same-home-different-hacks_mlh-event-title.png?1589890515'
+}

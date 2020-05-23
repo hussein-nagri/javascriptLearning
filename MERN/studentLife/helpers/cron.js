@@ -8,7 +8,7 @@ sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 const axios = require("axios");
 
 // add this to packagejson to start cron job \"node helpers/cron.js\" "
-var job = new CronJob('* */2 * * *', async function () {
+var job = new CronJob('* * * * *', async function () {
 
   myHacks = [];
 
@@ -18,20 +18,16 @@ var job = new CronJob('* */2 * * *', async function () {
     port: 80,
   })
 
-  // .then(
-  //   hackathons => {
-  //     myHacks = hackathons;
-  //   })
-  //   .catch(err => {
-  //     console.error(err);
-  //   })
+  const items = promise.data;
+  var result_of_hackathon_names = items.map(dict => {
+    return dict.name;
+  })
 
-  console.log(myHacks);
-
+  console.log(result_of_hackathon_names);
 
 
   const msg = {
-    to: 'sabihah.k2001@gmail.com',
+    to: 'husseinnagri@hotmail.com', //'sabihah.k2001@gmail.com',
     from: 'hznagri@uwaterloo.ca',
     subject: 'This is to see if my api works to losers',
     text: 'It works bc the hoe got it',
