@@ -1,6 +1,6 @@
 var CronJob = require('cron').CronJob;
 const User = require('../models/User');
-const Teas = require('../models/Teams');
+const Teams = require('../models/Teams');
 const sgMail = require('@sendgrid/mail');
 require('dotenv').config();
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
@@ -10,13 +10,11 @@ const axios = require("axios");
 // add this to packagejson to start cron job \"node helpers/cron.js\" "
 var job = new CronJob('* * * * *', async function () {
 
-  myHacks = [];
-
   var promise = await axios.request({
     method: 'get',
     url: 'http://localhost:5000/api/hackathons/present',
     port: 80,
-  })
+  });
 
   const items = promise.data;
   var result_of_hackathon_names = items.map(dict => {
@@ -24,6 +22,30 @@ var job = new CronJob('* * * * *', async function () {
   })
 
   console.log(result_of_hackathon_names);
+
+  for (var ht in result_of_hackathon_names) {
+
+    console.log("he");
+    var ans;
+
+    try {
+      ans = await Teams.collection.find({ 'hackathon': ht });
+      console.log("here", ans);
+    } catch (err) {
+      console.error(err);
+    }
+
+    ans.then(function (result) {
+      console.log(result) // "Some User token"
+    })
+
+
+    // var NewAns = await ans.then(function (result) {
+    //   return result;
+    // })
+
+    console.log("OT in")
+  }
 
 
   const msg = {
