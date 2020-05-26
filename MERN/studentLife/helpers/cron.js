@@ -9,7 +9,6 @@ const axios = require("axios");
 
 // add this to packagejson to start cron job \"node helpers/cron.js\" "
 var job = new CronJob('* * * * *', async function () {
-
   var promise = await axios.request({
     method: 'get',
     url: 'http://localhost:5000/api/hackathons/present',
@@ -30,6 +29,9 @@ var job = new CronJob('* * * * *', async function () {
 
     try {
       ans = await Teams.collection.find({ 'hackathon': ht });
+      ans = ans.forEach(doc => {
+        console.log(doc.userId);
+      });
       console.log("here", ans);
     } catch (err) {
       console.error(err);
@@ -65,4 +67,6 @@ var job = new CronJob('* * * * *', async function () {
 
   console.log("Finished");
 }, null, true, 'America/Los_Angeles');
+
+
 job.start();

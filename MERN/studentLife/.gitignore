@@ -3,3 +3,6 @@ sendgrid.env
 sendgrid.env
 config/.envsendgrid.env
 .env
+
+
+node_modules
