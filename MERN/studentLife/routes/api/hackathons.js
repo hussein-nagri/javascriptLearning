@@ -193,14 +193,6 @@ router.post(
     //   }
     // );
 
-    var ans = await Teams.collection.find({ 'hackathon': "RookieHacks" });
-
-    ans = ans.forEach(doc => {
-      console.log(doc.userId);
-    });
-
-    console.log(ans);
-
     return res.status(200).json({ msg: "success" })
   }
 );

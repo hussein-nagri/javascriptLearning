@@ -1,6 +1,10 @@
 var CronJob = require('cron').CronJob;
 const User = require('../models/User');
 const Teams = require('../models/Teams');
+
+const myGuy = require('./myGuy');
+
+
 const sgMail = require('@sendgrid/mail');
 require('dotenv').config();
 sgMail.setApiKey(process.env.SENDGRID_API_KEY);
@@ -21,6 +25,7 @@ var job = new CronJob('* * * * *', async function () {
   })
 
   console.log(result_of_hackathon_names);
+
 
   for (var ht in result_of_hackathon_names) {
 
