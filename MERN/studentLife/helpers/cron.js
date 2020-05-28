@@ -2,8 +2,6 @@ var CronJob = require('cron').CronJob;
 const User = require('../models/User');
 const Teams = require('../models/Teams');
 
-const myGuy = require('./myGuy');
-
 
 const sgMail = require('@sendgrid/mail');
 require('dotenv').config();
@@ -23,36 +21,34 @@ var job = new CronJob('* * * * *', async function () {
   var result_of_hackathon_names = items.map(dict => {
     return dict.name;
   })
-
   console.log(result_of_hackathon_names);
+  console.log("he");
+  for (let i = 0; i < result_of_hackathon_names.length; ++i) {
+    let ht_name = result_of_hackathon_names[i];
+    console.log(ht_name);
 
-
-  for (var ht in result_of_hackathon_names) {
-
-    console.log("he");
-    var ans;
-
-    try {
-      ans = await Teams.collection.find({ 'hackathon': ht });
-      ans = ans.forEach(doc => {
-        console.log(doc.userId);
-      });
-      console.log("here", ans);
-    } catch (err) {
-      console.error(err);
-    }
-
-    ans.then(function (result) {
-      console.log(result) // "Some User token"
-    })
-
-
-    // var NewAns = await ans.then(function (result) {
-    //   return result;
-    // })
-
-    console.log("OT in")
+    ans = await Teams.collection.find({ 'hackathon': ht_name })
+    console.log(ans);
   }
+
+  // try {
+  //   ans = await Teams.collection.find({ 'hackathon': ht });
+  //   ans.forEach(doc => {
+  //     console.log(doc.userId);
+  //   });
+  //   console.log("here", ans);
+  // } catch (err) {
+  //   console.error(err);
+  // }
+
+
+
+  // var NewAns = await ans.then(function (result) {
+  //   return result;
+  // })
+
+  console.log("OT in")
+
 
 
   const msg = {
