@@ -179,20 +179,6 @@ router.post(
 
     await teamMake.save();
 
-    // await Teams.collection.updateOne(
-    //   { userId },
-    //   {
-    //     $set:
-    //     {
-    //       interests,
-    //       teamInterests,
-    //       goal,
-    //       makeInterests,
-    //       userId
-    //     }
-    //   }
-    // );
-
     return res.status(200).json({ msg: "success" })
   }
 );
