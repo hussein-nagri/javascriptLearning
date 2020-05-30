@@ -31,21 +31,6 @@ var job = new CronJob('* * * * *', async function () {
     console.log(ans);
   }
 
-  // try {
-  //   ans = await Teams.collection.find({ 'hackathon': ht });
-  //   ans.forEach(doc => {
-  //     console.log(doc.userId);
-  //   });
-  //   console.log("here", ans);
-  // } catch (err) {
-  //   console.error(err);
-  // }
-
-
-
-  // var NewAns = await ans.then(function (result) {
-  //   return result;
-  // })
 
   console.log("OT in")
 
