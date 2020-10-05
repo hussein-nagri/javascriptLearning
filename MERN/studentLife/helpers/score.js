@@ -1,10 +1,12 @@
 
 
-const json = `{ 
-  { "home": "Toronto Raptors", "away": "Cleveland Cavaliers", "homeScore" : 99, awayScore: "winner": "Toronto Raptors" }, 
+const json = `[ 
+  { "home": "Toronto Raptors", "away": "Cleveland Cavaliers", "winner": "Toronto Raptors" }, 
   { "home": "Denver Nuggets",  "away": "Miami heat", "winner": "Denver Nuggets"},
   { "home": "Toronto Raptors", "away": "Miami heat", "winner": "Miami heat" } 
-}`
+]`
+
+
 
 function parseResults(json) {
 
@@ -25,6 +27,19 @@ function parseResults(json) {
 
   return teamInformation;
 }
+
+/*
+
+return: 
+
+[
+  {"team" : "raptors", "wins": 5, "losses" : 4},
+  {"team" : "denver", "wins": 5, "losses" : 4},
+  {"team" : "chicago", "wins": 5, "losses" : 4}
+]
+
+*/
+
 
 // -----
 
