@@ -2,8 +2,6 @@
 
 > Social network for developers
 
-This is a MERN stack application from the "MERN Stack Front To Back" course on [Udemy](https://www.udemy.com/mern-stack-front-to-back/?couponCode=TRAVERSYMEDIA). It is a small social network app that includes authentication, profiles and forum posts.
-
 ## Quick Start
 
 ```
@@ -14,7 +12,7 @@ This is a MERN stack application from the "MERN Stack Front To Back" course on [
 # add uri of your mongodb connection for example
 
  "mongoURI": "mongodb://localhost/dev-social",
- 
+
 ```
 
 ```bash
@@ -36,12 +34,9 @@ npm run build
 ## App Info
 
 ### Author
+
 Hussein Nagri
 
 ### Version
 
 2.0.0
-
-### License
-
-This project is licensed under the MIT License
