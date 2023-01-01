@@ -22,7 +22,7 @@
     "body-parser": "^1.19.0",
     "cheerio": "^1.0.0-rc.3",
     "concurrently": "^5.0.2",
-    "config": "^3.2.4",
+    "config": "^3.3.8",
     "create-react-app": "^3.3.0",
     "cron": "^1.8.2",
     "dotenv": "^8.2.0",
